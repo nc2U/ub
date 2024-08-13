@@ -7,7 +7,7 @@ services:
       dockerfile: php-dockerfile
       context: .
     volumes:
-      - ..:/var/www/html
+      - ../web/cb:/var/www/html/web
       - ./php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
     depends_on:
       - mariadb
@@ -21,7 +21,7 @@ services:
     links:
       - 'php'
     volumes:
-      - ../:/var/www/html
+      - ../web/cb:/var/www/html/web
       - ./nginx-conf:/etc/nginx/conf.d
     depends_on:
       - php
