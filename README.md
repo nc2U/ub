@@ -1,8 +1,8 @@
 # PHP, MariaDB and Nginx
 
 * This example provides containers for:
-    * PHP 8.1 (FPM)
-    * MariaDB 10.9
+    * PHP 8.2 (FPM)
+    * MariaDB (latest)
     * Nginx (latest)
 * Code in this directory will be mapped into the PHP container at `/var/www/html`
 * Nginx will serve code from the `web` directory (i.e. `web` is the document root)
@@ -14,11 +14,14 @@
 ## Security warning
 
 * There is a default password for MariaDB's root user specified in `docker/docker-compose.yml`
-* You are strongly recommended to edit this line to replace `YOURPASSWORDHERE` with a value known to you:
+* You are strongly recommended to edit this line to replace `my-db-*` with a value known to you:
 
     
 ```
-    MYSQL_ROOT_PASSWORD: YOURPASSWORDHERE
+    MYSQL_DATABASE: my-db-name
+    MYSQL_USER: my-db-user
+    MYSQL_PASSWORD: my-db-password
+    MYSQL_ROOT_PASSWORD: my-db-root-password
 ```
 
 * This docker configuration has not been security hardened.  Expose it to public networks at your own risk!
