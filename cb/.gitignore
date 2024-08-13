@@ -13,6 +13,9 @@ application/logs/*
 
 application/uploads/*
 
+# settings file
+application/config/config.php
+
 composer.lock
 /vendor/
 
