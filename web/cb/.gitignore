@@ -15,6 +15,7 @@ application/uploads/*
 
 # settings file
 application/config/config.php
+application/config/cb_config.php
 
 composer.lock
 /vendor/
