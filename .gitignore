@@ -1,0 +1,8 @@
+!.gitignore
+.DS_Store
+
+# mysqldata
+mysqldata/
+
+# docker-compose.yml
+docker-compose.yml

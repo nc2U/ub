@@ -1,0 +1,44 @@
+services:
+
+  # PHP FPM Service
+  php:
+    container_name: php
+    build:
+      dockerfile: php-dockerfile
+      context: .
+    volumes:
+      - ..:/var/www/html
+      - ./php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+    depends_on:
+      - mariadb
+
+  # Nginx Service
+  nginx:
+    container_name: web
+    image: nginx:latest
+    ports:
+      - 8080:80
+    links:
+      - 'php'
+    volumes:
+      - ../:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+    depends_on:
+      - php
+
+  # MariaDB Service
+  mariadb:
+    container_name: db
+    image: mariadb
+    environment:
+      MYSQL_DATABASE: my-db-name # 실제 데이터로 수정
+      MYSQL_USER: my-db-user # 실제 데이터로 수정
+      MYSQL_PASSWORD: my-db-password # 실제 데이터로 수정
+      MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+
+# Volumes
+volumes:
+  mysqldata:
