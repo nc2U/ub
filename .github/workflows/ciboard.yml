@@ -30,7 +30,7 @@ jobs:
           host: ${{ secrets.CAFE24_HOST }}
           username: ${{ secrets.CAFE24_USER }}
           password: ${{ secrets.CAFE24_PASS }}
-          source: 'web/'
+          source: 'web/*'
           target: ${{ secrets.CAFE24_PATH }}/cb/
       
       # slack --> notification
