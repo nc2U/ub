@@ -4,11 +4,11 @@ services:
   php:
     container_name: php
     build:
-      dockerfile: php-dockerfile
-      context: .
+      dockerfile: Dockerfile
+      context: ./php
     volumes:
       - ../web/cb:/var/www/html/web
-      - ./php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+      - ./php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
     depends_on:
       - mariadb
 
@@ -22,7 +22,7 @@ services:
       - 'php'
     volumes:
       - ../web/cb:/var/www/html/web
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
     depends_on:
       - php
 
@@ -37,8 +37,4 @@ services:
       MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
       TZ: Asia/Seoul
     volumes:
-      - ./mysqldata:/var/lib/mysql
-
-# Volumes
-volumes:
-  mysqldata:
+      - ./mysql/data:/var/lib/mysql
