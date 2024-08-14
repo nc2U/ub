@@ -30,8 +30,8 @@ jobs:
           host: ${{ secrets.CAFE24_HOST }}
           username: ${{ secrets.CAFE24_USER }}
           password: ${{ secrets.CAFE24_PASS }}
-          source: 'ciboard/cb'
-          target: ${{ secrets.CAFE24_PATH }}/
+          source: 'ciboard/cb/'
+          target: ${{ secrets.CAFE24_PATH }}/cb/
       
       # slack --> notification
       - name: Send slack when failed
