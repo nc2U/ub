@@ -1,7 +1,7 @@
 services:
 
   # PHP FPM Service
-  php:
+  php-fpm:
     container_name: php
     build:
       dockerfile: Dockerfile
@@ -19,12 +19,12 @@ services:
     ports:
       - 8080:80
     links:
-      - 'php'
+      - php-fpm
     volumes:
       - ../ciboard/cb:/var/www/html
       - ./nginx:/etc/nginx/conf.d
     depends_on:
-      - php
+      - php-fpm
 
   # MariaDB Service
   mariadb:
