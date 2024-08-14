@@ -82,8 +82,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 				</tbody>
 			</table>
 		</div>
-	<?php } ?>
-
+	<?php
+		}
+	?>
 	<script type="text/javascript">
 	//<![CDATA[
 	function file_download(link) {
@@ -97,27 +98,28 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 		<div class="table-box">
 			<table class="table-body">
 				<tbody>
-					<?php foreach (element('extra_content', $view) as $key => $value) { ?>
-						<tr>
-							<th class="px150"><?php echo html_escape(element('display_name', $value)); ?></th>
-							<td><?php echo nl2br(html_escape(element('output', $value))); ?></td>
-						</tr>
-					<?php } ?>
+				<?php foreach (element('extra_content', $view) as $key => $value) { ?>
+					<tr>
+						<th class="px150"><?php echo html_escape(element('display_name', $value)); ?></th>
+						<td><?php echo nl2br(html_escape(element('output', $value))); ?></td>
+					</tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
 	<?php } ?>
+
 	<div class="contents-view">
 		<div class="contents-view-img">
-		<?php
-		if (element('file_image', $view)) {
-			foreach (element('file_image', $view) as $key => $value) {
-		?>
-			<img src="<?php echo element('thumb_image_url', $value); ?>" alt="<?php echo html_escape(element('pfi_originname', $value)); ?>" title="<?php echo html_escape(element('pfi_originname', $value)); ?>" class="view_full_image" data-origin-image-url="<?php echo element('origin_image_url', $value); ?>" style="max-width:100%;" />
-		<?php
+			<?php
+			if (element('file_image', $view)) {
+				foreach (element('file_image', $view) as $key => $value) {
+			?>
+				<img src="<?php echo element('thumb_image_url', $value); ?>" alt="<?php echo html_escape(element('pfi_originname', $value)); ?>" title="<?php echo html_escape(element('pfi_originname', $value)); ?>" class="view_full_image" data-origin-image-url="<?php echo element('origin_image_url', $value); ?>" style="max-width:100%;" />
+			<?php
+				}
 			}
-		}
-		?>
+			?>
 		</div>
 
 		<!-- 본문 내용 시작 -->
@@ -170,26 +172,28 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 						if ($poll_item) {
 							foreach ($poll_item as $pkey => $pval) {
 					?>
-							<div class="checkbox">
-								<label for="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>">
-									<input type="checkbox" name="ppi_item[]" class="poll_item_chk" id="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>" value="<?php echo html_escape(element('ppi_id', $pval)); ?>" />
-									<?php echo html_escape(element('ppi_item', $pval)); ?>
-								</label>
-							</div>
-						<?php
-							}
+						<div class="checkbox">
+							<label for="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>">
+								<input type="checkbox" name="ppi_item[]" class="poll_item_chk" id="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>" value="<?php echo html_escape(element('ppi_id', $pval)); ?>" />
+								<?php echo html_escape(element('ppi_item', $pval)); ?>
+							</label>
+						</div>
+					<?php
 						}
-						?>
+					}
+					?>
 						<div class="form-group mt10">
 							<button type="button" class="btn btn-default btn-xs" onClick="post_poll('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">투표하기</button>
 							<button type="button" class="btn btn-default btn-xs" onClick="post_poll_result('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">결과보기</button>
-							<span class="help-block">답변 <?php echo element('ppo_choose_count', $poll); ?> 개 선택 가능, 현재 <?php echo element('ppo_count', $poll); ?>명이 참여함, 설문기간 : <?php echo html_escape(element('poll_period', $poll)); ?>
+							<span class="help-block">
+								답변 <?php echo element('ppo_choose_count', $poll); ?> 개 선택 가능, 현재 <?php echo element('ppo_count', $poll); ?>명이 참여함, 설문기간 : <?php echo html_escape(element('poll_period', $poll)); ?>
 								<?php if (element('ppo_point', $poll)) { echo '참여시' . number_format(element('ppo_point', $poll)) . '포인트 지급'; } ?>
 							</span>
 						</div>
 					<?php echo form_close(); ?>
 				</div>
 			<?php } ?>
+
 			<div id="poll_result_ajax"></div>
 
 			<script type="text/javascript">
@@ -217,9 +221,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 						} else if (data.success) {
 							post_poll_result(post_id, ppo_id);
 							$('#poll_write_form').hide();
-
 						}
-
 					}
 				});
 			}
@@ -247,7 +249,6 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 							}
 							$('#poll_result_ajax').html(result);
 						}
-
 					}
 				});
 			}
@@ -270,8 +271,8 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 				<?php if (element('is_admin', $view) === 'super') { ?>
 					<div class="item" onClick="post_copy('copy', '<?php echo element('post_id', element('post', $view)); ?>');"><i class="fa fa-files-o"></i> 복사하기</div>
 					<div class="item" onClick="post_copy('move', '<?php echo element('post_id', element('post', $view)); ?>');"><i class="fa fa-arrow-right"></i> 이동하기</div>
-					<?php if (element('use_category', element('board', $view))) { ?>
-						<div class="item" onClick="post_change_category('<?php echo element('post_id', element('post', $view)); ?>');"><i class="fa fa-tags"></i> 카테고리변경</div>
+				<?php if (element('use_category', element('board', $view))) { ?>
+					<div class="item" onClick="post_change_category('<?php echo element('post_id', element('post', $view)); ?>');"><i class="fa fa-tags"></i> 카테고리변경</div>
 				<?php
 					}
 				}
@@ -317,20 +318,19 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 	<?php
 	if (element('use_sns_button', $view)) {
 		$this->managelayout->add_js(base_url('assets/js/sns.js'));
-
 		if ($this->cbconfig->item('kakao_apikey')) {
 			$this->managelayout->add_js('https://developers.kakao.com/sdk/js/kakao.min.js');
 	?>
 		<script type="text/javascript">Kakao.init('<?php echo $this->cbconfig->item('kakao_apikey'); ?>');</script>
-		<?php } ?>
+	<?php } ?>
 		<div class="sns_button">
-			<a href="javascript:;" onClick="sendSns('facebook', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(element('post_title', element('post', $view)));?>');" title="이 글을 페이스북으로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_facebook.png" width="22" height="22" alt="이 글을 페이스북으로 퍼가기" title="이 글을 페이스북으로 퍼가기" /></a>
-			<a href="javascript:;" onClick="sendSns('twitter', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(element('post_title', element('post', $view)));?>');" title="이 글을 트위터로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_twitter.png" width="22" height="22" alt="이 글을 트위터로 퍼가기" title="이 글을 트위터로 퍼가기" /></a>
+			<a href="javascript:;" onClick="sendSns('facebook', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(html_escape(element('post_title', element('post', $view))));?>');" title="이 글을 페이스북으로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_facebook.png" width="22" height="22" alt="이 글을 페이스북으로 퍼가기" title="이 글을 페이스북으로 퍼가기" /></a>
+			<a href="javascript:;" onClick="sendSns('twitter', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(html_escape(element('post_title', element('post', $view))));?>');" title="이 글을 트위터로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_twitter.png" width="22" height="22" alt="이 글을 트위터로 퍼가기" title="이 글을 트위터로 퍼가기" /></a>
 			<?php if ($this->cbconfig->item('kakao_apikey')) { ?>
-				<a href="javascript:;" onClick="kakaolink_send('<?php echo html_escape(element('post_title', element('post', $view)));?>', '<?php echo element('short_url', $view); ?>');" title="이 글을 카카오톡으로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_kakaotalk.png" width="22" height="22" alt="이 글을 카카오톡으로 퍼가기" title="이 글을 카카오톡으로 퍼가기" /></a>
+				<a href="javascript:;" onClick="kakaolink_send('<?php echo html_escape(html_escape(element('post_title', element('post', $view))));?>', '<?php echo element('short_url', $view); ?>');" title="이 글을 카카오톡으로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_kakaotalk.png" width="22" height="22" alt="이 글을 카카오톡으로 퍼가기" title="이 글을 카카오톡으로 퍼가기" /></a>
 			<?php } ?>
-			<a href="javascript:;" onClick="sendSns('kakaostory', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(element('post_title', element('post', $view)));?>');" title="이 글을 카카오스토리로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_kakaostory.png" width="22" height="22" alt="이 글을 카카오스토리로 퍼가기" title="이 글을 카카오스토리로 퍼가기" /></a>
-			<a href="javascript:;" onClick="sendSns('band', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(element('post_title', element('post', $view)));?>');" title="이 글을 밴드로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_band.png" width="22" height="22" alt="이 글을 밴드로 퍼가기" title="이 글을 밴드로 퍼가기" /></a>
+			<a href="javascript:;" onClick="sendSns('kakaostory', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(html_escape(element('post_title', element('post', $view))));?>');" title="이 글을 카카오스토리로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_kakaostory.png" width="22" height="22" alt="이 글을 카카오스토리로 퍼가기" title="이 글을 카카오스토리로 퍼가기" /></a>
+			<a href="javascript:;" onClick="sendSns('band', '<?php echo element('short_url', $view); ?>', '<?php echo html_escape(html_escape(element('post_title', element('post', $view))));?>');" title="이 글을 밴드로 퍼가기"><img src="<?php echo element('view_skin_url', $layout); ?>/images/social_band.png" width="22" height="22" alt="이 글을 밴드로 퍼가기" title="이 글을 밴드로 퍼가기" /></a>
 		</div>
 	<?php } ?>
 
@@ -353,7 +353,6 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 		$this->load->view(element('view_skin_path', $layout) . '/comment_write');
 	}
 	?>
-
 	<div class="border_button mt20 mb20">
 		<div class="btn-group pull-left" role="group" aria-label="...">
 			<?php if (element('modify_url', $view)) { ?>
@@ -362,9 +361,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 			<?php	if (element('delete_url', $view)) { ?>
 				<button type="button" class="btn btn-default btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</button>
 			<?php } ?>
-			<a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a>
+				<a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a>
 			<?php if (element('search_list_url', $view)) { ?>
-				<a href="<?php echo element('search_list_url', $view); ?>" class="btn btn-default btn-sm">검색목록</a>
+					<a href="<?php echo element('search_list_url', $view); ?>" class="btn btn-default btn-sm">검색목록</a>
 			<?php } ?>
 			<?php if (element('reply_url', $view)) { ?>
 				<a href="<?php echo element('reply_url', $view); ?>" class="btn btn-default btn-sm">답변</a>
@@ -399,8 +398,8 @@ $(document).ready(function() {
 <script type="text/javascript">
 //<![CDATA[
 var client = new ZeroClipboard($('.copy_post_url'));
-client.on('ready', function(readyEvent) {
-	client.on('aftercopy', function(event) {
+client.on('ready', function( readyEvent ) {
+	client.on('aftercopy', function( event ) {
 		alert('게시글 주소가 복사되었습니다. \'Ctrl+V\'를 눌러 붙여넣기 해주세요.');
 	});
 });
@@ -408,11 +407,10 @@ client.on('ready', function(readyEvent) {
 </script>
 <?php
 if (element('highlight_keyword', $view)) {
-	$this->managelayout->add_js(base_url('assets/js/jquery.highlight.js'));
-?>
-	<script type="text/javascript">
-	//<![CDATA[
-	$('#post-content').highlight([<?php echo element('highlight_keyword', $view);?>]);
-	//]]>
-	</script>
+	$this->managelayout->add_js(base_url('assets/js/jquery.highlight.js')); ?>
+<script type="text/javascript">
+//<![CDATA[
+$('#post-content').highlight([<?php echo element('highlight_keyword', $view);?>]);
+//]]>
+</script>
 <?php } ?>

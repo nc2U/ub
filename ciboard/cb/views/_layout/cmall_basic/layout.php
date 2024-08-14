@@ -98,50 +98,17 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 	<nav class="navbar">
 		<div class="container">
 			<div class="logo pull-left">
-				<a href="<?php echo site_url(); ?>" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><?php echo $this->cbconfig->item('site_logo'); ?></a>
+				<a href="<?php echo site_url('cmall'); ?>" class="navbar-brand" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><?php echo $this->cbconfig->item('cmall_name') ? html_escape($this->cbconfig->item('cmall_name')) : $this->cbconfig->item('site_logo'); ?></a>
 			</div>
 			<ul class="menu pull-right">
-				<?php
-				$menuhtml = '';
-				if (element('menu', $layout)) {
-					$menu = element('menu', $layout);
-					if (element(0, $menu)) {
-						foreach (element(0, $menu) as $mkey => $mval) {
-							if (element(element('men_id', $mval), $menu)) {
-								$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-								$menuhtml .= '<li class="dropdown">
-								<a href="' . $mlink . '" ' . element('men_custom', $mval);
-								if (element('men_target', $mval)) {
-									$menuhtml .= ' target="' . element('men_target', $mval) . '"';
-								}
-								$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
-								<ul class="dropdown-menu">';
-
-								foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-									$slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
-									$menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
-									if (element('men_target', $sval)) {
-										$menuhtml .= ' target="' . element('men_target', $sval) . '"';
-									}
-									$menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-								}
-								$menuhtml .= '</ul></li>';
-
-							} else {
-								$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-								$menuhtml .= '<li><a href="' . $mlink . '" ' . element('men_custom', $mval);
-								if (element('men_target', $mval)) {
-									$menuhtml .= ' target="' . element('men_target', $mval) . '"';
-								}
-								$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
-							}
-						}
-					}
-				}
-				echo $menuhtml;
-				?>
+				<li><a href="<?php echo site_url('cmall/lists'); ?>" title="전체상품">전체상품</a></li>
+				<li><a href="<?php echo site_url('cmall/cart'); ?>" title="장바구니">장바구니</a></li>
+				<li><a href="<?php echo site_url('cmall/orderlist'); ?>" title="구매내역">구매내역</a></li>
+				<li><a href="<?php echo site_url('deposit'); ?>" title="캐시충전">캐시충전</a></li>
+				<li><a href="<?php echo document_url('cmall'); ?>" title="이용안내">이용안내</a></li>
+				<li><a href="<?php echo site_url(); ?>" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>">홈페이지</a></li>
 				<li>
-					<form name="header_search" id="header_search" action="<?php echo site_url('search'); ?>" onSubmit="return headerSearch(this);">
+					<form name="header_search" id="header_search" action="<?php echo site_url('cmall/lists'); ?>" onSubmit="return headerSearch(this);">
 						<input type="text" placeholder="Search" class="input" name="skeyword" accesskey="s" />
 						<button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 					</form>
@@ -183,14 +150,11 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 			<!-- 본문 끝 -->
 
 			<?php if (element('use_sidebar', $layout)) {?>
-
 				</div>
 				<div class="sidebar">
 					<?php $this->load->view(element('layout_skin_path', $layout) . '/sidebar'); ?>
 				</div>
-
 			<?php } ?>
-
 		</div>
 	</div>
 	<!-- main end -->
@@ -204,7 +168,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 					<li><a href="<?php echo document_url('provision'); ?>" title="이용약관">이용약관</a></li>
 					<li><a href="<?php echo document_url('privacy'); ?>" title="개인정보 취급방침">개인정보 취급방침</a></li>
 					<li><a href="<?php echo site_url('pointranking'); ?>" title="포인트 전체랭킹">포인트 전체랭킹</a></li>
-					<li><a href="<?php echo site_url('pointranking/month'); ?>" title="포인트 월별랭킹" >포인트 월별랭킹</a></li>
+					<li><a href="<?php echo site_url('pointranking/month'); ?>" title="포인트 월별랭킹">포인트 월별랭킹</a></li>
 					<li><a href="<?php echo site_url('levelup'); ?>" title="레벨업">레벨업</a></li>
 				</ul>
 			</div>
@@ -223,7 +187,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 				<?php if ($this->cbconfig->item('company_retail_sale_no')) { ?><span><b>통신판매</b> <?php echo $this->cbconfig->item('company_retail_sale_no'); ?></span><?php } ?>
 				<?php if ($this->cbconfig->item('company_added_sale_no')) { ?><span><b>부가통신</b> <?php echo $this->cbconfig->item('company_added_sale_no'); ?></span><?php } ?>
 				<?php if ($this->cbconfig->item('company_admin_name')) { ?><span><b>정보관리책임자명</b> <?php echo $this->cbconfig->item('company_admin_name'); ?></span><?php } ?>
-				<span>Copyright&copy; <?php echo $this->cbconfig->item('site_title'); ?>. All Rights Reserved.</span>
+				<span>Copyright&copy; <?php echo html_escape($this->cbconfig->item('site_title')); ?>. All Rights Reserved.</span>
 			</div>
 			<?php
 			if ($this->cbconfig->get_device_view_type() === 'mobile') {
@@ -264,6 +228,5 @@ Layout URL : <?php echo element('layout_skin_url', $layout); ?>,
 Skin Directory : <?php echo element('view_skin_path', $layout); ?>,
 Skin URL : <?php echo element('view_skin_url', $layout); ?>,
 -->
-
 </body>
 </html>
