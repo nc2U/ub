@@ -2,7 +2,7 @@
 .DS_Store
 
 # mysqldata
-mysqldata/
+mysql/data/
 
 # docker-compose.yml
 docker-compose.yml
