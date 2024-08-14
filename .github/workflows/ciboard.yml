@@ -3,7 +3,7 @@ name: Ciboard Update [master]
 on:
   push:
     paths:
-      - "ciboard/**"
+      - "cb3/**"
       - ".github/workflows/ciboard.yml"
     branches: [ "master" ]
   
@@ -30,8 +30,8 @@ jobs:
           host: ${{ secrets.CAFE24_HOST }}
           username: ${{ secrets.CAFE24_USER }}
           password: ${{ secrets.CAFE24_PASS }}
-          source: 'ciboard/cb/'
-          target: ${{ secrets.CAFE24_PATH }}/cb/
+          source: 'cb3'
+          target: ${{ secrets.CAFE24_PATH }}/
       
       # slack --> notification
       - name: Send slack when failed
