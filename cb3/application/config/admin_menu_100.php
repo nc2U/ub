@@ -15,7 +15,7 @@ $config['admin_page_menu']['page'] =
 	array(
 		'__config'					=> array('페이지설정', 'fa-laptop'),
 		'menu'						=> array(
-			// 'pagemenu'				=> array('메뉴관리', ''),
+			'pagemenu'				=> array('메뉴관리', ''),
 			'pagemenu2'				=> array('메뉴관리', ''),   // <== 새로 추가 
 			'document'				=> array('일반페이지', ''),
 			'popup'					=> array('팝업관리', ''),
