@@ -19,6 +19,7 @@ application/uploads/*
 
 composer.lock
 /vendor/
+uploads/*
 
 # IDE Files
 #-------------------------
