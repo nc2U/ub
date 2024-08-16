@@ -29,7 +29,9 @@ services:
   # MariaDB Service
   mariadb:
     container_name: db
-    image: mariadb
+    image: mariadb:latest
+    restart: always
+    command: [ "--character-set-server=utf8", "--collation-server=utf8_unicode_ci" ]
     environment:
       MYSQL_DATABASE: my-db-name # 실제 데이터로 수정
       MYSQL_USER: my-db-user # 실제 데이터로 수정
@@ -37,6 +39,6 @@ services:
       MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
       TZ: Asia/Seoul
     volumes:
-      - ../vol/mysql:/var/lib/mysql
+      - ../vol/mysql/data:/var/lib/mysql
       - ../vol/backups:/var/backups
       - ../vol/sql:/docker-entrypoint-initdb.d
