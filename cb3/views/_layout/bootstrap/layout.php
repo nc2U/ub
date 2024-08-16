@@ -234,9 +234,9 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 					<li><a href="<?php echo document_url('aboutus'); ?>" title="회사소개">회사소개</a></li>
 					<li><a href="<?php echo document_url('provision'); ?>" title="이용약관">이용약관</a></li>
 					<li><a href="<?php echo document_url('privacy'); ?>" title="개인정보 취급방침">개인정보 취급방침</a></li>
-					<li><a href="<?php echo site_url('pointranking'); ?>" title="포인트 전체랭킹">포인트 전체랭킹</a></li>
-					<li><a href="<?php echo site_url('pointranking/month'); ?>" title="포인트 월별랭킹">포인트 월별랭킹</a></li>
-					<li><a href="<?php echo site_url('levelup'); ?>" title="레벨업">레벨업</a></li>
+					<!-- <li><a href="<?php echo site_url('pointranking'); ?>" title="포인트 전체랭킹">포인트 전체랭킹</a></li> -->
+					<!-- <li><a href="<?php echo site_url('pointranking/month'); ?>" title="포인트 월별랭킹">포인트 월별랭킹</a></li> -->
+					<!-- <li><a href="<?php echo site_url('levelup'); ?>" title="레벨업">레벨업</a></li> -->
 				</ul>
 			</div>
 			<div class="copyright">
