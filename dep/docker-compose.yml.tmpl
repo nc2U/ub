@@ -39,6 +39,6 @@ services:
       MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
       TZ: Asia/Seoul
     volumes:
-      - ../vol/mysql/data:/var/lib/mysql
+      - ../vol/mysql:/var/lib/mysql
       - ../vol/backups:/var/backups
       - ../vol/sql:/docker-entrypoint-initdb.d
