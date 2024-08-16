@@ -34,6 +34,15 @@ cp docker-compose.yml.tmpl docker-compose.yml
 
 * This docker configuration has not been security hardened.  Expose it to public networks at your own risk!
 
+## Ci configuration setting.
+
+* Codeigniter3 configuration files are isolated for security reasons, so you need to take the following actions:
+
+```
+cd cb3/application/config/
+cp ./init_set/* .
+```
+
 
 ## Usage (command line)
 
