@@ -53,6 +53,8 @@ class Main extends CB_Controller
 
 		$where = array(
 			'brd_search' => 1,
+			'bgr_id' => 2,
+			// 'brd_key' => 'notice',
 		);
 		$board_id = $this->Board_model->get_board_list($where);
 		$board_list = array();
