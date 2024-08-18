@@ -7,7 +7,7 @@
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/general'); ?>" onclick="return check_form_changed();">일반기능 / 에디터</a></li>
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/note'); ?>" onclick="return check_form_changed();">쪽지기능</a></li>
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/notification'); ?>" onclick="return check_form_changed();">알림기능</a></li>
-			<li role="presentation" class="active"><a href="<?php echo admin_url($this->pagedir . '/company'); ?>" onclick="return check_form_changed();">회사정보</a></li>
+			<li role="presentation" class="active"><a href="<?php echo admin_url($this->pagedir . '/company'); ?>" onclick="return check_form_changed();">조합정보</a></li>
 		</ul>
 	</div>
 	<div class="box-table">
@@ -19,13 +19,13 @@
 		?>
 			<input type="hidden" name="is_submit" value="1" />
 			<div class="form-group">
-				<label class="col-sm-2 control-label">회사명</label>
+				<label class="col-sm-2 control-label">조합명</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control" name="company_name" value="<?php echo set_value('company_name', element('company_name', element('data', $view))); ?>" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">사업자등록번호</label>
+				<label class="col-sm-2 control-label">사업자등록(고유)번호</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control" name="company_reg_no" value="<?php echo set_value('company_reg_no', element('company_reg_no', element('data', $view))); ?>" />
 				</div>
@@ -49,18 +49,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">통신판매업신고번호</label>
-				<div class="col-sm-10 form-inline">
-					<input type="text" class="form-control" name="company_retail_sale_no" value="<?php echo set_value('company_retail_sale_no', element('company_retail_sale_no', element('data', $view))); ?>" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">부가통신 사업자번호</label>
-				<div class="col-sm-10 form-inline">
-					<input type="text" class="form-control" name="company_added_sale_no" value="<?php echo set_value('company_added_sale_no', element('company_added_sale_no', element('data', $view))); ?>" />
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-2 control-label">사업장 우편번호</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control" name="company_zipcode" value="<?php echo set_value('company_zipcode', element('company_zipcode', element('data', $view))); ?>" />
@@ -70,6 +58,18 @@
 				<label class="col-sm-2 control-label">사업장 주소</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="company_address" value="<?php echo set_value('company_address', element('company_address', element('data', $view))); ?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">업무대행사명</label>
+				<div class="col-sm-10 form-inline">
+					<input type="text" class="form-control" name="company_retail_sale_no" value="<?php echo set_value('company_retail_sale_no', element('company_retail_sale_no', element('data', $view))); ?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">업무대행사 대표번호</label>
+				<div class="col-sm-10 form-inline">
+					<input type="text" class="form-control" name="company_added_sale_no" value="<?php echo set_value('company_added_sale_no', element('company_added_sale_no', element('data', $view))); ?>" />
 				</div>
 			</div>
 			<div class="form-group">

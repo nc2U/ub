@@ -45,7 +45,7 @@ if ($is_open) {
 
 	<div class="table-responsive">
 	<div style="padding: 8px;">
-	<div style="padding: 7px;">(주) 바램디앤씨 : 032-833-3654 (업무대행사)</div>
+	<div style="padding: 7px;">업무대행사 : '.$this->cbconfig->item('company_retail_sale_no').' ('.$this->cbconfig->item('company_added_sale_no').')</div>
 	<div style="padding: 7px;">사무실 전화번호 : '.$this->cbconfig->item('company_phone').'</div>
 	<div style="padding: 7px;">사무실 팩스번호 : '.$this->cbconfig->item('company_fax').'</div>
 	<div style="padding: 7px;">주 소 : '.$this->cbconfig->item('company_address').'</div>
