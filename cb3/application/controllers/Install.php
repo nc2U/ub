@@ -4260,6 +4260,42 @@ flvr.pandora.tv',
 		);
 		$this->Document_model->insert($insertdata);
 
+		$insertdata = array(
+			'doc_key' => 'info',
+			'doc_title' => '사업개요 및 조감도',
+			'doc_content' => '사업개요 및 조감도 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
+
+		$insertdata = array(
+			'doc_key' => 'brand',
+			'doc_title' => '브랜드 및 특장점',
+			'doc_content' => '브랜드 및 특장점 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
+
+		$insertdata = array(
+			'doc_key' => 'map',
+			'doc_title' => '찾아오시는 길',
+			'doc_content' => '찾아오시는 길 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
+
 
 
 		$insertdata = array(
