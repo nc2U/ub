@@ -4427,6 +4427,34 @@ flvr.pandora.tv',
 				'use_sideview' => '1',
 				'use_tempsave' => '1',
 			);
+
+			$info_auth = array(
+				'access_blame' => 2,
+				'access_blame_group' => json_encode(["2", "3"]),
+				'access_comment' => 2,
+				'access_comment_group' => json_encode(["2", "3"]),
+				'access_dhtml' => 2,
+				'access_dhtml_group' => json_encode(["3"]),
+				'access_download' => 2,
+				'access_download_group' => json_encode(["2", "3"]),
+				'access_list' => 2,
+				'access_list_group' => json_encode(["2", "3"]),
+				'access_reply' => 2,
+				'access_reply_group'=> json_encode(["3"]),
+				'access_subject_style' => 2,
+				'access_subject_style_group'=> json_encode(["3"]),
+				'access_tag_write'=> 2,
+				'access_tag_write_group' => json_encode(["3"]),
+				'access_upload'=> 2,
+				'access_upload_group'  => json_encode(["3"]),
+				'access_view'=> 2,
+				'access_view_group' => json_encode(["2", "3"]),
+				'access_write' => 2,
+				'access_write_group'=> json_encode(["3"]),
+			);
+
+			$metadata = array_merge($metadata, $info_auth);
+
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
 				'brd_key' => 'info-01',
@@ -4574,9 +4602,22 @@ flvr.pandora.tv',
 				'brd_order' => 15,
 				'brd_search' => 1,
 			);
+
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
+			$metadata['access_list'] = 1;
+			$post_notice = array(
+				'send_email_post_board_admin' => 1,
+				'send_email_post_group_admin' => 1,
+				'send_email_post_super_admin' => 1,
+				'send_note_post_board_admin' => 1,
+				'send_note_post_group_admin' => 1,
+				'send_note_post_super_admin' => 1,
+				'send_sms_post_board_admin' => 1,
+				'send_sms_post_group_admin' => 1 , 
+				'send_sms_post_super_admin' => 1,
+			);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'notice',
@@ -4585,7 +4626,7 @@ flvr.pandora.tv',
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
-			$this->Board_meta_model->save($brd_id, $metadata);
+			$this->Board_meta_model->save($brd_id, $metadata + $post_notice);
 
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
@@ -4597,6 +4638,10 @@ flvr.pandora.tv',
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
 
+			$use_secret = array('use_post_secret' => 1);
+			$metadata['access_write_group'] = json_encode(["2", "3"]);
+			$metadata['access_reply_group'] = json_encode(["2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["2", "3"]);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'qna',
@@ -4605,7 +4650,7 @@ flvr.pandora.tv',
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
-			$this->Board_meta_model->save($brd_id, $metadata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
 
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
@@ -4617,6 +4662,10 @@ flvr.pandora.tv',
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
 
+			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["1", "2", "3"]);
+			$metadata['use_post_secret_selected'] = 1;
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'ask-cert',
@@ -4625,7 +4674,7 @@ flvr.pandora.tv',
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
-			$this->Board_meta_model->save($brd_id, $metadata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
 
 
 			$insertdata = array(
