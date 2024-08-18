@@ -4640,7 +4640,6 @@ flvr.pandora.tv',
 
 			$use_secret = array('use_post_secret' => 1);
 			$metadata['access_write_group'] = json_encode(["2", "3"]);
-			$metadata['access_reply_group'] = json_encode(["2", "3"]);
 			$metadata['access_upload_group'] = json_encode(["2", "3"]);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
@@ -4652,6 +4651,7 @@ flvr.pandora.tv',
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
 
+			$metadata['access_reply_group'] = json_encode(["2", "3"]);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'free',
@@ -4664,6 +4664,7 @@ flvr.pandora.tv',
 
 			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_comment_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_upload_group'] = json_encode(["1", "2", "3"]);
 			$metadata['use_post_secret_selected'] = 1;
 			$insertdata = array(
