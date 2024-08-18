@@ -80,13 +80,6 @@ class Board_write extends CB_Controller
 			$check
 		);
 
-		// 본인인증 사용하는 경우 - 시작
-		if (element('access_write_selfcert', $board)) {
-			$this->load->library(array('selfcertlib'));
-			$this->selfcertlib->selfcertcheck('write', element('access_write_selfcert', $board));
-		}
-		// 본인인증 사용하는 경우 - 끝
-
 		// 이벤트가 존재하면 실행합니다
 		Events::trigger('after', $eventname);
 
@@ -140,13 +133,6 @@ class Board_write extends CB_Controller
 			$alertmessage,
 			$check
 		);
-
-		// 본인인증 사용하는 경우 - 시작
-		if (element('access_write_selfcert', $board)) {
-			$this->load->library(array('selfcertlib'));
-			$this->selfcertlib->selfcertcheck('write', element('access_write_selfcert', $board));
-		}
-		// 본인인증 사용하는 경우 - 끝
 
 
 		if (element('post_del', $origin)) {
@@ -1390,7 +1376,6 @@ class Board_write extends CB_Controller
 
 		$post['extravars'] = $this->Post_extra_vars_model->get_all_meta($post_id);
 		$post['meta'] = $this->Post_meta_model->get_all_meta($post_id);
-		$post['post_content'] = html_purifier($post['post_content']);
 
 		$view['view']['post'] = $post;
 		$board = $this->board->item_all(element('brd_id', $post));

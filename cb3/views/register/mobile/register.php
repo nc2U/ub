@@ -30,30 +30,12 @@
 							</label>
 						</div>
 					</li>
-<?php if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) { ?>
-					<li class="mt20">
-						<p><strong>본인인증 선택</strong></p>
-						<div class="form-inline">
-							<input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
-							<?php if ($this->cbconfig->item('use_selfcert_phone')) { ?>
-								<button type="button" class="btn btn-warning btn-sm" name="mem_selfcert" id="btn_mem_selfcert_phone">휴대폰인증</button>
-							<?php } ?>
-							<?php if ($this->cbconfig->item('use_selfcert_ipin')) { ?>
-								<button type="button" class="btn btn-primary btn-sm" name="mem_selfcert" id="btn_mem_selfcert_ipin">아이핀인증</button>
-							<?php } ?>
-						</div>
-					</li>
-<?php } ?>
 					<li><button type="submit" class="btn btn-success">회원가입</button></li>
 				</ol>
 			</div>
 		</div>
 	<?php echo form_close(); ?>
 </div>
-
-<?php if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) {
-	$this->managelayout->add_js(base_url('assets/js/member_selfcert.js'));
-} ?>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -62,12 +44,6 @@ $(function() {
 		rules: {
 			agree: {required :true},
 			agree2: {required :true}
-<?php if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin')) && $this->cbconfig->item('use_selfcert_required')) { ?>
-			, selfcert_type: {required :true}
-		}
-		, messages: {
-			selfcert_type: "본인인증 후 회원가입이 가능합니다"
-<?php } ?>
 		}
 	});
 });

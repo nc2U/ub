@@ -61,7 +61,6 @@
 .board .progress { overflow: hidden;height: 20px;margin-bottom: 20px;background-color: #f5f5f5;border-radius: 4px;-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);box-shadow: inset 0 1px 2px rgba(0,0,0,.1);background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb', endColorstr='#fff5f5f5', GradientType=0);}
 .board .progress-bar {float: left;width: 0;height: 100%;font-size: 12px;line-height: 20px;color: #fff;text-align: center;background-color: #428bca;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);-webkit-transition: width .6s ease;transition: width .6s ease;background-image: -webkit-linear-gradient(top,#428bca 0,#3071a9 100%);background-image: linear-gradient(to bottom,#428bca 0,#3071a9 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff3071a9', GradientType=0);}
 .board .sr-only {position: absolute;width: 1px;height: 1px;margin: -1px;padding: 0;overflow: hidden;clip: rect(0,0,0,0);border: 0;}
-.board .poll-result { padding-bottom: 10px; }
 
 .writeform li {display: block;margin: 0px; clear: both; margin-bottom: 15px;}
 .writeform li>span {float: left;width: 10%;padding-right: 20px;margin-top: 5px;color: #000;font-weight: bold;}
@@ -81,8 +80,6 @@
 
 .commenttextarea {width:90%;}
 textarea.post_content  {width:90%;height:350px;margin:0 20px;}
-.poll_item_area {padding-left:228px;}
-.poll_item_area input {width:400px;}
 
 .confirm_password li {display: block;margin: 0px; clear: both; margin-bottom: 15px;}
 .confirm_password li>span {float: left;width: 25%;text-align: right;padding-right: 20px;margin-top: 5px;color: #000;font-weight: bold;}

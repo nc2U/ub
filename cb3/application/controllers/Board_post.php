@@ -196,13 +196,6 @@ class Board_post extends CB_Controller
 			$check
 		);
 
-		// 본인인증 사용하는 경우 - 시작
-		if (element('access_view_selfcert', $board)) {
-			$this->load->library(array('selfcertlib'));
-			$this->selfcertlib->selfcertcheck('view', element('access_view_selfcert', $board));
-		}
-		// 본인인증 사용하는 경우 - 끝
-
 		$view['view']['is_admin'] = $is_admin = $this->member->is_admin(
 			array(
 				'board_id' => element('brd_id', $board),
@@ -1013,12 +1006,6 @@ class Board_post extends CB_Controller
 			$alertmessage,
 			$check
 		);
-		// 본인인증 사용하는 경우 - 시작
-		if (element('access_list_selfcert', $board)) {
-			$this->load->library(array('selfcertlib'));
-			$this->selfcertlib->selfcertcheck('list', element('access_list_selfcert', $board));
-		}
-		// 본인인증 사용하는 경우 - 끝
 
 		if (element('use_personal', $board) && $this->member->is_member() === false) {
 			alert('이 게시판은 1:1 게시판입니다. 비회원은 접근할 수 없습니다');

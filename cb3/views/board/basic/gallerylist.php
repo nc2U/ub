@@ -160,7 +160,6 @@
 							<?php if (element('is_mobile', $result)) { ?><span class="fa fa-wifi"></span><?php } ?>
 							<?php if (element('post_file', $result)) { ?><span class="fa fa-download"></span><?php } ?>
 							<?php if (element('post_secret', $result)) { ?><span class="fa fa-lock"></span><?php } ?>
-							<?php if (element('ppo_id', $result)) { ?><i class="fa fa-bar-chart"></i><?php } ?>
 							<?php if (element('post_comment_count', $result)) { ?><span class="label label-warning">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
 						<td><?php echo element('display_name', $result); ?></td>
 						<td><?php echo element('display_datetime', $result); ?></td>
@@ -193,7 +192,6 @@
 				<span class="label label-default"><?php echo element('num', $result); ?></span>
 				<?php if (element('is_mobile', $result)) { ?><span class="fa fa-wifi"></span><?php } ?>
 				<?php if (element('category', $result)) { ?><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?category_id=<?php echo html_escape(element('bca_key', element('category', $result))); ?>"><span class="label label-default"><?php echo html_escape(element('bca_value', element('category', $result))); ?></span></a><?php } ?>
-				<?php if (element('ppo_id', $result)) { ?><i class="fa fa-bar-chart"></i><?php } ?>
 				<div>
 					<a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>"><img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="thumbnail img-responsive" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" /></a>
 				</div>

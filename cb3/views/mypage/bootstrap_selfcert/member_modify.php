@@ -28,7 +28,33 @@
 			<label class="col-lg-3 control-label">회원아이디</label>
 			<div class="col-lg-8"><p class="form-control-static"><?php echo $this->member->item('mem_userid'); ?></p></div>
 		</div>
+		<?php if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) { ?>
+			<div class="form-group">
+				<label class="col-lg-3 control-label">본인인증</label>
+				<div class="col-lg-8">
+				<?php if ($this->member->item('selfcert_type')) { ?>
+					<div class="alert alert-warning">
+						<p><strong>회원님의 본인 인증 정보</strong> - 회원님은 본인인증을 받으셨습니다</p>
+						<?php if ($this->member->item('selfcert_username')) { ?>
+							<p><strong>회원명</strong> <?php echo $this->member->item('selfcert_username'); ?></p>
+						<?php } ?>
+						<?php if ($this->member->item('selfcert_phone')) { ?>
+							<p><strong>휴대폰</strong> <?php echo $this->member->item('selfcert_phone'); ?></p>
+						<?php } ?>
+						<?php if ($this->member->item('selfcert_birthday')) { ?>
+							<p><strong>생년월일</strong> <?php echo $this->member->item('selfcert_birthday'); ?></p>
+						<?php } ?>
+						<?php if ($this->member->item('selfcert_sex')) { ?>
+							<p><strong>성별</strong> <?php echo $this->member->item('selfcert_sex') == '1' ? '남성' : '여성'; ?></p>
+						<?php } ?>
+					</div>
+				<?php } else { ?>
+					회원님은 아직 본인인증을 하지 않으셨습니다. <a href="<?php echo site_url('selfcert?redirecturl=' . urlencode(current_full_url())); ?>" class="btn btn-default btn-sm" title="본인인증하기">본인인증 하기</a>
+				<?php } ?>
+				</div>
+			</div>
 		<?php
+		}
 		if ($this->cbconfig->item('use_sociallogin')) {
 			$this->managelayout->add_js(base_url('assets/js/social_login.js'));
 		?>

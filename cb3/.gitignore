@@ -1,10 +1,6 @@
 !.gitignore
 .DS_Store
 
-application/config/cb_config.php
-application/config/config.php
-application/config/database.php
-
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -19,7 +15,6 @@ application/uploads/*
 
 composer.lock
 /vendor/
-uploads/*
 
 # IDE Files
 #-------------------------

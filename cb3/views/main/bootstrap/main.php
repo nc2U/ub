@@ -1,5 +1,4 @@
 <?php
-
 echo '<img src="http://dongchun1-9.com/img/main/visual_m.jpg" width="1170px" style="margin-bottom: 20px" />';
 
 echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
@@ -37,7 +36,6 @@ if (element('board_list', $view)) {
 		$k++;
 	}
 }
-
 if ($is_open) {
 	echo '
 	<div class="col-md-6">

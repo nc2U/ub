@@ -733,7 +733,6 @@ class Comment_write extends CB_Controller
 						);
 						$receiver = array();
 						$receiver[] = $smssendlistpostwriter;
-						$this->load->library('smslib');
 						$smsresult = $this->smslib->send($receiver, $sender, $content, $date = '', '댓글 작성 알림');
 					}
 				}
