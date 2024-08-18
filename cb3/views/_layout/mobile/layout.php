@@ -81,7 +81,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 	<footer>
 		<div class="container">
 			<ul class="company pull-left">
-			<li><a href="<?php echo document_url('aboutus'); ?>" title="회사소개">회사소개</a></li>
+			<li><a href="<?php echo document_url('aboutus'); ?>" title="조합소개">조합소개</a></li>
 			<li><a href="<?php echo document_url('provision'); ?>" title="이용약관">이용약관</a></li>
 			<li><a href="<?php echo document_url('privacy'); ?>" title="개인정보 취급방침">개인정보 취급방침</a></li>
 			</ul>
