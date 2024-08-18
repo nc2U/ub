@@ -45,11 +45,11 @@ if ($is_open) {
 
 	<div class="table-responsive">
 	<div style="padding: 8px;">
-	<div style="padding: 7px;">사무실 전화번호 : 032-833-3654</div>
 	<div style="padding: 7px;">(주) 바램디앤씨 : 032-833-3654 (업무대행사)</div>
-	<div style="padding: 7px;">팩 스 번 호 : 032-833-3654</div>
-	<div style="padding: 7px;">문 의 시 간 : 평일 10:00 ~ 18:00 (<span style="color: red">토, 일, 공휴일 휴무</span>)</div>
-	<div style="padding: 7px;">주 소 : 인천광역시 연수구 능허대로289번길 21 대성빌딩 4층</div>
+	<div style="padding: 7px;">사무실 전화번호 : '.$this->cbconfig->item('company_phone').'</div>
+	<div style="padding: 7px;">사무실 팩스번호 : '.$this->cbconfig->item('company_fax').'</div>
+	<div style="padding: 7px;">주 소 : '.$this->cbconfig->item('company_address').'</div>
+	<div style="padding: 7px;">문 의 시 간 : 평일 10:00 ~ 18:00 (<span style="color: red">공휴일 휴무</span>)</div>
 	</div>
 	</div>
 	
