@@ -3795,9 +3795,9 @@ class Install extends CI_Controller
 		$configdata = array(
 			'site_title' => '홈페이지',
 			'site_logo' => '홈페이지',
-			'admin_logo' => 'Admin',
+			'admin_logo' => 'ADMINISTRATION',
 			'webmaster_name' => '관리자',
-			'webmaster_email' => 'noreply@domain.com',
+			'webmaster_email' => $this->input->post('mem_email'), // 'noreply@domain.com',
 			'spam_word' => '18아,18놈,18새끼,18년,18뇬,18노,18것,18넘,개년,개놈,개뇬,개새,개색끼,개세끼,개세이,개쉐이,개쉑,개쉽,개시키,개자식,개좆,게색기,게색끼,광뇬,뇬,눈깔,뉘미럴,니귀미,니기미,니미,도촬,되질래,뒈져라,뒈진다,디져라,디진다,디질래,병쉰,병신,뻐큐,뻑큐,뽁큐,삐리넷,새꺄,쉬발,쉬밸,쉬팔,쉽알,스패킹,스팽,시벌,시부랄,시부럴,시부리,시불,시브랄,시팍,시팔,시펄,실밸,십8,십쌔,십창,싶알,쌉년,썅놈,쌔끼,쌩쑈,썅,써벌,썩을년,쎄꺄,쎄엑,쓰바,쓰발,쓰벌,쓰팔,씨8,씨댕,씨바,씨발,씨뱅,씨봉알,씨부랄,씨부럴,씨부렁,씨부리,씨불,씨브랄,씨빠,씨빨,씨뽀랄,씨팍,씨팔,씨펄,씹,아가리,아갈이,엄창,접년,잡놈,재랄,저주글,조까,조빠,조쟁이,조지냐,조진다,조질래,존나,존니,좀물,좁년,좃,좆,좇,쥐랄,쥐롤,쥬디,지랄,지럴,지롤,지미랄,쫍빱,凸,퍽큐,뻑큐,빠큐,ㅅㅂㄹㅁ',
 			'white_iframe' => 'www.youtube.com
 www.youtube-nocookie.com
@@ -3824,7 +3824,7 @@ flvr.pandora.tv',
 			'list_count' => '20',
 			'site_blacklist_title' => '사이트가 공사중에 있습니다',
 			'site_blacklist_content' => '<p>안녕하세요</p><p>블편을 드려 죄송합니다. 지금 이 사이트는 접근이 금지되어있습니다</p><p>감사합니다</p>',
-			'use_point' => '1',
+			'use_point' => '',
 			'point_register' => '50',
 			'point_login' => '5',
 			'point_recommended' => '5',
@@ -3870,7 +3870,7 @@ flvr.pandora.tv',
 			'notification_note' => '1',
 
 			'layout_default' => $skin,
-			'sidebar_default' => '1',
+			'sidebar_default' => '',
 			'skin_default' => $skin,
 			'mobile_layout_default' => $skin_mobile,
 			'mobile_skin_default' => $skin_mobile,
@@ -3880,10 +3880,10 @@ flvr.pandora.tv',
 
 			'use_login_account' => 'both',
 			'password_length' => '4',
-			'use_member_photo' => '1',
+			'use_member_photo' => '',
 			'member_photo_width' => '80',
 			'member_photo_height' => '80',
-			'use_member_icon' => '1',
+			'use_member_icon' => '',
 			'member_icon_width' => '20',
 			'member_icon_height' => '20',
 			'denied_nickname_list' => 'admin,administrator,관리자,운영자,어드민,주인장,webmaster,웹마스터,sysop,시삽,시샵,manager,매니저,메니저,root,루트,su,guest,방문객',
@@ -4057,15 +4057,6 @@ flvr.pandora.tv',
 				'open' => '',
 				'required' => '1',
 			),
-			'mem_username' => array(
-				'field_name' => 'mem_username',
-				'func' => 'basic',
-				'display_name' => '이름',
-				'field_type' => 'text',
-				'use' => '',
-				'open' => '',
-				'required' => '',
-			),
 			'mem_nickname' => array(
 				'field_name' => 'mem_nickname',
 				'func' => 'basic',
@@ -4075,13 +4066,22 @@ flvr.pandora.tv',
 				'open' => '1',
 				'required' => '1',
 			),
+			'mem_username' => array(
+				'field_name' => 'mem_username',
+				'func' => 'basic',
+				'display_name' => '이름',
+				'field_type' => 'text',
+				'use' => '',
+				'open' => '',
+				'required' => '',
+			),
 			'mem_homepage' => array(
 				'field_name' => 'mem_homepage',
 				'func' => 'basic',
 				'display_name' => '홈페이지',
 				'field_type' => 'url',
 				'use' => '',
-				'open' => '1',
+				'open' => '',
 				'required' => '',
 			),
 			'mem_phone' => array(
@@ -4126,7 +4126,7 @@ flvr.pandora.tv',
 				'display_name' => '자기소개',
 				'field_type' => 'textarea',
 				'use' => '',
-				'open' => '1',
+				'open' => '',
 				'required' => '',
 			),
 			'mem_recommend' => array(
@@ -4226,8 +4226,8 @@ flvr.pandora.tv',
 
 		$insertdata = array(
 			'doc_key' => 'aboutus',
-			'doc_title' => '회사소개',
-			'doc_content' => '회사소개 내용을 입력해주세요',
+			'doc_title' => '조합소개',
+			'doc_content' => '조합소개 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
 			'doc_datetime' => cdate('Y-m-d H:i:s'),
@@ -4263,21 +4263,21 @@ flvr.pandora.tv',
 
 
 		$insertdata = array(
-			'mgr_title' => '기본그룹',
+			'mgr_title' => '승인대기',
 			'mgr_is_default' => 1,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 1,
 		);
 		$mgr_id = $this->Member_group_model->insert($insertdata);
 		$insertdata = array(
-			'mgr_title' => '특별그룹',
+			'mgr_title' => '조합원',
 			'mgr_is_default' => 0,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 2,
 		);
 		$this->Member_group_model->insert($insertdata);
 		$insertdata = array(
-			'mgr_title' => '우수그룹',
+			'mgr_title' => '스태프',
 			'mgr_is_default' => 0,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 3,
@@ -4307,30 +4307,6 @@ flvr.pandora.tv',
 			);
 			$this->Faq_model->insert($insertdata);
 
-			$insertdata = array(
-				'fgr_id' => $fgr_id,
-				'faq_title' => '자주하는 질문 제목2 입니다',
-				'faq_content' => '자주하는 질문 답변2 입니다',
-				'faq_content_html_type' => 1,
-				'faq_order' => 2,
-				'faq_datetime' => cdate('Y-m-d H:i:s'),
-				'faq_ip' => $this->input->ip_address(),
-				'mem_id' => $mem_id,
-			);
-			$this->Faq_model->insert($insertdata);
-
-			$insertdata = array(
-				'fgr_id' => $fgr_id,
-				'faq_title' => '자주하는 질문 제목3 입니다',
-				'faq_content' => '자주하는 질문 답변3 입니다',
-				'faq_content_html_type' => 1,
-				'faq_order' => 3,
-				'faq_datetime' => cdate('Y-m-d H:i:s'),
-				'faq_ip' => $this->input->ip_address(),
-				'mem_id' => $mem_id,
-			);
-			$this->Faq_model->insert($insertdata);
-
 
 			$metadata = array(
 				'header_content' => '',
@@ -4340,27 +4316,19 @@ flvr.pandora.tv',
 			);
 
 			$insertdata = array(
-				'bgr_key' => 'g-a',
-				'bgr_name' => '그룹 A',
+				'bgr_key' => 'information',
+				'bgr_name' => '조합 공개 자료',
 				'bgr_order' => 1,
 			);
 			$bgr_id_1 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
 
 			$insertdata = array(
-				'bgr_key' => 'g-b',
-				'bgr_name' => '그룹 B',
+				'bgr_key' => 'community',
+				'bgr_name' => '조합원 커뮤니티',
 				'bgr_order' => 2,
 			);
 			$bgr_id_2 = $bgr_id = $this->Board_group_model->insert($insertdata);
-			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
-			$insertdata = array(
-				'bgr_key' => 'g-c',
-				'bgr_name' => '그룹 C',
-				'bgr_order' => 3,
-			);
-			$bgr_id_3 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
 
 			$metadata = array(
@@ -4425,8 +4393,8 @@ flvr.pandora.tv',
 			);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-1',
-				'brd_name' => '게시판 A-1',
+				'brd_key' => 'info-01',
+				'brd_name' => '조합규약',
 				'brd_order' => 1,
 				'brd_search' => 1,
 			);
@@ -4435,8 +4403,8 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-2',
-				'brd_name' => '게시판 A-2',
+				'brd_key' => 'info-02',
+				'brd_name' => '공동사업주체와 체결한 협약서',
 				'brd_order' => 2,
 				'brd_search' => 1,
 			);
@@ -4445,8 +4413,8 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-3',
-				'brd_name' => '게시판 A-3',
+				'brd_key' => 'info-03',
+				'brd_name' => '설계자 등 용역업체 선정 계약서',
 				'brd_order' => 3,
 				'brd_search' => 1,
 			);
@@ -4454,9 +4422,79 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-1',
-				'brd_name' => '게시판 B-1',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-04',
+				'brd_name' => '조합총회 및 이사회 등의 의사록',
+				'brd_order' => 4,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-05',
+				'brd_name' => '사업시행계획서',
+				'brd_order' => 5,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-06',
+				'brd_name' => '조합사업의 시행에 관한 공문서',
+				'brd_order' => 6,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-07',
+				'brd_name' => '회계감사보고서',
+				'brd_order' => 7,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-08',
+				'brd_name' => '분기별 사업실적보고서',
+				'brd_order' => 8,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-09',
+				'brd_name' => '업무대행자가 제출한 실적보고서',
+				'brd_order' => 9,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-10',
+				'brd_name' => '연간 자금운용 계획서',
+				'brd_order' => 10,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-11',
+				'brd_name' => '월별 자금 입출금 명세서',
 				'brd_order' => 11,
 				'brd_search' => 1,
 			);
@@ -4464,9 +4502,9 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-2',
-				'brd_name' => '게시판 B-2',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-12',
+				'brd_name' => '월별 공사진행 상황에 관한 서류',
 				'brd_order' => 12,
 				'brd_search' => 1,
 			);
@@ -4474,9 +4512,9 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-3',
-				'brd_name' => '게시판 B-3',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-13',
+				'brd_name' => '분양신청에 관한 서류 및 관련 자료',
 				'brd_order' => 13,
 				'brd_search' => 1,
 			);
@@ -4484,9 +4522,29 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-1',
-				'brd_name' => '게시판 C-1',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-14',
+				'brd_name' => '조합원별 분담금 납부내역',
+				'brd_order' => 14,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-15',
+				'brd_name' => '조합원별 추가 분담금 산출내역',
+				'brd_order' => 15,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'notice',
+				'brd_name' => '공지 사항',
 				'brd_order' => 21,
 				'brd_search' => 1,
 			);
@@ -4494,9 +4552,9 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-2',
-				'brd_name' => '게시판 C-2',
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'storage',
+				'brd_name' => '조합 자료실',
 				'brd_order' => 22,
 				'brd_search' => 1,
 			);
@@ -4504,9 +4562,9 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-3',
-				'brd_name' => '게시판 C-3',
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'qna',
+				'brd_name' => '질문 게시판',
 				'brd_order' => 23,
 				'brd_search' => 1,
 			);
@@ -4514,19 +4572,190 @@ flvr.pandora.tv',
 			$this->Board_meta_model->save($brd_id, $metadata);
 
 			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'free',
+				'brd_name' => '자유 게시판',
+				'brd_order' => 24,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'ask-cert',
+				'brd_name' => '조합원 인증 요청',
+				'brd_order' => 25,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+
+
+			$insertdata = array(
 				'men_parent' => 0,
-				'men_name' => '그룹A',
-				'men_link' => group_url('g-a'),
+				'men_name' => '사업 소개',
+				'men_link' => document_url('info'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 10,
+				'men_order' => 0,
 			);
 			$men_id = $this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-1',
-				'men_link' => board_url('b-a-1'),
+				'men_name' => '상품 안내',
+				'men_link' => document_url('info'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '브랜드 소개',
+				'men_link' => document_url('brand'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '찾아오시는 길',
+				'men_link' => document_url('map'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => 0,
+				'men_name' => '조합 공개 자료',
+				'men_link' => group_url('information'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$men_id = $this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합규약',
+				'men_link' => board_url('info-01'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '공동사업주체와 체결한 협약서',
+				'men_link' => board_url('info-02'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '설계자 등 용역업체 선정 계약서',
+				'men_link' => board_url('info-03'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합총회 및 이사회 등의 의사록',
+				'men_link' => board_url('info-04'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 3,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '사업시행계획서',
+				'men_link' => board_url('info-05'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 4,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합사업의 시행에 관한 공문서',
+				'men_link' => board_url('info-06'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 5,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '회계감사보고서',
+				'men_link' => board_url('info-07'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 6,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '분기별 사업실적보고서',
+				'men_link' => board_url('info-08'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 7,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '업무대행자가 제출한 실적보고서',
+				'men_link' => board_url('info-09'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 8,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '연간 자금운용 계획서',
+				'men_link' => board_url('info-10'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 9,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '월별 자금 입출금 명세서',
+				'men_link' => board_url('info-11'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 10,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '월별 공사진행 상황에 관한 서류',
+				'men_link' => board_url('info-12'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 11,
@@ -4535,8 +4764,8 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-2',
-				'men_link' => board_url('b-a-2'),
+				'men_name' => '분양신청에 관한 서류 및 관련 자료',
+				'men_link' => board_url('info-13'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 12,
@@ -4545,8 +4774,8 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-3',
-				'men_link' => board_url('b-a-3'),
+				'men_name' => '조합원별 분담금 납부내역',
+				'men_link' => board_url('info-14'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 13,
@@ -4554,82 +4783,83 @@ flvr.pandora.tv',
 			$this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
-				'men_parent' => 0,
-				'men_name' => '그룹B',
-				'men_link' => group_url('g-b'),
+				'men_parent' => $men_id,
+				'men_name' => '조합원별 추가 분담금 산출내역',
+				'men_link' => board_url('info-15'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 20,
+				'men_order' => 14,
+			);
+			$this->Menu_model->insert($insertdata);
+
+
+			$insertdata = array(
+				'men_parent' => 0,
+				'men_name' => '조합원 커뮤니티',
+				'men_link' => group_url('community'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
 			);
 			$men_id = $this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-1',
-				'men_link' => board_url('b-b-1'),
+				'men_name' => '공지 사항',
+				'men_link' => board_url('notice'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 21,
+				'men_order' => 0,
 			);
 			$this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-2',
-				'men_link' => board_url('b-b-2'),
+				'men_name' => '조합 자료실',
+				'men_link' => board_url('storage'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 22,
+				'men_order' => 1,
 			);
 			$this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-3',
-				'men_link' => board_url('b-b-3'),
+				'men_name' => '질문 게시판',
+				'men_link' => board_url('qna'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 23,
-			);
-			$this->Menu_model->insert($insertdata);
-
-			$insertdata = array(
-				'men_parent' => 0,
-				'men_name' => '그룹C',
-				'men_link' => group_url('g-c'),
-				'men_desktop' => 1,
-				'men_mobile' => 1,
-				'men_order' => 30,
-			);
-			$men_id = $this->Menu_model->insert($insertdata);
-
-			$insertdata = array(
-				'men_parent' => $men_id,
-				'men_name' => '게시판 C-1',
-				'men_link' => board_url('b-c-1'),
-				'men_desktop' => 1,
-				'men_mobile' => 1,
-				'men_order' => 31,
+				'men_order' => 2,
 			);
 			$this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 C-2',
-				'men_link' => board_url('b-c-2'),
+				'men_name' => '자유 게시판',
+				'men_link' => board_url('free'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 32,
+				'men_order' => 3,
 			);
 			$this->Menu_model->insert($insertdata);
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 C-3',
-				'men_link' => board_url('b-c-3'),
+				'men_name' => '투표(설문) 코너',
+				'men_link' => poll_url('poll'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 33,
+				'men_order' => 4,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합원 인증 요청',
+				'men_link' => board_url('ask-cert'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 5,
 			);
 			$this->Menu_model->insert($insertdata);
 
@@ -4639,7 +4869,7 @@ flvr.pandora.tv',
 				'men_link' => faq_url('faq'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 40,
+				'men_order' => 3,
 			);
 			$men_id = $this->Menu_model->insert($insertdata);
 
