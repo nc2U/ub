@@ -122,7 +122,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="<?php echo site_url(); ?>"  style="font-size: 1.5em; font-family: 'Noto Sans KR', 'sans-serif'; font-weight: 500;" class="navbar-brand" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><?php echo $this->cbconfig->item('site_logo'); ?></a>
+				<a href="<?php echo site_url(); ?>"  style="font-size: 1.5em; font-family: 'Noto Sans KR', 'sans-serif'; font-weight: 450;" class="navbar-brand" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><?php echo $this->cbconfig->item('site_logo'); ?></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
