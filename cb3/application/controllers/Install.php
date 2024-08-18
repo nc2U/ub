@@ -3793,8 +3793,8 @@ class Install extends CI_Controller
 
 
 		$configdata = array(
-			'site_title' => '홈페이지',
-			'site_logo' => '홈페이지',
+			'site_title' => 'OOOO 지역주택조합',
+			'site_logo' => 'OOOO 지역주택조합',
 			'admin_logo' => 'ADMINISTRATION',
 			'webmaster_name' => '관리자',
 			'webmaster_email' => $this->input->post('mem_email'), // 'noreply@domain.com',
