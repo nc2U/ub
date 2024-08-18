@@ -1024,13 +1024,13 @@ class Cbconfigs extends CB_Controller
 				'rules' => 'trim',
 			),
 			array(
-				'field' => 'company_retail_sale_no',
-				'label' => '통신판매업신고번호',
+				'field' => 'company_biz_agency',
+				'label' => '업무대행사명',
 				'rules' => 'trim',
 			),
 			array(
-				'field' => 'company_added_sale_no',
-				'label' => '부가통신 사업자번호',
+				'field' => 'company_agency_phone',
+				'label' => '업무대행사 대표번호',
 				'rules' => 'trim',
 			),
 			array(
@@ -1076,7 +1076,7 @@ class Cbconfigs extends CB_Controller
 
 			$array = array(
 				'company_name', 'company_reg_no', 'company_owner', 'company_phone',
-				'company_fax', 'company_retail_sale_no', 'company_added_sale_no',
+				'company_fax', 'company_biz_agency', 'company_agency_phone',
 				'company_zipcode', 'company_address',
 				'company_admin_name', 'company_admin_email');
 			foreach ($array as $value) {
