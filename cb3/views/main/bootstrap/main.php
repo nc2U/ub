@@ -1,5 +1,5 @@
 <?php
-echo '<img src="http://dongchun1-9.com/img/main/visual_m.jpg" width="1170px" style="margin-bottom: 20px" />';
+echo '<img src="uploads/img/visual_m.jpg" width="1170px" style="margin-bottom: 20px" />';
 
 echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item">
