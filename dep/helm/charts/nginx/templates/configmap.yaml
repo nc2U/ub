@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nginx.fullname" . }}-config
+data:
+  {{- with .Values.imageConfigMaps }}
+  NGINX.CONF: |
+    user  nginx;
+    worker_processes {{ .workerProcesses | default "1" }};
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  {{ .workerConnections | default "1024" }};
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log  /var/log/nginx/access.log  main;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        keepalive_timeout  {{ .keepaliveTimeout | default "65" }};
+        client_max_body_size 100M;
+
+        gzip  on;
+
+        include /etc/nginx/conf.d/log.conf;
+        include /etc/nginx/conf.d/upstream.conf;
+        include /etc/nginx/conf.d/public.conf;
+    }
+  LOG.CONF: |
+    log_format json '{'
+               '"time":"$time_iso8601",'
+               '"remote_addr":"$remote_addr",'
+               '"request":"$request",'
+               '"request_method":"$request_method",'
+               '"request_length":"$request_length",'
+               '"request_uri":"$request_uri",'
+               '"uri":"$uri",'
+               '"query_string":"$query_string",'
+               '"status":"$status",'
+               '"bytes_sent":"$bytes_sent",'
+               '"body_bytes_sent":"$body_bytes_sent",'
+               '"referer":"$http_referer",'
+               '"useragent":"$http_user_agent",'
+               '"forwardedfor":"$http_x_forwarded_for",'
+               '"request_time":"$request_time",'
+               '"upstream_response_time":"$upstream_response_time"'
+              '}';
+  UPSTREAM.CONF: |
+    upstream django_uwsgi {
+        ip_hash;
+        server {{ .backendHost }} max_fails={{ .backendMaxFails | default "3" }} fail_timeout={{ .backendMaxTimeout | default "10s" }};
+    }
+  {{- end }}
+  PUBLIC.CONF: |
+    server {
+        listen          {{ .Values.service.port | default "80" }} default_server;
+        server_name     $host www.$host;
+        charset         utf-8;
+
+        location / {
+            uwsgi_pass  django_uwsgi;
+            include     /etc/nginx/uwsgi_params;
+            proxy_hide_header Access-Control-Allow-Origin;
+            add_header 'Access-Control-Allow-Origin' '*';
+        }
+
+        location /static/ {
+            alias /django/static/;
+        }
+
+        location /media/ {
+            alias /django/media/;
+        }
+    }
+
+    server_tokens off;

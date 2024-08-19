@@ -1,0 +1,23 @@
+# Default values for Rebs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  appMode: dev
+
+nginx:
+  replicaCount: 1
+  
+  service:
+    port: 8881
+  
+  ingress:
+    hosts:
+    - host: "host-path" # Host address
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+    tls:
+    - secretName: web-devbox-kr-cert
+      hosts:
+      - "host-path" # Host address

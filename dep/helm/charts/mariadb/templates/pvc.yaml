@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "mariadb.fullname" . }}-data-{{ .Values.global.appMode }}-nfs-pvc
+spec:
+  storageClassName: mysql-data-{{ .Values.global.appMode }}
+  accessModes:
+  {{- range .Values.volumes.dataAccessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+    {{- if eq .Values.global.appMode "prod" }}
+      storage: {{ .Values.volumes.dataPvcStorageProd }}
+    {{- else if eq .Values.global.appMode "dev" }}
+      storage: {{ .Values.volumes.dataPvcStorageDev }}
+    {{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "mariadb.fullname" . }}-sql-{{ .Values.global.appMode }}-nfs-pvc
+spec:
+  storageClassName: init-sql-{{ .Values.global.appMode }}
+  accessModes:
+  {{- range .Values.volumes.sqlAccessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.sqlPvcStorage }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "mariadb.fullname" . }}-backup-{{ .Values.global.appMode }}-nfs-pvc
+spec:
+  storageClassName: dump-backup-{{ .Values.global.appMode }}
+  accessModes:
+  {{- range .Values.volumes.backupAccessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+    {{- if eq .Values.global.appMode "prod" }}
+      storage: {{ .Values.volumes.backupPvcStorageProd }}
+    {{- else if eq .Values.global.appMode "dev" }}
+      storage: {{ .Values.volumes.backupPvcStorageDev }}
+    {{- end }}
