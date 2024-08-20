@@ -4458,7 +4458,7 @@ flvr.pandora.tv',
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
 				'brd_key' => 'info-01',
-				'brd_name' => '조합규약',
+				'brd_name' => '조합규약 및 내규',
 				'brd_order' => 1,
 				'brd_search' => 1,
 			);
@@ -4730,7 +4730,7 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '조합규약',
+				'men_name' => '조합규약 및 내규',
 				'men_link' => board_url('info-01'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
