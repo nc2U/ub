@@ -217,7 +217,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 				<?php if (element('use_sidebar', $layout)) {?>
 					</div>
-					<div class="col-lg-3 col-md-12">
+					<div class="d-none visible-lg-block col-lg-3 col-md-12">
 						<div class="sidebar">
 							<!-- 사이드바 시작 -->
 							<?php $this->load->view(element('layout_skin_path', $layout) . '/sidebar'); ?>
