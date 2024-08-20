@@ -11,6 +11,14 @@ a:hover{color:#2773ae;}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {font-family: inherit;margin:0;}
 li{list-style:none;}
 
+.header-top-description {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  color: #ccc;
+  font-size: 12px;
+}
+
 .clearfix {clear:both;}
 .bold {font-weight:bold;}
 
