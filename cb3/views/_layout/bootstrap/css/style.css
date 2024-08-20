@@ -26,6 +26,11 @@ li{list-style:none;}
   font-weight: 380;
 }
 
+.info-span {
+  display: inline-block;
+  width: 120px;
+}
+
 .clearfix {clear:both;}
 .bold {font-weight:bold;}
 

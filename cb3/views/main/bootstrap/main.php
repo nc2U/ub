@@ -59,11 +59,11 @@ if ($is_open) {
 
 	<div class="table-responsive">
 	<div style="padding: 8px;">
-	<div style="padding: 7px;">업무대행사 : '.$this->cbconfig->item('company_biz_agency').' ('.$this->cbconfig->item('company_agency_phone').')</div>
-	<div style="padding: 7px;">사무실 전화번호 : '.$this->cbconfig->item('company_phone').'</div>
-	<div style="padding: 7px;">사무실 팩스번호 : '.$this->cbconfig->item('company_fax').'</div>
-	<div style="padding: 7px;">주 소 : '.$this->cbconfig->item('company_address').'</div>
-	<div style="padding: 7px;">문 의 시 간 : 평일 10:00 ~ 18:00 (<span style="color: red">주말, 공휴일 휴무</span>)</div>
+	<div style="padding: 7px;"><span class="info-span">업무대행사 : </span>'.$this->cbconfig->item('company_biz_agency').' ('.$this->cbconfig->item('company_agency_phone').')</div>
+	<div style="padding: 7px;"><span class="info-span">사무실 전화번호 : </span>'.$this->cbconfig->item('company_phone').'</div>
+	<div style="padding: 7px;"><span class="info-span">사무실 팩스번호 : </span>'.$this->cbconfig->item('company_fax').'</div>
+	<div style="padding: 7px;"><span class="info-span">주 소 : </span>'.$this->cbconfig->item('company_address').'</div>
+	<div style="padding: 7px;"><span class="info-span">문 의 시 간 : </span>평일 10:00 ~ 18:00 (<span style="color: red">주말, 공휴일 휴무</span>)</div>
 	</div>
 	</div>
 	
