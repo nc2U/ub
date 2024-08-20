@@ -73,7 +73,6 @@ if ($is_open) {
 	
 	</div>
 	</div>
-	
 	';
 	echo '</div>';
 	$is_open = false;
