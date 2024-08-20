@@ -53,7 +53,7 @@ if (element('board_list', $view)) {
 if ($is_open) {
 	echo '
 	<div class="col-md-6">
-	<div class="panel panel-success">
+	<div class="panel panel-default">
 
 	<div class="panel-heading">조합원 문의</div>
 

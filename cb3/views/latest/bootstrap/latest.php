@@ -2,7 +2,7 @@
     <div class="panel">
 
         <!-- Default panel contents-->
-        <div class="panel-heading" style="border-bottom: 2px solid #000; font-size: 1.13em; font-family: 'Noto Sans KR', 'sans-serif'; font-weight: 380;">
+        <div class="panel-heading">
             <?php echo html_escape(element('board_name', element('board', $view))); ?>
             <div class="view-all pull-right">
                 <a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" title="<?php echo html_escape(element('board_name', element('board', $view))); ?>">더보기 <i class="fa fa-angle-right"></i></a>
