@@ -1,5 +1,5 @@
 <?php
-echo '<img src="uploads/img/visual_m.jpg" width="1170px" style="margin-bottom: 20px" />';
+echo '<img src="uploads/img/main.jpg" width="1170px" style="margin-bottom: 20px; border: 1px solid #ddd; />';
 
 $active = element('bl', $view) === '1';
 
