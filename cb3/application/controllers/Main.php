@@ -51,19 +51,26 @@ class Main extends CB_Controller
 		// 이벤트가 존재하면 실행합니다
 		$view['view']['event']['before'] = Events::trigger('before', $eventname);
 
-		$where = array(
-			'brd_search' => 1,
-			'bgr_id' => 2,
-			// 'brd_key' => 'notice',
-		);
-		$board_id = $this->Board_model->get_board_list($where);
-		$board_list = array();
-		if ($board_id && is_array($board_id)) {
-			foreach ($board_id as $key => $val) {
-				$board_list[] = $this->board->item_all(element('brd_id', $val));
+		$where1 = array('brd_search' => 1, 'bgr_id' => 1);
+        $where2 = array('brd_search' => 1, 'bgr_id' => 2);
+		$board_id1 = $this->Board_model->get_board_list($where1);
+        $board_id2 = $this->Board_model->get_board_list($where2);
+
+		$board_list1 = array();
+		if ($board_id1 && is_array($board_id1)) {
+			foreach ($board_id1 as $key => $val) {
+				$board_list1[] = $this->board->item_all(element('brd_id', $val));
 			}
 		}
-		$view['view']['board_list'] = $board_list;
+        $board_list2 = array();
+        if ($board_id2 && is_array($board_id2)) {
+            foreach ($board_id2 as $key => $val) {
+                $board_list2[] = $this->board->item_all(element('brd_id', $val));
+            }
+        }
+        $bl = $this->input->get('bl');
+        $view['view']['bl'] = $bl;
+		$view['view']['board_list'] = (!$bl or $bl === '2') ? $board_list2 : $board_list1;
 		$view['view']['canonical'] = site_url();
 
 		// 이벤트가 존재하면 실행합니다

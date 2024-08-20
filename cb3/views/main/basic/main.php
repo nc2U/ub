@@ -1,14 +1,27 @@
 <?php
 echo '<img src="uploads/img/visual_m.jpg" width="1170px" style="margin-bottom: 20px" />';
 
-echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">조합 공개 자료</a>
-  </li>
+$active = element('bl', $view) === '1';
+
+if ($active) {
+    echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item active">
-    <a class="nav-link" href="#">조합원 커뮤니티</a>
+    <a class="nav-link" href="?bl=1">조합 공개 자료</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
   </li>
 </ul>';
+} else {
+    echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+  <li class="nav-item">
+    <a class="nav-link" href="?bl=1">조합 공개 자료</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
+  </li>
+</ul>';
+}
 
 $k = 0;
 $is_open = false;
