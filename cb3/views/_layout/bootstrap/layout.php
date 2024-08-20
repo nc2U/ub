@@ -208,7 +208,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 			<div class="row">
 
 				<?php if (element('use_sidebar', $layout)) {?>
-					<div class="col-md-9 col-sm-8 col-xs-12 mb20">
+					<div class="col-lg-9 col-md-12 mb20">
 				<?php } ?>
 
 				<!-- 본문 시작 -->
@@ -217,7 +217,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 				<?php if (element('use_sidebar', $layout)) {?>
 					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12">
+					<div class="col-lg-3 col-md-12">
 						<div class="sidebar">
 							<!-- 사이드바 시작 -->
 							<?php $this->load->view(element('layout_skin_path', $layout) . '/sidebar'); ?>

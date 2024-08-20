@@ -1,9 +1,5 @@
 <?php
-if (element('use_sidebar', $layout)) {
-    echo '<img src="uploads/img/main.jpg" width="860px" style="margin-bottom: 20px; border: 1px solid #ddd;" />';
-} else {
-    echo '<img src="uploads/img/main.jpg" width="1170px" style="margin-bottom: 20px; border: 1px solid #ddd;" />';
-}
+echo '<div class="col-xs-12 mb20" style="padding: 0;"><img src="uploads/img/main.jpg" width="100%" style="border: 1px solid #ddd;" /></div>';
 
 $active = element('bl', $view) === '1';
 
