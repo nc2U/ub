@@ -4324,7 +4324,7 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'fgr_title' => '자주하는 질문',
-				'fgr_key' => 'faq',
+				'fgr_key' => 'faq-01',
 				'fgr_datetime' => cdate('Y-m-d H:i:s'),
 				'fgr_ip' => $this->input->ip_address(),
 				'mem_id' => $mem_id,
@@ -4952,7 +4952,7 @@ flvr.pandora.tv',
 			$insertdata = array(
 				'men_parent' => 0,
 				'men_name' => '자주하는질문',
-				'men_link' => faq_url('faq'),
+				'men_link' => faq_url('faq-01'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 3,
