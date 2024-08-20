@@ -63,9 +63,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 		<!-- header start -->
 		<header class="header">
 			<div class="container">
-                <span class="header-top-description">
-                    주택법 제12조 :: 실적보고 및 관련 자료의 공개 운영 사이트
-                </span>
+                <span class="header-top-description">주택법 제12조 :: 실적보고 및 관련 자료의 공개 운영 사이트</span>
 				<ul class="header-top-menu">
 					<?php if ($this->member->is_admin() === 'super') { ?>
 						<li><i class="fa fa-cog"></i><a href="<?php echo site_url(config_item('uri_segment_admin')); ?>" title="관리자 페이지로 이동">관리자</a></li>

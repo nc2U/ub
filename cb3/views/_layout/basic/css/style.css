@@ -17,6 +17,14 @@ address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
 h4{font-size: 16px;font-weight: normal;margin-bottom: 10px;}
 small{font-size: 12px; padding-left: 10px;}
 
+.header-top-description {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #ccc;
+    font-size: 12px;
+}
+
 .error {color:red;}
 .clearfix {clear:both;}
 .bold {font-weight:bold;}

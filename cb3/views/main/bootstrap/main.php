@@ -36,6 +36,7 @@ if (element('board_list', $view)) {
 		$k++;
 	}
 }
+
 if ($is_open) {
 	echo '
 	<div class="col-md-6">
