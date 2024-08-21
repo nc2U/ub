@@ -546,13 +546,7 @@ border-bottom: 1px solid #e5e5e5;
 
 /* header */
 header{background: #082a47;color: #fff;display: block;clear: both; width:100%;}
-header .header-top-description {
-  float: left;
-  height: 40px;
-  line-height: 40px;
-  color: #ccc;
-  font-size: 12px;
-}
+header .header-top-description {float: left;height: 40px;line-height: 40px;color: #ccc;font-size: 12px;}
 header .header-top-menu {float:right;height:30px;line-height: 40px;}
 header .header-top-menu .fa{color:#ccc;}
 header .header-top-menu li{float:left; padding:0 10px;color:#ccc; font-size:12px;}
