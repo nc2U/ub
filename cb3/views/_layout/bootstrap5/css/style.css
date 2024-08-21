@@ -11,21 +11,6 @@ a:hover{color:#2773ae;}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {font-family: inherit;margin:0;}
 li{list-style:none;}
 
-.header-top-description {
-  float: left;
-  height: 40px;
-  line-height: 40px;
-  color: #ccc;
-  font-size: 12px;
-}
-
-.panel .panel-heading {
-  border-bottom: 2px solid #000;
-  font-size: 1.13em;
-  font-family: 'Noto Sans KR', 'sans-serif';
-  font-weight: 380;
-}
-
 .info-span {
   display: inline-block;
   width: 120px;
@@ -557,10 +542,22 @@ border-bottom: 1px solid #e5e5e5;
 .view-all {float: right;width: 75px;position: absolute;top: 10px;right: 0;}
 
 .form-control{background-color: #FFFFFF;background-image: none;border: 1px solid #e5e6e7;border-radius: 5px;color: inherit;display: inline-block;padding: 6px 12px;font-size: 14px;vertical-align: middle;  }
-.panel-heading{font-size:14px;}
+.panel-heading {
+  border-bottom: 2px solid #000;
+  font-size: 1.13em;
+  font-family: 'Noto Sans KR', 'sans-serif';
+  font-weight: 380;
+}
 
 /* header */
 header{background: #082a47;color: #fff;display: block;clear: both; width:100%;}
+header .header-top-description {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  color: #ccc;
+  font-size: 12px;
+}
 header .header-top-menu {float:right;height:30px;line-height: 40px;}
 header .header-top-menu .fa{color:#ccc;}
 header .header-top-menu li{float:left; padding:0 10px;color:#ccc; font-size:12px;}
