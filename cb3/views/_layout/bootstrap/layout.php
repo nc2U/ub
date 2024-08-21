@@ -24,7 +24,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css" />
 <?php echo $this->managelayout->display_css(); ?>
-
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     // 자바스크립트에서 사용하는 전역변수 선언
     var cb_url = "<?php echo trim(site_url(), '/'); ?>";
@@ -370,6 +372,7 @@ $(document).on('click', '.viewmobileversion', function(){
 </script>
 <?php echo element('popup', $layout); ?>
 <?php echo $this->cbconfig->item('footer_script'); ?>
+
 <!--
 Layout Directory : <?php echo element('layout_skin_path', $layout); ?>,
 Layout URL : <?php echo element('layout_skin_url', $layout); ?>,
@@ -377,8 +380,5 @@ Skin Directory : <?php echo element('view_skin_path', $layout); ?>,
 Skin URL : <?php echo element('view_skin_url', $layout); ?>,
 -->
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
