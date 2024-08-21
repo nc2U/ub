@@ -14,8 +14,8 @@
 <?php if (element('meta_author', $layout)) { ?><meta name="author" content="<?php echo html_escape(element('meta_author', $layout)); ?>"><?php } ?>
 <?php if (element('favicon', $layout)) { ?><link rel="shortcut icon" type="image/x-icon" href="<?php echo element('favicon', $layout); ?>" /><?php } ?>
 <?php if (element('canonical', $view)) { ?><link rel="canonical" href="<?php echo element('canonical', $view); ?>" /><?php } ?>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,7 @@
 					if ($this->member->is_member()) {
 						if ($this->cbconfig->item('use_notification')) {
 					?>
-						<li class="notifications"><i class="fa fa-bell-o"></i>알림 <span class="badge notification_num"><?php echo number_format((int) element('notification_num', $layout)); ?></span>
+						<li class="notifications"><i class="fa fa-bell-o"></i>알림 <span class="badge text-bg-secondary notification_num"><?php echo number_format((int) element('notification_num', $layout)); ?></span>
 							<div class="notifications-menu"> </div>
 						</li>
 						<script type="text/javascript">
@@ -96,12 +96,12 @@
 						<li><i class="fa fa-user"></i><a href="<?php echo site_url('register'); ?>" title="회원가입">회원가입</a></li>
 					<?php } ?>
 					<?php if ($this->cbconfig->item('open_currentvisitor')) { ?>
-						<li><i class="fa fa-link"></i><a href="<?php echo site_url('currentvisitor'); ?>" title="현재접속자">현재접속자</a> <span class="badge"><?php echo element('current_visitor_num', $layout); ?></span></li>
+						<li><i class="fa fa-link"></i><a href="<?php echo site_url('currentvisitor'); ?>" title="현재접속자">현재접속자</a> <span class="badge text-bg-secondary"><?php echo element('current_visitor_num', $layout); ?></span></li>
 					<?php } ?>
 				</ul>
 			</div>
-		<!-- header-content end -->
 		</header>
+		<!-- header-content end -->
 
     <?php } else {?>
 
@@ -110,93 +110,94 @@
     <?php } ?>
 
 	<!-- nav start -->
-	<nav class="navbar navbar-default">
-		<div class="container">
+<!--	<nav class="navbar navbar-default">-->
+<!--		<div class="container">-->
 
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" <?php if ($this->cbconfig->get_device_view_type() !== 'mobile') {?>data-toggle="collapse" data-target="#topmenu-navbar-collapse" <?php } ?> id="btn_side">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="<?php echo site_url(); ?>"  style="font-size: 1.5em; font-family: 'Noto Sans KR', 'sans-serif'; font-weight: 450;" class="navbar-brand" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><?php echo $this->cbconfig->item('site_logo'); ?></a>
-			</div>
+<!--			<div class="navbar-header">-->
+<!--				<button type="button" class="navbar-toggle collapsed" --><?php //if ($this->cbconfig->get_device_view_type() !== 'mobile') {?><!--data-toggle="collapse" data-target="#topmenu-navbar-collapse" --><?php //} ?><!-- id="btn_side">-->
+<!--					<span class="icon-bar"></span>-->
+<!--					<span class="icon-bar"></span>-->
+<!--					<span class="icon-bar"></span>-->
+<!--				</button>-->
+<!--				<a href="--><?php //echo site_url(); ?><!--"  style="font-size: 1.5em; font-family: 'Noto Sans KR', 'sans-serif'; font-weight: 450;" class="navbar-brand" title="--><?php //echo html_escape($this->cbconfig->item('site_title'));?><!--">--><?php //echo $this->cbconfig->item('site_logo'); ?><!--</a>-->
+<!--			</div>-->
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="topmenu-navbar-collapse">
-				<ul class="nav navbar-nav navbar-right" style="font-family: 'Noto Sans KR', 'sans-serif';">
-					<?php
-					$menuhtml = '';
-					if (element('menu', $layout)) {
-						$menu = element('menu', $layout);
-						if (element(0, $menu)) {
-							foreach (element(0, $menu) as $mkey => $mval) {
-								if (element(element('men_id', $mval), $menu)) {
-									$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-									$menuhtml .= '<li class="dropdown">
-									<a href="' . $mlink . '" ' . element('men_custom', $mval);
-									if (element('men_target', $mval)) {
-										$menuhtml .= ' target="' . element('men_target', $mval) . '"';
-									}
-									$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
-									<ul class="dropdown-menu">';
-
-									foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-										$slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
-										$menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
-										if (element('men_target', $sval)) {
-											$menuhtml .= ' target="' . element('men_target', $sval) . '"';
-										}
-										$menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-									}
-									$menuhtml .= '</ul></li>';
-
-								} else {
-									$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-									$menuhtml .= '<li><a href="' . $mlink . '" ' . element('men_custom', $mval);
-									if (element('men_target', $mval)) {
-										$menuhtml .= ' target="' . element('men_target', $mval) . '"';
-									}
-									$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
-								}
-							}
-						}
-					}
-					echo $menuhtml;
-					?>
-					<li>
-						<form class="navbar-form navbar-right" name="header_search" id="header_search" action="<?php echo site_url('search'); ?>" onSubmit="return headerSearch(this);">
-							<div class="form-group">
-								<input type="text" class="form-control px150" placeholder="Search" name="skeyword" accesskey="s" />
-								<button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
-							</div>
-						</form>
-						<script type="text/javascript">
-						//<![CDATA[
-						$(function() {
-							$('#topmenu-navbar-collapse .dropdown').hover(function() {
-								$(this).addClass('open');
-							}, function() {
-								$(this).removeClass('open');
-							});
-						});
-						function headerSearch(f) {
-							var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');
-							if (skeyword.length < 2) {
-								alert('2글자 이상으로 검색해 주세요');
-								f.skeyword.focus();
-								return false;
-							}
-							return true;
-						}
-						//]]>
-						</script>
-					</li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div>
-	</nav>
+<!--			<div class="collapse navbar-collapse" id="topmenu-navbar-collapse">-->
+<!--				<ul class="nav navbar-nav navbar-right" style="font-family: 'Noto Sans KR', 'sans-serif';">-->
+<!--					--><?php
+//					$menuhtml = '';
+//					if (element('menu', $layout)) {
+//						$menu = element('menu', $layout);
+//						if (element(0, $menu)) {
+//							foreach (element(0, $menu) as $mkey => $mval) {
+//								if (element(element('men_id', $mval), $menu)) {
+//									$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+//									$menuhtml .= '<li class="dropdown">
+//									<a href="' . $mlink . '" ' . element('men_custom', $mval);
+//									if (element('men_target', $mval)) {
+//										$menuhtml .= ' target="' . element('men_target', $mval) . '"';
+//									}
+//									$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
+//									<ul class="dropdown-menu">';
+//
+//									foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+//										$slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
+//										$menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
+//										if (element('men_target', $sval)) {
+//											$menuhtml .= ' target="' . element('men_target', $sval) . '"';
+//										}
+//										$menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
+//									}
+//									$menuhtml .= '</ul></li>';
+//
+//								} else {
+//									$mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+//									$menuhtml .= '<li><a href="' . $mlink . '" ' . element('men_custom', $mval);
+//									if (element('men_target', $mval)) {
+//										$menuhtml .= ' target="' . element('men_target', $mval) . '"';
+//									}
+//									$menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
+//								}
+//							}
+//						}
+//					}
+//					echo $menuhtml;
+//					?>
+<!--					<li>-->
+<!--						<form class="navbar-form navbar-right" name="header_search" id="header_search" action="--><?php //echo site_url('search'); ?><!--" onSubmit="return headerSearch(this);">-->
+<!--							<div class="form-group">-->
+<!--								<input type="text" class="form-control px150" placeholder="Search" name="skeyword" accesskey="s" />-->
+<!--								<button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>-->
+<!--							</div>-->
+<!--						</form>-->
+<!--						<script type="text/javascript">-->
+<!--						//<![CDATA[-->
+<!--						$(function() {-->
+<!--							$('#topmenu-navbar-collapse .dropdown').hover(function() {-->
+<!--								$(this).addClass('open');-->
+<!--							}, function() {-->
+<!--								$(this).removeClass('open');-->
+<!--							});-->
+<!--						});-->
+<!--						function headerSearch(f) {-->
+<!--							var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');-->
+<!--							if (skeyword.length < 2) {-->
+<!--								alert('2글자 이상으로 검색해 주세요');-->
+<!--								f.skeyword.focus();-->
+<!--								return false;-->
+<!--							}-->
+<!--							return true;-->
+<!--						}-->
+<!--						//]]>-->
+<!--						</script>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
+            <!-- /.navbar-collapse -->
+<!--		</div>-->
+<!--	</nav>-->
 	<!-- nav end --> <!-- header end -->
 
 	<!-- main start -->
