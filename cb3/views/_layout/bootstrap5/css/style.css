@@ -11,11 +11,6 @@ a:hover{color:#2773ae;}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {font-family: inherit;margin:0;}
 li{list-style:none;}
 
-.info-span {
-  display: inline-block;
-  width: 120px;
-}
-
 .clearfix {clear:both;}
 .bold {font-weight:bold;}
 
@@ -590,7 +585,7 @@ nav , .pagination{text-align:center;}
 #side_menu .m_menu li{display: block;  line-height: 40px;border-top: 1px solid #323232; position:relative;padding-left: 20px; }
 #side_menu .m_menu li a.text_link{display:inline-block;width:65%;white-space:nowrap}
 #side_menu .m_menu li a:hover{color: #7080b1;}
-#side_menu .m_menu span{ position: absolute; right: 20px; top: 15px; } 
+#side_menu .m_menu span{ position: absolute; right: 20px; top: 15px; }
 
 #side_menu li, #side_menu li>a, #side_menu li.active>a, #side_menu li>a:hover, #side_menu li>a:focus {color: #fff;}
 #side_menu .dropdown-custom-menu{background: #222222;overflow:hidden; width:100%;display:none;}
@@ -606,12 +601,13 @@ nav , .pagination{text-align:center;}
 #side_menu .m_board span{position: absolute;top: 13px;left: 10px; padding-right: 10px; }
 #side_menu .m_search{margin: 0 auto;padding: 20px 0 0;width: 100%;text-align:center;}
 
-body.over_hidden{overflow:hidden} 
+body.over_hidden{overflow:hidden}
 
 
 /* main */
 .main{width:100%; clear:both; margin: 20px 0;}
 .main .navbar-form{margin-top:0; margin-bottom:0;padding: 0 15px;}
+.info-span {display: inline-block;width: 120px;}
 
 /* footer */
 footer{border-top: 1px solid #e5e5e5;background-color: #f5f5f5;padding:15px 0;}
