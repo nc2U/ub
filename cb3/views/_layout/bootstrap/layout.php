@@ -128,7 +128,7 @@
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="topmenu-navbar-collapse">
-				<ul class="nav navbar-nav navbar-right" style="font-family: 'Noto Sans KR', 'sans-serif';">
+				<ul class="nav navbar-nav navbar-right">
 					<?php
 					$menuhtml = '';
 					if (element('menu', $layout)) {
