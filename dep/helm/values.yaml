@@ -3,7 +3,6 @@
 # Declare variables to be passed into your templates.
 
 global:
-  appMode: prod
   dbPassword: "{{ randAlphaNum 5 }}"
   nfsServerHost: "nfs-server-host"
   nfsPath: "nfs-path" # nfs volume path

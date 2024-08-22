@@ -60,9 +60,7 @@ volumes:
   php74AccessModes:
     - ReadWriteMany
   php74PvStorageProd: 500Mi
-  php74PvStorageDev: 200Mi
   php74PvcStorageProd: 500Mi
-  php74PvcStorageDev: 200Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
