@@ -17,4 +17,5 @@ RUN docker-php-ext-install mysqli
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9000
-CMD ["php-fpm"] 
+
+ENTRYPOINT ["php-fpm"]
