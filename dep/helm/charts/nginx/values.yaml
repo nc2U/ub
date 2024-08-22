@@ -12,7 +12,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "nginx"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -55,6 +55,14 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+volumes:
+  RWMAccessModes:
+    - ReadWriteMany
+  staticStorageProd: 500Mi
+  staticStorageDev: 200Mi
+  mediaStorageProd: 500Mi
+  mediaStorageDev: 300Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
