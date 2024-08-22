@@ -11,21 +11,21 @@ echo '<div class="col-xs-12 mb20" style="padding: 0;">
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="uploads/img/main1.png" alt="Slide 1" style="">
+      <img src="uploads/img/main1.jpg" alt="Slide 1" style="">
       <div class="carousel-caption">
         <!-- <p>Description for Slide 1.</p> -->
       </div>
     </div>
 
     <div class="item">
-      <img src="uploads/img/main2.png" alt="Slide 2">
+      <img src="uploads/img/main2.jpg" alt="Slide 2">
       <div class="carousel-caption">
        <!-- <p>Description for Slide 2.</p> -->
       </div>
     </div>
 
     <div class="item">
-      <img src="uploads/img/main3.png" alt="Slide 3">
+      <img src="uploads/img/main3.jpg" alt="Slide 3">
       <div class="carousel-caption">
         <!-- <p>Description for Slide 3.</p> -->
       </div>
