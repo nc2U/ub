@@ -8,11 +8,12 @@ image:
   repository: mariadb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "mariadb"
+timeZone: "Asia/Seoul"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -38,7 +39,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 3306
 
 ingress:
   enabled: false
@@ -55,6 +56,26 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+volumes:
+  dataAccessModes:
+    - ReadWriteMany
+  dataPvStorageProd: 1Gi
+  dataPvStorageDev: 500Mi
+  dataPvcStorageProd: 1Gi
+  dataPvcStorageDev: 500Mi
+  
+  sqlAccessModes:
+    - ReadWriteMany
+  sqlPvStorage: 200Mi
+  sqlPvcStorage: 200Mi
+  
+  backupAccessModes:
+    - ReadWriteMany
+  backupPvStorageProd: 800Mi
+  backupPvStorageDev: 200Mi
+  backupPvcStorageProd: 800Mi
+  backupPvcStorageDev: 200Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

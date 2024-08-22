@@ -25,7 +25,7 @@ mariadb:
 nginx:
   service:
     type: LoadBalancer
-    port: 8880
+    port: 8080
   
   ingress:
     enabled: true
