@@ -1,4 +1,4 @@
-# PHP, MariaDB and Nginx
+# CIBOARD with Docker(PHP, MariaDB and Nginx)
 
 * This example provides containers for:
     * PHP 7.4 (FPM)
@@ -23,8 +23,8 @@ cp docker-compose.yml.tmpl docker-compose.yml
 
 ## Modify docker-compose.yml file
 
-* Modify the values ​​in the section below to the values ​​you want to use.
-    
+* Modify the values in the section below to the values you want to use.
+
 ```
     MYSQL_DATABASE: my-db-name
     MYSQL_USER: my-db-user
