@@ -57,12 +57,12 @@ ingress:
   #      - chart-example.local
 
 volumes:
-  djangoAccessModes:
+  php74AccessModes:
     - ReadWriteMany
-  djangoPvStorageProd: 10Gi
-  djangoPvStorageDev: 400Mi
-  djangoPvcStorageProd: 10Gi
-  djangoPvcStorageDev: 400Mi
+  php74PvStorageProd: 500Mi
+  php74PvStorageDev: 200Mi
+  php74PvcStorageProd: 500Mi
+  php74PvcStorageDev: 200Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

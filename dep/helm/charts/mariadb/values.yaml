@@ -60,10 +60,10 @@ ingress:
 volumes:
   dataAccessModes:
     - ReadWriteMany
-  dataPvStorageProd: 1Gi
-  dataPvStorageDev: 500Mi
-  dataPvcStorageProd: 1Gi
-  dataPvcStorageDev: 500Mi
+  dataPvStorageProd: 500Mi
+  dataPvStorageDev: 250Mi
+  dataPvcStorageProd: 500Mi
+  dataPvcStorageDev: 250Mi
   
   sqlAccessModes:
     - ReadWriteMany
@@ -72,9 +72,9 @@ volumes:
   
   backupAccessModes:
     - ReadWriteMany
-  backupPvStorageProd: 800Mi
+  backupPvStorageProd: 400Mi
   backupPvStorageDev: 200Mi
-  backupPvcStorageProd: 800Mi
+  backupPvcStorageProd: 400Mi
   backupPvcStorageDev: 200Mi
 
 resources: {}

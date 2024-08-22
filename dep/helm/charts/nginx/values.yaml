@@ -59,7 +59,7 @@ ingress:
 volumes:
   RWMAccessModes:
     - ReadWriteMany
-  staticStorageProd: 500Mi
+  staticStorageProd: 300Mi
   staticStorageDev: 200Mi
   mediaStorageProd: 500Mi
   mediaStorageDev: 300Mi
