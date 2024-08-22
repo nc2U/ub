@@ -1,7 +1,7 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 <div class="access col-md-6 col-md-offset-3">
-	<div class="panel panel-default">
+	<div class="panel panel-default mt100 mb100">
 		<div class="panel-heading">로그인</div>
 		<div class="panel-body">
 			<?php
