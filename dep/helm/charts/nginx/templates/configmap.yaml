@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nginx.fullname" . }}-config
+data:
+  NGINX.CONF: |
+    server {
+        listen {{ .Values.service.port | default "80" }} default_server;
+        listen [::]:80 default_server;
+        charset         utf-8;
+
+        server_name $host www.$host localhost;
+
+        root /var/www/html;
+        index index.php index.html;
+
+        # Support Yii2 pretty URL routing
+        location / {
+            try_files $uri $uri/ =404;
+            if (!-e $request_filename){
+                rewrite ^/(.*) /index.php?r=$1 last;
+            }
+        }
+
+        location ~* \.php$ {
+            fastcgi_pass cb-php:9000;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        }
+
+        # Prevent additional headers like TRACE, DELETE, PUSH
+        if ($request_method !~ ^(GET|HEAD|POST)$ )
+        {
+            return 405;
+        }
+    }
