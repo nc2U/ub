@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "web.fullname" . }}
+  name: {{ include "helm.fullname" . }}
   labels:
-    {{- include "web.labels" . | nindent 4 }}
+    {{- include "helm.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "web.selectorLabels" . | nindent 6 }}
+      {{- include "helm.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "web.selectorLabels" . | nindent 8 }}
+        {{- include "helm.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "web.serviceAccountName" . }}
+      serviceAccountName: {{ include "helm.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,36 +33,20 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["/bin/bash"]
-          args: ["-c", "uwsgi --socket :8000 --module _config.wsgi --py-autoreload 1 --logto /tmp/mylog.log"]
-          envFrom:
-            - configMapRef:
-                name: {{ include "web.fullname" . }}-config
-            - secretRef:
-                name: {{ include "web.fullname" . }}-db-auth
           ports:
-            - name: web
-              containerPort: 8000
+            - name: http
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
-            exec:
-              command:
-                - python
-                - --version
-          volumeMounts:
-            - name: django-source
-              mountPath: /app/django
-            - name: tz-seoul
-              mountPath: /etc/localtime
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-        - name: django-source
-          persistentVolumeClaim:
-            claimName: {{ include "web.fullname" . }}-django-{{ .Values.global.appMode }}-nfs-pvc
-        - name: tz-seoul
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Seoul
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -73,6 +57,5 @@ spec:
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-
         {{- toYaml . | nindent 8 }}
       {{- end }}
