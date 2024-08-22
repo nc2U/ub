@@ -8,11 +8,11 @@ image:
   repository: dokube/php74
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "web"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -55,6 +55,14 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+volumes:
+  djangoAccessModes:
+    - ReadWriteMany
+  djangoPvStorageProd: 10Gi
+  djangoPvStorageDev: 400Mi
+  djangoPvcStorageProd: 10Gi
+  djangoPvcStorageDev: 400Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
