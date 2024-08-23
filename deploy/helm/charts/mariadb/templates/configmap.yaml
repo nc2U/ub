@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
-  MYSQL_DATABASE: "{{ .Release.Name }}"
-  MYSQL_USER: "{{ .Release.Name }}"
+  MYSQL_DATABASE: "{{ .Values.global.dbName | default .Release.Name }}"
+  MYSQL_USER: "{{ .Values.global.dbUser | default .Release.Name }}"
   TZ: "{{ .Values.timeZone }}"
 kind: ConfigMap
 metadata:

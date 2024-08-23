@@ -4,7 +4,7 @@ metadata:
   name: {{ include "ub.fullname" . }}-{{ include "web.fullname" . }}-config
 data:
   BASE_URL: "{{ .Values.global.baseUrl }}"
-  ENCRYPTION_KEY: "{{ .Values.global.encryptionKey }}"
+  ENCRYPTION_KEY: "{{ randAlphaNum 5 }}"
   DATABASE_HOST: "{{ include "mariadb.fullname" . }}"
   DATABASE_NAME: "{{ .Release.Name }}"
   DATABASE_USER: "{{ .Release.Name }}"

@@ -6,8 +6,10 @@ global:
   nfsServerHost: "nfs-server-host"
   nfsPath: "/mnt/nfs" # nfs volume path
   baseUrl: "http://localhost:8080/"
-  encryptionKey: "{{ randAlphaNum 5 }}"
-  dbPassword: "{{ randAlphaNum 5 }}"
+  dbHost: ""
+  dbName: ""
+  dbUser: ""
+  dbPassword: ""
 
 nameOverride: ""
 fullnameOverride: ""
