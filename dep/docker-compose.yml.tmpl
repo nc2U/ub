@@ -6,6 +6,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./docker/php
+    image: dokube/ci3
     volumes:
       - ../cb3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
