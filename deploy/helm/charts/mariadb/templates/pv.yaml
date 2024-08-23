@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-data-pv
 spec:
-  storageClassName: mysql-data
+  storageClassName: {{ include "ub.fullname" . }}-mysql-data
   capacity:
     storage: {{ .Values.volumes.dataPvStorage }}
   accessModes:
