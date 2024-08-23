@@ -14,8 +14,8 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: {{ .Values.global.cicdPath }}/ub/volume/mysql
-    server: {{ .Values.global.cicdServerHost }}
+    path: {{ .Values.global.nfsPath }}/ub/volume/mysql
+    server: {{ .Values.global.nfsServerHost }}
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -43,7 +43,7 @@ metadata:
 spec:
   storageClassName: {{ include "ub.fullname" . }}-dump-backup
   capacity:
-    storage: {{ .Values.volumes.backupPvStorageProd }}
+    storage: {{ .Values.volumes.backupPvStorage }}
   accessModes:
   {{- range .Values.volumes.backupAccessModes }}
     - {{ . }}

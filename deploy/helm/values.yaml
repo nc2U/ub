@@ -4,9 +4,7 @@
 
 global:
   nfsServerHost: "nfs-server-host"
-  nfsPath: "nfs-path" # nfs volume path
-  cicdServerHost: "cicd-server-host"
-  cicdPath: "cicd-path" # cicd server path
+  nfsPath: "/mnt/nfs" # nfs volume path
   baseUrl: "http://localhost:8080/"
   encryptionKey: "{{ randAlphaNum 5 }}"
   dbPassword: "{{ randAlphaNum 5 }}"
