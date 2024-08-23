@@ -59,8 +59,8 @@ ingress:
 volumes:
   RWMAccessModes:
     - ReadWriteMany
-  staticStorageProd: 300Mi
-  mediaStorageProd: 500Mi
+  staticStorage: 100Mi
+  mediaStorage: 200Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

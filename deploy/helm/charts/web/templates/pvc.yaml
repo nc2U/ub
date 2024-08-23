@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "web.fullname" . }}-ci3-nfs-pvc
+  name: {{ include "ub.fullname" }}-{{ include "web.fullname" . }}-ci3-pvc
 spec:
-  storageClassName: {{ include "web.fullname" . }}-app
+  storageClassName: {{ include "ub.fullname" }}-{{ include "web.fullname" . }}-app
   accessModes:
   {{- range .Values.volumes.ci3AccessModes }}
     - {{ . }}
