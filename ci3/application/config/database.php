@@ -83,10 +83,10 @@ $query_builder = TRUE;
 */
 $db['default'] = array(
 	//'dsn'	=> 'mysql:host=localhost;dbname=yourdatabasenamehere',
-	'hostname' => getenv('MYSQL_HOST') ?: 'localhost',
-	'username' => getenv('MYSQL_USER') ?: 'ub',
-	'password' => getenv('MYSQL_PASSWORD') ?: 'secret',
-	'database' => getenv('MYSQL_DATABASE') ?: 'ub',
+	'hostname' => getenv('DATABASE_HOST') ?: 'localhost',
+	'username' => getenv('DATABASE_USER') ?: 'ub',
+	'password' => getenv('DATABASE_PASSWORD') ?: 'secret',
+	'database' => getenv('DATABASE_NAME') ?: 'ub',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'cb_',
 	'pconnect' => FALSE,

@@ -10,10 +10,10 @@ services:
     environment:
       BASE_URL: http://localhost:8080/
       ENCRYPTION_KEY: random-key
-      MYSQL_HOST: localhost
-      MYSQL_DATABASE: my-db-name # mariadb env 와 일치 시킬 것
-      MYSQL_USER: my-db-user # mariadb env 와 일치 시킬 것
-      MYSQL_PASSWORD: my-db-password # mariadb env 와 일치 시킬 것
+      DATABASE_HOST: localhost
+      DATABASE_NAME: my-db-name # mariadb env 와 일치
+      DATABASE_USER: my-db-user # mariadb env 와 일치
+      DATABASE_PASSWORD: my-db-password # mariadb env 와 일치
     volumes:
       - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
