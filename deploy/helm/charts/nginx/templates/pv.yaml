@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-{{ include "nginx.fullname" . }}-ci3-pv
+spec:
+  storageClassName: {{ include "nginx.fullname" . }}-ci3
+  capacity:
+    storage: {{ .Values.volumes.ci3Storage }}
+  accessModes:
+  {{- range .Values.volumes.RWMAccessModes }}
+    - {{ . }}
+  {{- end }}
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: {{ .Values.global.nfsPath }}/ub/ci3
+    server: {{ .Values.global.nfsServerHost }}
+
+{{/*---*/}}
+
+{{/*apiVersion: v1*/}}
+{{/*kind: PersistentVolume*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ .Release.Name }}-{{ include "nginx.fullname" . }}-media-pv*/}}
+{{/*spec:*/}}
+{{/*  storageClassName: {{ include "nginx.fullname" . }}-media*/}}
+{{/*  capacity:*/}}
+{{/*    storage: {{ .Values.volumes.mediaStorage }}*/}}
+{{/*  accessModes:*/}}
+{{/*  {{- range .Values.volumes.RWMAccessModes }}*/}}
+{{/*    - {{ . }}*/}}
+{{/*  {{- end }}*/}}
+{{/*  mountOptions:*/}}
+{{/*    - hard*/}}
+{{/*    - nfsvers=4.1*/}}
+{{/*  nfs:*/}}
+{{/*    path: {{ .Values.global.nfsPath }}/prod/app/django/media*/}}
+{{/*    server: {{ .Values.global.nfsServerHost }}*/}}

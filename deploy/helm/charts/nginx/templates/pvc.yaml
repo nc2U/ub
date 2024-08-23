@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-{{ include "nginx.fullname" . }}-ci3-pvc
+spec:
+  storageClassName: {{ include "nginx.fullname" . }}-ci3
+  accessModes:
+  {{- range .Values.volumes.RWMAccessModes }}
+    - {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.volumes.ci3Storage }}
+
+{{/*---*/}}
+
+{{/*apiVersion: v1*/}}
+{{/*kind: PersistentVolumeClaim*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ .Release.Name }}-{{ include "nginx.fullname" . }}-media-pvc*/}}
+{{/*spec:*/}}
+{{/*  storageClassName: {{ include "nginx.fullname" . }}-media*/}}
+{{/*  accessModes:*/}}
+{{/*  {{- range .Values.volumes.RWMAccessModes }}*/}}
+{{/*    - {{ . }}*/}}
+{{/*  {{- end }}*/}}
+{{/*  resources:*/}}
+{{/*    requests:*/}}
+{{/*      storage: {{ .Values.volumes.mediaStorage }}*/}}
