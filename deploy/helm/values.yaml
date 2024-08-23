@@ -3,16 +3,13 @@
 # Declare variables to be passed into your templates.
 
 global:
-  dbPassword: "{{ randAlphaNum 5 }}"
   nfsServerHost: "nfs-server-host"
   nfsPath: "nfs-path" # nfs volume path
   cicdServerHost: "cicd-server-host"
   cicdPath: "cicd-path" # cicd server path
-  domainHost: "http://localhost/"
-  emailHost: "smtp-server.com" # your-smtp-server.com
-  emailHostUser: "email@example.com" # 'your-email@example.com
-  emailHostPassword: "{{ randAlphaNum 5 }}" # your-email-password
-  emailDefaultSender: "email@example.com"
+  baseUrl: "http://localhost:8080/"
+  encryptionKey: "{{ randAlphaNum 5 }}"
+  dbPassword: "{{ randAlphaNum 5 }}"
 
 nameOverride: ""
 fullnameOverride: ""
