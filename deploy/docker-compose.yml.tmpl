@@ -7,6 +7,13 @@ services:
       dockerfile: Dockerfile
       context: ./docker/php
     image: dokube/ci3
+    environment:
+      BASE_URL: http://localhost:8080/
+      ENCRYPTION_KEY: random-key
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: my-db-name # mariadb env 와 일치 시킬 것
+      MYSQL_USER: my-db-user # mariadb env 와 일치 시킬 것
+      MYSQL_PASSWORD: my-db-password # mariadb env 와 일치 시킬 것
     volumes:
       - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
@@ -37,7 +44,7 @@ services:
       MYSQL_DATABASE: my-db-name # 실제 데이터로 수정
       MYSQL_USER: my-db-user # 실제 데이터로 수정
       MYSQL_PASSWORD: my-db-password # 실제 데이터로 수정
-      MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
+      MARIADB_ROOT_PASSWORD: my-db-password # 실제 데이터로 수정
       TZ: Asia/Seoul
     volumes:
       - ../volume/mysql:/var/lib/mysql
