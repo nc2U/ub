@@ -5,14 +5,19 @@
 replicaCount: 1
 
 image:
-  repository: dokube/php74
-  pullPolicy: IfNotPresent
+  repository: dokube/ci3
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: "web"
+
+imageConfigMaps:
+  baseUrl: ""
+  encryptionKey: ""
+  installIp: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -38,7 +43,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 9000
 
 ingress:
   enabled: false
@@ -57,10 +62,10 @@ ingress:
   #      - chart-example.local
 
 volumes:
-  php74AccessModes:
+  ci3AccessModes:
     - ReadWriteMany
-  php74PvStorageProd: 500Mi
-  php74PvcStorageProd: 500Mi
+  ci3PvStorage: 500Mi
+  ci3PvcStorage: 500Mi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
