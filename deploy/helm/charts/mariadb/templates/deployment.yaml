@@ -73,6 +73,16 @@ spec:
               mountPath: /var/backups
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-data-pvc
+        - name: init-sql
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-sql-pvc
+        - name: dump-backup
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-backup-pvc
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
