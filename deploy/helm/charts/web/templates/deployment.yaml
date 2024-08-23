@@ -60,7 +60,7 @@ spec:
       volumes:
         - name: ci3-source
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-ci3-pvc
+            claimName: {{ .Release.Name }}-{{ include "web.fullname" . }}-ci3-pvc
         - name: tz-seoul
           hostPath:
             path: /usr/share/zoneinfo/Asia/Seoul
