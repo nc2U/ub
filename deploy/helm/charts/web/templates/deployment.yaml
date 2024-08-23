@@ -60,7 +60,6 @@ spec:
           hostPath:
             path: /usr/share/zoneinfo/Asia/Seoul
       {{- with .Values.nodeSelector }}
-      {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
