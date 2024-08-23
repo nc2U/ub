@@ -3,7 +3,7 @@
 .idea
 
 # mysqldata
-vol/mysql/
+volume/mysql/
 
 # docker-compose.yml
 docker-compose.yml

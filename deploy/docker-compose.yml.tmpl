@@ -2,34 +2,34 @@ services:
 
   # PHP FPM Service
   php-fpm:
-    container_name: cb-php
+    container_name: ci3-php
     build:
       dockerfile: Dockerfile
       context: ./docker/php
     image: dokube/ci3
     volumes:
-      - ../cb3:/var/www/html
+      - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
     depends_on:
       - mariadb
 
   # Nginx Service
   nginx:
-    container_name: cb-web
+    container_name: ci3-web
     image: nginx:latest
     ports:
       - 8080:80
     links:
       - php-fpm
     volumes:
-      - ../cb3:/var/www/html
+      - ../ci3:/var/www/html
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - php-fpm
 
   # MariaDB Service
   mariadb:
-    container_name: cb-db
+    container_name: ci3-db
     image: mariadb:latest
     restart: always
     command: [ "--character-set-server=utf8", "--collation-server=utf8_unicode_ci" ]
@@ -40,6 +40,6 @@ services:
       MYSQL_ROOT_PASSWORD: my-db-root-password # 실제 데이터로 수정
       TZ: Asia/Seoul
     volumes:
-      - ../vol/mysql:/var/lib/mysql
-      - ../vol/backups:/var/backups
-      - ../vol/sql:/docker-entrypoint-initdb.d
+      - ../volume/mysql:/var/lib/mysql
+      - ../volume/backups:/var/backups
+      - ../volume/sql:/docker-entrypoint-initdb.d
