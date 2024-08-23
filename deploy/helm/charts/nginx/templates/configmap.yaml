@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "nginx.fullname" . }}-config
 data:
-  NGINX.CONF: |
+  DEFAULT.CONF: |
     server {
         listen {{ .Values.service.port | default "80" }} default_server;
         listen [::]:{{ .Values.service.port | default "80" }} default_server;
