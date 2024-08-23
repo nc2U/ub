@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ub.fullname" . }}-{{ include "mariadb.fullname" . }}-sql-pvc
+  name: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-sql-pvc
 spec:
   storageClassName: {{ include "ub.fullname" . }}-init-sql
   accessModes:
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ub.fullname" . }}-{{ include "mariadb.fullname" . }}-backup-pvc
+  name: {{ .Release.Name }}-{{ include "mariadb.fullname" . }}-backup-pvc
 spec:
   storageClassName: {{ include "ub.fullname" . }}-dump-backup
   accessModes:
