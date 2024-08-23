@@ -4,7 +4,7 @@
 
 global:
   nfsServerHost: "nfs-server-host"
-  nfsPath: "/mnt/nfs" # nfs volume path
+  nfsPath: "" # nfs volume path
   baseUrl: "http://localhost:8080/"
   dbHost: ""
   dbName: ""
