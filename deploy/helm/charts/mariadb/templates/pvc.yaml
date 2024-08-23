@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ub.fullname" }}-{{ include "mariadb.fullname" . }}-data-pvc
+  name: {{ include "ub.fullname" . }}-{{ include "mariadb.fullname" . }}-data-pvc
 spec:
-  storageClassName: {{ include "ub.fullname" }}-mysql-data
+  storageClassName: {{ include "ub.fullname" . }}-mysql-data
   accessModes:
   {{- range .Values.volumes.dataAccessModes }}
     - {{ . }}
@@ -15,9 +15,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ub.fullname" }}-{{ include "mariadb.fullname" . }}-sql-pvc
+  name: {{ include "ub.fullname" . }}-{{ include "mariadb.fullname" . }}-sql-pvc
 spec:
-  storageClassName: {{ include "ub.fullname" }}-init-sql
+  storageClassName: {{ include "ub.fullname" . }}-init-sql
   accessModes:
   {{- range .Values.volumes.sqlAccessModes }}
     - {{ . }}
@@ -29,9 +29,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "ub.fullname" }}-{{ include "mariadb.fullname" . }}-backup-pvc
+  name: {{ include "ub.fullname" . }}-{{ include "mariadb.fullname" . }}-backup-pvc
 spec:
-  storageClassName: {{ include "ub.fullname" }}-dump-backup
+  storageClassName: {{ include "ub.fullname" . }}-dump-backup
   accessModes:
   {{- range .Values.volumes.backupAccessModes }}
     - {{ . }}
