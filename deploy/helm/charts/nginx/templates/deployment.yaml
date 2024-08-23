@@ -46,19 +46,19 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: nginx-conf
-              mountPath: /etc/nginx/nginx.conf
-              readOnly: true
-              subPath: nginx.conf
+{{/*            - name: nginx-conf*/}}
+{{/*              mountPath: /etc/nginx/nginx.conf*/}}
+{{/*              readOnly: true*/}}
+{{/*              subPath: nginx.conf*/}}
             - name: tz-seoul
               mountPath: /etc/localtime
       volumes:
-        - name: nginx-conf
-          configMap:
-            name: {{ include "nginx.fullname" . }}-config
-            items:
-              - key: NGINX.CONF
-                path: nginx.conf
+{{/*        - name: nginx-conf*/}}
+{{/*          configMap:*/}}
+{{/*            name: {{ include "nginx.fullname" . }}-config*/}}
+{{/*            items:*/}}
+{{/*              - key: NGINX.CONF*/}}
+{{/*                path: nginx.conf*/}}
         - name: tz-seoul
           hostPath:
             path: /usr/share/zoneinfo/Asia/Seoul
