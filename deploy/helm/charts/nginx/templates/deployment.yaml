@@ -46,21 +46,20 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: nginx-conf
+            - name: conf-d
               mountPath: /etc/nginx/conf.d
               readOnly: true
-              subPath: nginx.conf
             - name: nginx-ci3
               mountPath: /var/www/html
             - name: tz-seoul
               mountPath: /etc/localtime
       volumes:
-        - name: nginx-conf
+        - name: conf-d
           configMap:
             name: {{ include "nginx.fullname" . }}-config
             items:
               - key: DEFAULT.CONF
-                path: default.conf
+                path:  default.conf
         - name: nginx-ci3
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-{{ include "nginx.fullname" . }}-ci3-pvc
