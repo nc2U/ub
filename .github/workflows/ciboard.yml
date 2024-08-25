@@ -38,8 +38,8 @@ jobs:
           host: ${{ secrets.NFS_HOST }}
           username: ${{ secrets.NFS_USER }}
           password: ${{ secrets.NFS_PASS }}
-          source: '.'
-          target: ${{ secrets.NFS_PATH }}/ub/
+          source: 'ci3'
+          target: ${{ secrets.NFS_PATH }}/ub/ci3/
       
       # slack --> notification
       - name: Send slack when failed
