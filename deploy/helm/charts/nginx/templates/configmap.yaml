@@ -4,6 +4,9 @@ metadata:
   name: {{ include "nginx.fullname" . }}-config
 data:
   DEFAULT.CONF: |
+    upstream backend {
+        server web:9000;
+    }
     server {
         listen {{ .Values.service.port | default "80" }} default_server;
         listen [::]:{{ .Values.service.port | default "80" }} default_server;
@@ -23,7 +26,7 @@ data:
         }
 
         location ~* \.php$ {
-            fastcgi_pass web:9000;
+            fastcgi_pass backend;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param SCRIPT_NAME $fastcgi_script_name;
