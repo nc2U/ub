@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: web
-      protocol: TCP
+{{/*      targetPort: web*/}}
+{{/*      protocol: TCP*/}}
       name: web
   selector:
     {{- include "web.selectorLabels" . | nindent 4 }}
