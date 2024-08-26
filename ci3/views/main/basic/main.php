@@ -1,10 +1,10 @@
 <?php
-	echo '<div class="col-xs-12 mb20" style="padding: 0;"><img src="uploads/img/main.jpg" width="100%" style="border: 1px solid #ddd;" /></div>';
-	
-	$active = element('bl', $view) === '1';
-	
-	if ($active) {
-		echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+echo '<div class="col-xs-12 mb20" style="padding: 0;"><img src="uploads/img/main.jpg" width="100%" style="border: 1px solid #ddd;" /></div>';
+
+$active = element('bl', $view) === '1';
+
+if ($active) {
+    echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item active">
     <a class="nav-link" href="?bl=1">조합 공개 자료</a>
   </li>
@@ -12,8 +12,8 @@
     <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
   </li>
 </ul>';
-	} else {
-		echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+} else {
+    echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item">
     <a class="nav-link" href="?bl=1">조합 공개 자료</a>
   </li>
@@ -21,36 +21,36 @@
     <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
   </li>
 </ul>';
-	}
-	
-	$k = 0;
-	$is_open = false;
-	if (element('board_list', $view)) {
-		foreach (element('board_list', $view) as $key => $board) {
-			$config = array(
-				'skin' => 'basic',
-				'brd_key' => element('brd_key', $board),
-				'limit' => 5,
-				'length' => 40,
-				'is_gallery' => '',
-				'image_width' => '',
-				'image_height' => '',
-				'cache_minute' => 1,
-			);
-			if ($k % 2 === 0) {
-				echo '<div>';
-				$is_open = true;
-			}
-			echo $this->board->latest($config);
-			if ($k % 2 === 1) {
-				echo '</div>';
-				$is_open = false;
-			}
-			$k++;
+}
+
+$k = 0;
+$is_open = false;
+if (element('board_list', $view)) {
+	foreach (element('board_list', $view) as $key => $board) {
+		$config = array(
+			'skin' => 'basic',
+			'brd_key' => element('brd_key', $board),
+			'limit' => 5,
+			'length' => 40,
+			'is_gallery' => '',
+			'image_width' => '',
+			'image_height' => '',
+			'cache_minute' => 1,
+		);
+		if ($k % 2 === 0) {
+			echo '<div>';
+			$is_open = true;
 		}
+		echo $this->board->latest($config);
+		if ($k % 2 === 1) {
+			echo '</div>';
+			$is_open = false;
+		}
+		$k++;
 	}
-	if ($is_open) {
-		echo '
+}
+if ($is_open) {
+    echo '
 	<div class="col-md-6">
 	<div class="panel panel-default">
 
@@ -69,6 +69,6 @@
 	</div>
 	</div>
 	';
-		echo '</div>';
-		$is_open = false;
-	}
+	echo '</div>';
+	$is_open = false;
+}
