@@ -40,7 +40,7 @@ nginx:
           - path: /
             pathType: ImplementationSpecific
     tls:
-      - hosts:
+      - secretName: ub-certificate-tls
+        hosts:
           - "host-path" # Host address
-        secretName: ub-certificate-tls
 
