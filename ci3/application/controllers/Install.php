@@ -6433,7 +6433,7 @@ flvr.pandora.tv',
 				'brd_key' => 'poll',
 				'brd_name' => '설문 게시판',
 				'brd_order' => 25,
-				'brd_search' => 1,
+				'brd_search' => 0,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
