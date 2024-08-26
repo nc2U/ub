@@ -54,7 +54,7 @@ jobs:
             --set global.dbPassword=${{ secrets.DATABASE_PASS }} \
             --set global.nfsPath=${{ secrets.NFS_PATH }} \
             --set global.nfsServerHost=${{ secrets.NFS_HOST }} \
-            --set global.baseUrl=${{ secrets.BASE_URL }}
+            --set global.baseUrl=${{ secrets.BASE_URL }} \
 #            --set global.emailHost=${{ secrets.EMAIL_HOST }} \
 #            --set global.emailHostUser=${{ secrets.EMAIL_HOST_USER }} \
 #            --set global.emailHostPassword=${{ secrets.EMAIL_HOST_PASSWORD }} \
