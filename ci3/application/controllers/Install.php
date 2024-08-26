@@ -6428,6 +6428,16 @@ flvr.pandora.tv',
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
 			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'poll',
+				'brd_name' => '설문 게시판',
+				'brd_order' => 25,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
 			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_comment_group'] = json_encode(["1", "2", "3"]);
@@ -6437,7 +6447,7 @@ flvr.pandora.tv',
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'ask-cert',
 				'brd_name' => '조합원 인증 요청',
-				'brd_order' => 25,
+				'brd_order' => 26,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
@@ -6643,6 +6653,86 @@ flvr.pandora.tv',
 				'men_order' => 14,
 			);
 			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => 0,
+				'men_name' => '조합원 커뮤니티',
+				'men_link' => group_url('community'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$men_id = $this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '공지 사항',
+				'men_link' => board_url('notice'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$this->Menu_model->insert($insertdata);
+//
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합 자료실',
+				'men_link' => board_url('storage'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '질문 게시판',
+				'men_link' => board_url('qna'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '자유 게시판',
+				'men_link' => board_url('free'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 3,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '투표(설문) 코너',
+				'men_link' => poll_url('poll'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 4,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합원 인증 요청',
+				'men_link' => board_url('ask-cert'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 5,
+			);
+			$this->Menu_model->insert($insertdata);
+
+			$insertdata = array(
+				'men_parent' => 0,
+				'men_name' => '자주하는질문',
+				'men_link' => faq_url('faq-01'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 3,
+			);
+			$men_id = $this->Menu_model->insert($insertdata);
 
 		}
 

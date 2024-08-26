@@ -148,6 +148,18 @@ if ( ! function_exists('rss_url')) {
 
 
 /**
+ * 일반문서 페이지 주소를 return 합니다
+ */
+if ( ! function_exists('document_url')) {
+	function document_url($key = '')
+	{
+		$key = trim($key, '/');
+		return site_url(config_item('uri_segment_document') . '/' . $key);
+	}
+}
+
+
+/**
  * FAQ 페이지 주소를 return 합니다
  */
 if ( ! function_exists('faq_url')) {
@@ -160,12 +172,12 @@ if ( ! function_exists('faq_url')) {
 
 
 /**
- * 일반문서 페이지 주소를 return 합니다
+ * Poll 페이지 주소를 return 합니다
  */
-if ( ! function_exists('document_url')) {
-	function document_url($key = '')
+if ( ! function_exists('poll_url')) {
+	function poll_url($key = 'poll')
 	{
 		$key = trim($key, '/');
-		return site_url(config_item('uri_segment_document') . '/' . $key);
+		return site_url('/' . $key);
 	}
 }
