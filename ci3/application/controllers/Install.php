@@ -5636,7 +5636,7 @@ flvr.pandora.tv',
 			'notification_note' => '1',
 
 			'layout_default' => $skin,
-			'sidebar_default' => '1',
+			'sidebar_default' => '',
 			'skin_default' => $skin,
 			'mobile_layout_default' => $skin_mobile,
 			'mobile_skin_default' => $skin_mobile,
