@@ -3758,6 +3758,7 @@ class Install extends CI_Controller
 		return true;
 	}
 
+	
 	public function _create_pro_tables()
 	{
 		$this->load->database();
@@ -5558,11 +5559,11 @@ class Install extends CI_Controller
 
 
 		$configdata = array(
-			'site_title' => '홈페이지',
-			'site_logo' => '홈페이지',
-			'admin_logo' => 'Admin',
+			'site_title' => 'OOOO 지역주택조합',
+			'site_logo' => 'OOOO 지역주택조합',
+			'admin_logo' => 'ADMINISTRATION',
 			'webmaster_name' => '관리자',
-			'webmaster_email' => 'noreply@domain.com',
+			'webmaster_email' =>  $this->input->post('mem_email'),  // 'noreply@domain.com',
 			'spam_word' => '18아,18놈,18새끼,18년,18뇬,18노,18것,18넘,개년,개놈,개뇬,개새,개색끼,개세끼,개세이,개쉐이,개쉑,개쉽,개시키,개자식,개좆,게색기,게색끼,광뇬,뇬,눈깔,뉘미럴,니귀미,니기미,니미,도촬,되질래,뒈져라,뒈진다,디져라,디진다,디질래,병쉰,병신,뻐큐,뻑큐,뽁큐,삐리넷,새꺄,쉬발,쉬밸,쉬팔,쉽알,스패킹,스팽,시벌,시부랄,시부럴,시부리,시불,시브랄,시팍,시팔,시펄,실밸,십8,십쌔,십창,싶알,쌉년,썅놈,쌔끼,쌩쑈,썅,써벌,썩을년,쎄꺄,쎄엑,쓰바,쓰발,쓰벌,쓰팔,씨8,씨댕,씨바,씨발,씨뱅,씨봉알,씨부랄,씨부럴,씨부렁,씨부리,씨불,씨브랄,씨빠,씨빨,씨뽀랄,씨팍,씨팔,씨펄,씹,아가리,아갈이,엄창,접년,잡놈,재랄,저주글,조까,조빠,조쟁이,조지냐,조진다,조질래,존나,존니,좀물,좁년,좃,좆,좇,쥐랄,쥐롤,쥬디,지랄,지럴,지롤,지미랄,쫍빱,凸,퍽큐,뻑큐,빠큐,ㅅㅂㄹㅁ',
 			'white_iframe' => 'www.youtube.com
 www.youtube-nocookie.com
@@ -5645,10 +5646,10 @@ flvr.pandora.tv',
 
 			'use_login_account' => 'both',
 			'password_length' => '4',
-			'use_member_photo' => '1',
+			'use_member_photo' => '',
 			'member_photo_width' => '80',
 			'member_photo_height' => '80',
-			'use_member_icon' => '1',
+			'use_member_icon' => '',
 			'member_icon_width' => '20',
 			'member_icon_height' => '20',
 			'denied_nickname_list' => 'admin,administrator,관리자,운영자,어드민,주인장,webmaster,웹마스터,sysop,시삽,시샵,manager,매니저,메니저,root,루트,su,guest,방문객',
@@ -5822,15 +5823,6 @@ flvr.pandora.tv',
 				'open' => '',
 				'required' => '1',
 			),
-			'mem_username' => array(
-				'field_name' => 'mem_username',
-				'func' => 'basic',
-				'display_name' => '이름',
-				'field_type' => 'text',
-				'use' => '',
-				'open' => '',
-				'required' => '',
-			),
 			'mem_nickname' => array(
 				'field_name' => 'mem_nickname',
 				'func' => 'basic',
@@ -5840,13 +5832,22 @@ flvr.pandora.tv',
 				'open' => '1',
 				'required' => '1',
 			),
+			'mem_username' => array(
+				'field_name' => 'mem_username',
+				'func' => 'basic',
+				'display_name' => '이름',
+				'field_type' => 'text',
+				'use' => '',
+				'open' => '',
+				'required' => '',
+			),
 			'mem_homepage' => array(
 				'field_name' => 'mem_homepage',
 				'func' => 'basic',
 				'display_name' => '홈페이지',
 				'field_type' => 'url',
 				'use' => '',
-				'open' => '1',
+				'open' => '',
 				'required' => '',
 			),
 			'mem_phone' => array(
@@ -5891,7 +5892,7 @@ flvr.pandora.tv',
 				'display_name' => '자기소개',
 				'field_type' => 'textarea',
 				'use' => '',
-				'open' => '1',
+				'open' => '',
 				'required' => '',
 			),
 			'mem_recommend' => array(
@@ -5991,8 +5992,8 @@ flvr.pandora.tv',
 
 		$insertdata = array(
 			'doc_key' => 'aboutus',
-			'doc_title' => '회사소개',
-			'doc_content' => '회사소개 내용을 입력해주세요',
+			'doc_title' => '조합소개',
+			'doc_content' => '조합소개 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
 			'doc_datetime' => cdate('Y-m-d H:i:s'),
@@ -6024,25 +6025,61 @@ flvr.pandora.tv',
 			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
 		);
 		$this->Document_model->insert($insertdata);
+		
+		$insertdata = array(
+			'doc_key' => 'info',
+			'doc_title' => '사업개요 및 조감도',
+			'doc_content' => '사업개요 및 조감도 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
+		
+		$insertdata = array(
+			'doc_key' => 'brand',
+			'doc_title' => '브랜드 및 특장점',
+			'doc_content' => '브랜드 및 특장점 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
+		
+		$insertdata = array(
+			'doc_key' => 'map',
+			'doc_title' => '찾아오시는 길',
+			'doc_content' => '찾아오시는 길 내용을 입력해주세요',
+			'doc_content_html_type' => 1,
+			'mem_id' => $mem_id,
+			'doc_datetime' => cdate('Y-m-d H:i:s'),
+			'doc_updated_mem_id' => $mem_id,
+			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+		);
+		$this->Document_model->insert($insertdata);
 
 
 
 		$insertdata = array(
-			'mgr_title' => '기본그룹',
+			'mgr_title' => '승인대기',
 			'mgr_is_default' => 1,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 1,
 		);
 		$mgr_id = $this->Member_group_model->insert($insertdata);
 		$insertdata = array(
-			'mgr_title' => '특별그룹',
+			'mgr_title' => '조합원',
 			'mgr_is_default' => 0,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 2,
 		);
 		$this->Member_group_model->insert($insertdata);
 		$insertdata = array(
-			'mgr_title' => '우수그룹',
+			'mgr_title' => '스태프',
 			'mgr_is_default' => 0,
 			'mgr_datetime' => cdate('Y-m-d H:i:s'),
 			'mgr_order' => 3,
@@ -6053,7 +6090,7 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'fgr_title' => '자주하는 질문',
-				'fgr_key' => 'faq',
+				'fgr_key' => 'faq-01',
 				'fgr_datetime' => cdate('Y-m-d H:i:s'),
 				'fgr_ip' => $this->input->ip_address(),
 				'mem_id' => $mem_id,
@@ -6062,8 +6099,8 @@ flvr.pandora.tv',
 
 			$insertdata = array(
 				'fgr_id' => $fgr_id,
-				'faq_title' => '자주하는 질문 제목1 입니다',
-				'faq_content' => '자주하는 질문 답변1 입니다',
+				'faq_title' => '우리 조합의 조합원 자격 요건(기준)은 어떻게 되나요?',
+				'faq_content' => '<p><span style="font-size: 10pt;"><u>지역주택조합의 조합원 자격은 주택법 시행령 제21조에 규정이 되어 있습니다.</u></span></p><table border="0" cellpadding="0" cellspacing="0" class="__se_tbl" style="border-width: 1px 1px 0px 0px; border-top-style: solid; border-right-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-image: initial; border-left-style: initial; border-left-color: initial; border-bottom-style: initial; border-bottom-color: initial;"><tbody><tr><td width="1069" style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; background-color: rgb(255, 255, 255); padding: 10px;"><p>&nbsp;<span class="bl" style="font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px; color: rgb(21, 21, 148); margin: 0px; padding: 0px; font-weight: bold;">제21조(조합원의 자격)</span><span style="color: rgb(99, 99, 99); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px;">&nbsp;①&nbsp;</span><a title="팝업으로 이동" class="link sfon1" style="font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px; color: rgb(8, 109, 255); margin: 0px; padding: 0px; text-decoration-line: underline;">법</a><span style="color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px;">&nbsp;</span><a title="팝업으로 이동" class="link sfon2" style="font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px; color: rgb(0, 0, 205); margin: 0px; padding: 0px; text-decoration-line: underline;">제11조</a><span style="color: rgb(99, 99, 99); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px;">에 따른 주택조합의 조합원이 될 수 있는 사람은 다음 각 호의 구분에 따른 사람으로 한다. 다만, 조합원의 사망으로 그 지위를 상속받는 자는 다음 각 호의 요건에도 불구하고 조합원이 될 수 있다. &nbsp;</span><span class="sfon" style="font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -30px; color: rgb(2, 79, 206); margin: 0px; padding: 0px;">&lt;개정 2019. 10. 22.&gt;</span>&nbsp;</p><p class="pty1_de2h" style="padding-left: 48px; text-indent: -15px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">1.&nbsp;</span><a class="oneView" style="color: rgb(0, 90, 132); margin: 0px; padding: 0px;">지역주택조합 조합원</a><span style="color: rgb(99, 99, 99);">: 다음 각 목의 요건을 모두 갖춘 사람</span></p><p class="pty1_de3" style="padding-left: 65px; text-indent: -17px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">가. 조합설립인가 신청일(해당 주택건설대지가&nbsp;</span><a title="팝업으로 이동" class="link sfon1" style="color: rgb(8, 109, 255); margin: 0px; padding: 0px; text-decoration-line: underline;">법</a>&nbsp;<a title="팝업으로 이동" class="link sfon2" style="color: rgb(0, 0, 205); margin: 0px; padding: 0px; text-decoration-line: underline;">제63조</a><span style="color: rgb(99, 99, 99);">에 따른 투기과열지구 안에 있는 경우에는 조합설립인가 신청일 1년 전의 날을 말한다. 이하 같다)부터 해당 조합주택의 입주 가능일까지 주택을 소유(주택의 유형, 입주자 선정방법 등을 고려하여&nbsp;</span><a title="팝업으로 이동" class="link" style="color: rgb(0, 90, 132); margin: 0px; padding: 0px; text-decoration-line: underline;">국토교통부령</a><span style="color: rgb(99, 99, 99);">으로 정하는 지위에 있는 경우를 포함한다. 이하 이 호에서 같다)하는지에 대하여 다음의 어느 하나에 해당할 것</span><span class="sfon" style="color: rgb(2, 79, 206); margin: 0px; padding: 0px;"></span></p><p class="pty1_de3" style="padding-left: 65px; text-indent: -17px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">　 1)&nbsp;</span><a title="팝업으로 이동" class="link" style="color: rgb(0, 90, 132); margin: 0px; padding: 0px; text-decoration-line: underline;">국토교통부령</a><span style="color: rgb(99, 99, 99);">으로 정하는 기준에 따라 세대주를 포함한 세대원[세대주와 동일한 세대별 주민등록표에 등재되어 있지 아니한 세대주의 배우자 및 그 배우자와 동일한 세대를 이루고 있는 사람을 포함한다. 이하 2)에서 같다] 전원이 주택을 소유하고 있지 아니한 세대의 세대주일 것</span><span class="sfon" style="color: rgb(2, 79, 206); margin: 0px; padding: 0px;"></span></p><p class="pty1_de3" style="padding-left: 65px; text-indent: -17px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">　 2)&nbsp;</span><a title="팝업으로 이동" class="link" style="color: rgb(0, 90, 132); margin: 0px; padding: 0px; text-decoration-line: underline;">국토교통부령</a><span style="color: rgb(99, 99, 99);">으로 정하는 기준에 따라 세대주를 포함한 세대원 중 1명에 한정하여 주거전용면적 85제곱미터 이하의 주택 1채를 소유한 세대의 세대주일 것</span><span class="sfon" style="color: rgb(2, 79, 206); margin: 0px; padding: 0px;"></span></p><p class="pty1_de3" style="padding-left: 65px; text-indent: -17px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">나. 조합설립인가 신청일 현재&nbsp;</span><a title="팝업으로 이동" class="link sfon1" style="color: rgb(8, 109, 255); margin: 0px; padding: 0px; text-decoration-line: underline;">법</a>&nbsp;<a title="팝업으로 이동" class="link sfon2" style="color: rgb(0, 0, 205); margin: 0px; padding: 0px; text-decoration-line: underline;">제2조</a><a title="팝업으로 이동" class="link sfon4" style="color: rgb(0, 0, 105); margin: 0px; padding: 0px; text-decoration-line: underline;">제11호</a><a title="팝업으로 이동" class="link sfon5" style="color: rgb(95, 146, 160); margin: 0px; padding: 0px; text-decoration-line: underline;">가목</a><span style="color: rgb(99, 99, 99);">의 구분에 따른 지역에 6개월 이상 계속하여 거주하여 온 사람일 것</span><span class="sfon" style="color: rgb(2, 79, 206); margin: 0px; padding: 0px;"></span></p><p class="pty1_de3" style="padding-left: 65px; text-indent: -17px; color: rgb(68, 68, 68); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px;"><span style="color: rgb(99, 99, 99);">다. 본인 또는 본인과 같은 세대별 주민등록표에 등재되어 있지 않은 배우자가 같은 또는 다른 지역주택조합의 조합원이거나 직장주택조합의 조합원이 아닐 것</span></p></td></tr></tbody></table><p><br></p><p><br></p><p><span style="font-size: 10pt;"><u>우리 조합은 <span style="color: rgb(0, 117, 200);"><b>2019. 07. 30. </b></span>조합설립인가를 신청하였고, 투기과열지구에 해당하지 않으므로 조합원 자격 요건은 다음과 같습니다.</u></span></p><table class="__se_tbl" _se2_tbl_template="4" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid rgb(199, 199, 199);"><tbody><tr><td class="" style="width: 134px; height: 18px; padding: 3px 4px 2px; color: rgb(102, 102, 102); border-right: 1px solid rgb(231, 231, 231); background-color: rgb(243, 243, 243);"><p style="text-align: center; margin-left: 0px;">구분</p></td><td class="" style="width: 234px; height: 18px; padding: 3px 4px 2px; color: rgb(102, 102, 102); border-right: 1px solid rgb(231, 231, 231); background-color: rgb(243, 243, 243);"><p style="text-align: center; margin-left: 0px;">기간&nbsp;</p></td><td class="" style="width: 697px; height: 18px; padding: 3px 4px 2px; color: rgb(102, 102, 102); border-right: 1px solid rgb(231, 231, 231); background-color: rgb(243, 243, 243);"><p style="text-align: center; margin-left: 0px;" align="center">내용</p></td></tr><tr><td class="" style="width: 134px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="text-align: center; margin-left: 0px;">거주요건</p></td><td class="" style="width: 234px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="text-align: center; margin-left: 0px;">2019. 01. 30. - <span style="color: rgb(0, 117, 200);"><b>2019. 07. 30.</b></span></p></td><td class="" style="width: 697px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="margin-left: 40px;">해당 기간 동안 <span style="color: rgb(0, 117, 200);">서울특별시</span><span style="color: rgb(0, 117, 200); font-family: Gulim, doutm, tahoma, sans-serif; font-size: 13.2px; text-indent: -2px;">ㆍ</span><span style="color: rgb(0, 117, 200);">인천광역시 및 경기도</span> 거주</p></td></tr><tr><td class="" style="width: 134px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="text-align: center; margin-left: 0px;">주택소유 요건</p></td><td class="" colspan="1" rowspan="3" style="width: 234px; height: 41px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p align="left" style="text-align: center; margin-left: 0px;"><b><span style="color: rgb(0, 117, 200);">2019. 07. 30.</span></b> - 입주가능일 까지</p></td><td class="" style="width: 697px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="margin-left: 40px;">해당 기간 동안 본인 및 배우자, 세대원 전원이 무주택 또는 전용면적 85제곱미터 이하의 주택(분양권 포함) 1채를 소유</p></td></tr><tr><td class="" style="width: 134px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="text-align: center; margin-left: 0px;">세대주 요건</p></td><td class="" style="width: 697px; height: 18px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="margin-left: 40px;">해당 기간 동안 연속적으로 본인이 세대주일 것</p></td></tr><tr><td class="" rowspan="1" colspan="1" style="width: 5px; height: 5px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="text-align: center; margin-left: 0px;" align="center">중복가입금지</p></td><td class="" rowspan="1" colspan="1" style="width: 342px; height: 5px; padding: 3px 4px 2px; border-top: 1px solid rgb(231, 231, 231); border-right: 1px solid rgb(231, 231, 231); color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);"><p style="margin-left: 40px;">해당 기간 동안 본인 및 배우자가 다른 지역주택조합 또는 직장주택조합의 조합원이 아닐 것</p></td></tr></tbody></table>',
 				'faq_content_html_type' => 1,
 				'faq_order' => 1,
 				'faq_datetime' => cdate('Y-m-d H:i:s'),
@@ -6072,29 +6109,29 @@ flvr.pandora.tv',
 			);
 			$this->Faq_model->insert($insertdata);
 
-			$insertdata = array(
-				'fgr_id' => $fgr_id,
-				'faq_title' => '자주하는 질문 제목2 입니다',
-				'faq_content' => '자주하는 질문 답변2 입니다',
-				'faq_content_html_type' => 1,
-				'faq_order' => 2,
-				'faq_datetime' => cdate('Y-m-d H:i:s'),
-				'faq_ip' => $this->input->ip_address(),
-				'mem_id' => $mem_id,
-			);
-			$this->Faq_model->insert($insertdata);
-
-			$insertdata = array(
-				'fgr_id' => $fgr_id,
-				'faq_title' => '자주하는 질문 제목3 입니다',
-				'faq_content' => '자주하는 질문 답변3 입니다',
-				'faq_content_html_type' => 1,
-				'faq_order' => 3,
-				'faq_datetime' => cdate('Y-m-d H:i:s'),
-				'faq_ip' => $this->input->ip_address(),
-				'mem_id' => $mem_id,
-			);
-			$this->Faq_model->insert($insertdata);
+//			$insertdata = array(
+//				'fgr_id' => $fgr_id,
+//				'faq_title' => '자주하는 질문 제목2 입니다',
+//				'faq_content' => '자주하는 질문 답변2 입니다',
+//				'faq_content_html_type' => 1,
+//				'faq_order' => 2,
+//				'faq_datetime' => cdate('Y-m-d H:i:s'),
+//				'faq_ip' => $this->input->ip_address(),
+//				'mem_id' => $mem_id,
+//			);
+//			$this->Faq_model->insert($insertdata);
+//
+//			$insertdata = array(
+//				'fgr_id' => $fgr_id,
+//				'faq_title' => '자주하는 질문 제목3 입니다',
+//				'faq_content' => '자주하는 질문 답변3 입니다',
+//				'faq_content_html_type' => 1,
+//				'faq_order' => 3,
+//				'faq_datetime' => cdate('Y-m-d H:i:s'),
+//				'faq_ip' => $this->input->ip_address(),
+//				'mem_id' => $mem_id,
+//			);
+//			$this->Faq_model->insert($insertdata);
 
 
 			$metadata = array(
@@ -6103,31 +6140,23 @@ flvr.pandora.tv',
 				'mobile_header_content' => '',
 				'mobile_footer_content' => '',
 			);
-
+			
 			$insertdata = array(
-				'bgr_key' => 'g-a',
-				'bgr_name' => '그룹 A',
+				'bgr_key' => 'information',
+				'bgr_name' => '조합 공개 자료',
 				'bgr_order' => 1,
 			);
 			$bgr_id_1 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_key' => 'g-b',
-				'bgr_name' => '그룹 B',
+				'bgr_key' => 'community',
+				'bgr_name' => '조합원 커뮤니티',
 				'bgr_order' => 2,
 			);
 			$bgr_id_2 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
-			$insertdata = array(
-				'bgr_key' => 'g-c',
-				'bgr_name' => '그룹 C',
-				'bgr_order' => 3,
-			);
-			$bgr_id_3 = $bgr_id = $this->Board_group_model->insert($insertdata);
-			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
+			
 			$metadata = array(
 				'header_content' => '',
 				'footer_content' => '',
@@ -6188,223 +6217,535 @@ flvr.pandora.tv',
 				'use_sideview' => '1',
 				'use_tempsave' => '1',
 			);
+			
+			$info_auth = array(
+				'access_blame' => 2,
+				'access_blame_group' => json_encode(["2", "3"]),
+				'access_comment' => 2,
+				'access_comment_group' => json_encode(["2", "3"]),
+				'access_dhtml' => 2,
+				'access_dhtml_group' => json_encode(["3"]),
+				'access_download' => 2,
+				'access_download_group' => json_encode(["2", "3"]),
+				'access_list' => 2,
+				'access_list_group' => json_encode(["2", "3"]),
+				'access_reply' => 2,
+				'access_reply_group'=> json_encode(["3"]),
+				'access_subject_style' => 2,
+				'access_subject_style_group'=> json_encode(["3"]),
+				'access_tag_write'=> 2,
+				'access_tag_write_group' => json_encode(["3"]),
+				'access_upload'=> 2,
+				'access_upload_group'  => json_encode(["3"]),
+				'access_view'=> 2,
+				'access_view_group' => json_encode(["2", "3"]),
+				'access_write' => 2,
+				'access_write_group'=> json_encode(["3"]),
+			);
+			
+			$metadata = array_merge($metadata, $info_auth);
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-1',
-				'brd_name' => '게시판 A-1',
+				'brd_key' => 'info-01',
+				'brd_name' => '조합규약 및 내규',
 				'brd_order' => 1,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-2',
-				'brd_name' => '게시판 A-2',
+				'brd_key' => 'info-02',
+				'brd_name' => '공동사업주체와 체결한 협약서',
 				'brd_order' => 2,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-3',
-				'brd_name' => '게시판 A-3',
+				'brd_key' => 'info-03',
+				'brd_name' => '설계자 등 용역업체 선정 계약서',
 				'brd_order' => 3,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-1',
-				'brd_name' => '게시판 B-1',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-04',
+				'brd_name' => '조합총회 및 이사회 등의 의사록',
+				'brd_order' => 4,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-05',
+				'brd_name' => '사업시행계획서',
+				'brd_order' => 5,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-06',
+				'brd_name' => '조합사업의 시행에 관한 공문서',
+				'brd_order' => 6,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-07',
+				'brd_name' => '회계감사보고서',
+				'brd_order' => 7,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-08',
+				'brd_name' => '분기별 사업실적보고서',
+				'brd_order' => 8,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-09',
+				'brd_name' => '업무대행자가 제출한 실적보고서',
+				'brd_order' => 9,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-10',
+				'brd_name' => '연간 자금운용 계획서',
+				'brd_order' => 10,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-11',
+				'brd_name' => '월별 자금 입출금 명세서',
 				'brd_order' => 11,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-2',
-				'brd_name' => '게시판 B-2',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-12',
+				'brd_name' => '월별 공사진행 상황에 관한 서류',
 				'brd_order' => 12,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-3',
-				'brd_name' => '게시판 B-3',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-13',
+				'brd_name' => '분양신청에 관한 서류 및 관련 자료',
 				'brd_order' => 13,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-1',
-				'brd_name' => '게시판 C-1',
-				'brd_order' => 21,
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-14',
+				'brd_name' => '조합원별 분담금 납부내역',
+				'brd_order' => 14,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-2',
-				'brd_name' => '게시판 C-2',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-15',
+				'brd_name' => '조합원별 추가 분담금 산출내역',
+				'brd_order' => 15,
+				'brd_search' => 1,
+			);
+			
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$metadata['access_list'] = 1;
+			$post_notice = array(
+				'send_email_post_board_admin' => 1,
+				'send_email_post_group_admin' => 1,
+				'send_email_post_super_admin' => 1,
+				'send_note_post_board_admin' => 1,
+				'send_note_post_group_admin' => 1,
+				'send_note_post_super_admin' => 1,
+				'send_sms_post_board_admin' => 1,
+				'send_sms_post_group_admin' => 1 ,
+				'send_sms_post_super_admin' => 1,
+			);
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'notice',
+				'brd_name' => '공지 사항',
+				'brd_order' => 21,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $post_notice);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'storage',
+				'brd_name' => '조합 자료실',
 				'brd_order' => 22,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
+			$use_secret = array('use_post_secret' => 1);
+			$metadata['access_write_group'] = json_encode(["2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["2", "3"]);
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-3',
-				'brd_name' => '게시판 C-3',
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'qna',
+				'brd_name' => '질문 게시판',
 				'brd_order' => 23,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
+			
+			$metadata['access_reply_group'] = json_encode(["2", "3"]);
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'free',
+				'brd_name' => '자유 게시판',
+				'brd_order' => 24,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
+			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_comment_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["1", "2", "3"]);
+			$metadata['use_post_secret_selected'] = 1;
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'ask-cert',
+				'brd_name' => '조합원 인증 요청',
+				'brd_order' => 25,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
+			
+			
 			$insertdata = array(
 				'men_parent' => 0,
-				'men_name' => '그룹A',
-				'men_link' => group_url('g-a'),
+				'men_name' => '사업 소개',
+				'men_link' => document_url('info'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$men_id = $this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '상품 안내',
+				'men_link' => document_url('info'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '브랜드 소개',
+				'men_link' => document_url('brand'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '찾아오시는 길',
+				'men_link' => document_url('map'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => 0,
+				'men_name' => '조합 공개 자료',
+				'men_link' => group_url('information'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$men_id = $this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합규약 및 내규',
+				'men_link' => board_url('info-01'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 0,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '공동사업주체와 체결한 협약서',
+				'men_link' => board_url('info-02'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 1,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '설계자 등 용역업체 선정 계약서',
+				'men_link' => board_url('info-03'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 2,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합총회 및 이사회 등의 의사록',
+				'men_link' => board_url('info-04'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 3,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '사업시행계획서',
+				'men_link' => board_url('info-05'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 4,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합사업의 시행에 관한 공문서',
+				'men_link' => board_url('info-06'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 5,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '회계감사보고서',
+				'men_link' => board_url('info-07'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 6,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '분기별 사업실적보고서',
+				'men_link' => board_url('info-08'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 7,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '업무대행자가 제출한 실적보고서',
+				'men_link' => board_url('info-09'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 8,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '연간 자금운용 계획서',
+				'men_link' => board_url('info-10'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 9,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '월별 자금 입출금 명세서',
+				'men_link' => board_url('info-11'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 10,
 			);
-			$men_id = $this->Menu_model->insert($insertdata);
-
+			$this->Menu_model->insert($insertdata);
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-1',
-				'men_link' => board_url('b-a-1'),
+				'men_name' => '월별 공사진행 상황에 관한 서류',
+				'men_link' => board_url('info-12'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 11,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-2',
-				'men_link' => board_url('b-a-2'),
+				'men_name' => '분양신청에 관한 서류 및 관련 자료',
+				'men_link' => board_url('info-13'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 12,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 A-3',
-				'men_link' => board_url('b-a-3'),
+				'men_name' => '조합원별 분담금 납부내역',
+				'men_link' => board_url('info-14'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
 				'men_order' => 13,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
+			$insertdata = array(
+				'men_parent' => $men_id,
+				'men_name' => '조합원별 추가 분담금 산출내역',
+				'men_link' => board_url('info-15'),
+				'men_desktop' => 1,
+				'men_mobile' => 1,
+				'men_order' => 14,
+			);
+			$this->Menu_model->insert($insertdata);
+			
+			
 			$insertdata = array(
 				'men_parent' => 0,
-				'men_name' => '그룹B',
-				'men_link' => group_url('g-b'),
+				'men_name' => '조합원 커뮤니티',
+				'men_link' => group_url('community'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 20,
+				'men_order' => 2,
 			);
 			$men_id = $this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-1',
-				'men_link' => board_url('b-b-1'),
+				'men_name' => '공지 사항',
+				'men_link' => board_url('notice'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 21,
+				'men_order' => 0,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-2',
-				'men_link' => board_url('b-b-2'),
+				'men_name' => '조합 자료실',
+				'men_link' => board_url('storage'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 22,
+				'men_order' => 1,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 B-3',
-				'men_link' => board_url('b-b-3'),
+				'men_name' => '질문 게시판',
+				'men_link' => board_url('qna'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 23,
+				'men_order' => 2,
 			);
 			$this->Menu_model->insert($insertdata);
-
-			$insertdata = array(
-				'men_parent' => 0,
-				'men_name' => '그룹C',
-				'men_link' => group_url('g-c'),
-				'men_desktop' => 1,
-				'men_mobile' => 1,
-				'men_order' => 30,
-			);
-			$men_id = $this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 C-1',
-				'men_link' => board_url('b-c-1'),
+				'men_name' => '자유 게시판',
+				'men_link' => board_url('free'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 31,
+				'men_order' => 3,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 C-2',
-				'men_link' => board_url('b-c-2'),
+				'men_name' => '투표(설문) 코너',
+				'men_link' => poll_url('poll'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 32,
+				'men_order' => 4,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '게시판 C-3',
-				'men_link' => board_url('b-c-3'),
+				'men_name' => '조합원 인증 요청',
+				'men_link' => board_url('ask-cert'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 33,
+				'men_order' => 5,
 			);
 			$this->Menu_model->insert($insertdata);
-
+			
 			$insertdata = array(
 				'men_parent' => 0,
 				'men_name' => '자주하는질문',
-				'men_link' => faq_url('faq'),
+				'men_link' => faq_url('faq-01'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
-				'men_order' => 40,
+				'men_order' => 3,
 			);
 			$men_id = $this->Menu_model->insert($insertdata);
 
