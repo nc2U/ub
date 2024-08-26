@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ub-certificate-tls
+  namespace: ub  # 원하는 네임스페이스로 변경 가능
+spec:
+  secretName: ub-certificate-tls  # 인증서가 저장될 Secret 이름
+  issuerRef:
+    name: letsencrypt-ub
+    kind: ClusterIssuer
+  commonName: ub.brdnc.co.kr
+  dnsNames:
+  - ub.brdnc.co.kr

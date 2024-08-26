@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-ub
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: info@brdnc.co.kr
+    privateKeySecretRef:
+      name: letsencrypt-ub
+    solvers:
+    - http01:
+        ingress:
+          class:  nginx
+
