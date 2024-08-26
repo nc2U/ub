@@ -6116,31 +6116,23 @@ flvr.pandora.tv',
 				'mobile_header_content' => '',
 				'mobile_footer_content' => '',
 			);
-
+			
 			$insertdata = array(
-				'bgr_key' => 'g-a',
-				'bgr_name' => '그룹 A',
+				'bgr_key' => 'information',
+				'bgr_name' => '조합 공개 자료',
 				'bgr_order' => 1,
 			);
 			$bgr_id_1 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_key' => 'g-b',
-				'bgr_name' => '그룹 B',
+				'bgr_key' => 'community',
+				'bgr_name' => '조합원 커뮤니티',
 				'bgr_order' => 2,
 			);
 			$bgr_id_2 = $bgr_id = $this->Board_group_model->insert($insertdata);
 			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
-			$insertdata = array(
-				'bgr_key' => 'g-c',
-				'bgr_name' => '그룹 C',
-				'bgr_order' => 3,
-			);
-			$bgr_id_3 = $bgr_id = $this->Board_group_model->insert($insertdata);
-			$this->Board_group_meta_model->save($bgr_id, $metadata);
-
+			
 			$metadata = array(
 				'header_content' => '',
 				'footer_content' => '',
@@ -6201,96 +6193,257 @@ flvr.pandora.tv',
 				'use_sideview' => '1',
 				'use_tempsave' => '1',
 			);
+			
+			$info_auth = array(
+				'access_blame' => 2,
+				'access_blame_group' => json_encode(["2", "3"]),
+				'access_comment' => 2,
+				'access_comment_group' => json_encode(["2", "3"]),
+				'access_dhtml' => 2,
+				'access_dhtml_group' => json_encode(["3"]),
+				'access_download' => 2,
+				'access_download_group' => json_encode(["2", "3"]),
+				'access_list' => 2,
+				'access_list_group' => json_encode(["2", "3"]),
+				'access_reply' => 2,
+				'access_reply_group'=> json_encode(["3"]),
+				'access_subject_style' => 2,
+				'access_subject_style_group'=> json_encode(["3"]),
+				'access_tag_write'=> 2,
+				'access_tag_write_group' => json_encode(["3"]),
+				'access_upload'=> 2,
+				'access_upload_group'  => json_encode(["3"]),
+				'access_view'=> 2,
+				'access_view_group' => json_encode(["2", "3"]),
+				'access_write' => 2,
+				'access_write_group'=> json_encode(["3"]),
+			);
+			
+			$metadata = array_merge($metadata, $info_auth);
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-1',
-				'brd_name' => '게시판 A-1',
+				'brd_key' => 'info-01',
+				'brd_name' => '조합규약 및 내규',
 				'brd_order' => 1,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-2',
-				'brd_name' => '게시판 A-2',
+				'brd_key' => 'info-02',
+				'brd_name' => '공동사업주체와 체결한 협약서',
 				'brd_order' => 2,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
 				'bgr_id' => $bgr_id_1,
-				'brd_key' => 'b-a-3',
-				'brd_name' => '게시판 A-3',
+				'brd_key' => 'info-03',
+				'brd_name' => '설계자 등 용역업체 선정 계약서',
 				'brd_order' => 3,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-1',
-				'brd_name' => '게시판 B-1',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-04',
+				'brd_name' => '조합총회 및 이사회 등의 의사록',
+				'brd_order' => 4,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-05',
+				'brd_name' => '사업시행계획서',
+				'brd_order' => 5,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-06',
+				'brd_name' => '조합사업의 시행에 관한 공문서',
+				'brd_order' => 6,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-07',
+				'brd_name' => '회계감사보고서',
+				'brd_order' => 7,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-08',
+				'brd_name' => '분기별 사업실적보고서',
+				'brd_order' => 8,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-09',
+				'brd_name' => '업무대행자가 제출한 실적보고서',
+				'brd_order' => 9,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-10',
+				'brd_name' => '연간 자금운용 계획서',
+				'brd_order' => 10,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-11',
+				'brd_name' => '월별 자금 입출금 명세서',
 				'brd_order' => 11,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-2',
-				'brd_name' => '게시판 B-2',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-12',
+				'brd_name' => '월별 공사진행 상황에 관한 서류',
 				'brd_order' => 12,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_2,
-				'brd_key' => 'b-b-3',
-				'brd_name' => '게시판 B-3',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-13',
+				'brd_name' => '분양신청에 관한 서류 및 관련 자료',
 				'brd_order' => 13,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-1',
-				'brd_name' => '게시판 C-1',
-				'brd_order' => 21,
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-14',
+				'brd_name' => '조합원별 분담금 납부내역',
+				'brd_order' => 14,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-2',
-				'brd_name' => '게시판 C-2',
+				'bgr_id' => $bgr_id_1,
+				'brd_key' => 'info-15',
+				'brd_name' => '조합원별 추가 분담금 산출내역',
+				'brd_order' => 15,
+				'brd_search' => 1,
+			);
+			
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$metadata['access_list'] = 1;
+			$post_notice = array(
+				'send_email_post_board_admin' => 1,
+				'send_email_post_group_admin' => 1,
+				'send_email_post_super_admin' => 1,
+				'send_note_post_board_admin' => 1,
+				'send_note_post_group_admin' => 1,
+				'send_note_post_super_admin' => 1,
+				'send_sms_post_board_admin' => 1,
+				'send_sms_post_group_admin' => 1 ,
+				'send_sms_post_super_admin' => 1,
+			);
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'notice',
+				'brd_name' => '공지 사항',
+				'brd_order' => 21,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $post_notice);
+			
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'storage',
+				'brd_name' => '조합 자료실',
 				'brd_order' => 22,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
-
+			
+			$use_secret = array('use_post_secret' => 1);
+			$metadata['access_write_group'] = json_encode(["2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["2", "3"]);
 			$insertdata = array(
-				'bgr_id' => $bgr_id_3,
-				'brd_key' => 'b-c-3',
-				'brd_name' => '게시판 C-3',
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'qna',
+				'brd_name' => '질문 게시판',
 				'brd_order' => 23,
 				'brd_search' => 1,
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
+			
+			$metadata['access_reply_group'] = json_encode(["2", "3"]);
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'free',
+				'brd_name' => '자유 게시판',
+				'brd_order' => 24,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_comment_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_upload_group'] = json_encode(["1", "2", "3"]);
+			$metadata['use_post_secret_selected'] = 1;
+			$insertdata = array(
+				'bgr_id' => $bgr_id_2,
+				'brd_key' => 'ask-cert',
+				'brd_name' => '조합원 인증 요청',
+				'brd_order' => 25,
+				'brd_search' => 1,
+			);
+			$brd_id = $this->Board_model->insert($insertdata);
+			$this->Board_meta_model->save($brd_id, $metadata + $use_secret + $post_notice);
 
+			
 			$insertdata = array(
 				'men_parent' => 0,
 				'men_name' => '그룹A',
