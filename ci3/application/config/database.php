@@ -83,10 +83,10 @@ $query_builder = TRUE;
 */
 $db['default'] = array(
 	//'dsn'	=> 'mysql:host=localhost;dbname=yourdatabasenamehere',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => getenv('DATABASE_HOST') ?: 'mariadb',
+	'username' => getenv('DATABASE_USER') ?: 'ub',
+	'password' => getenv('DATABASE_PASSWORD') ?: 'secret',
+	'database' => getenv('DATABASE_NAME') ?: 'ub',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'cb_',
 	'pconnect' => FALSE,
