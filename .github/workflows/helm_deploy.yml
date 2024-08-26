@@ -43,7 +43,6 @@ jobs:
           password: ${{ secrets.NFS_PASS }}
           command: |
             cd ${{ secrets.NFS_PATH }}/ub
-            
             if [ ! -d "./volume/mysql/${{ secrets.DATABASE_USER }}" ]; then
             mkdir -p ./volume/mysql/${{ secrets.DATABASE_USER }}
             chown lxd:999 ./volume/mysql/${{ secrets.DATABASE_USER }}
