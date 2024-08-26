@@ -24,21 +24,22 @@ nginx:
     port: 8888
   
   ingress:
-    enabled: false
+    enabled: true
+    
     className: nginx
-#    annotations:
-#      kubernetes.io/tls-acme: "true"
-#      nginx.ingress.kubernetes.io/rewrite-target: /
-#      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-#      nginx.ingress.kubernetes.io/ssl-redirect: "true"
-#      nginx.ingress.kubernetes.io/proxy-body-size: "100M"
-#      cert-manager.io/cluster-issuer: letsencrypt-prod
-#    hosts:
-#      - host: "host-path" # Host address
-#        paths:
-#          - path: /
-#            pathType: ImplementationSpecific
-#    tls:
-#      - secretName: web-devbox-kr-cert
-#        hosts:
-#          - "host-path" # Host address
+    annotations:
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "100M"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: "host-path" # Host address
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - secretName: web-devbox-kr-cert
+        hosts:
+          - "host-path" # Host address
