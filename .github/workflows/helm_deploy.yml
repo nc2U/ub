@@ -43,6 +43,7 @@ jobs:
           password: ${{ secrets.NFS_PASS }}
           command: |
             cd ${{ secrets.NFS_PATH }}/ub
+            chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs
             if [ ! -d "./volume/mysql/${{ secrets.DATABASE_USER }}" ]; then
             mkdir -p ./volume/mysql/${{ secrets.DATABASE_USER }}
             chown lxd:999 ./volume/mysql/${{ secrets.DATABASE_USER }}
