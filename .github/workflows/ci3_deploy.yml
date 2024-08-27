@@ -1,10 +1,10 @@
-name: Ciboard Update [master]
+name: Ci3 source Update [master]
 
 on:
   push:
     paths:
       - "cb3/**"
-      - ".github/workflows/ciboard.yml"
+      - ".github/workflows/ci3_deploy.yml"
     branches: [ "master" ]
   
   # Allows you to run this workflow manually from the Actions tab

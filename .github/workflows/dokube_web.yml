@@ -1,4 +1,4 @@
-name: Image [web:python] Update
+name: Image [web:ci3/php] Update
 
 on:
   push:
