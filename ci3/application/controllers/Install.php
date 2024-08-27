@@ -6916,18 +6916,18 @@ flvr.pandora.tv',
 		$this->Config_model->save($cmalldata);
 
 
-		$insertdata = array(
-			'doc_key' => 'cmall',
-			'doc_title' => '이용안내',
-			'doc_content' => '이용안내 내용을 입력해주세요',
-			'doc_content_html_type' => 1,
-			'doc_layout' => $skin_cmall,
-			'mem_id' => $this->session->userdata('mem_id'),
-			'doc_datetime' => cdate('Y-m-d H:i:s'),
-			'doc_updated_mem_id' => $this->session->userdata('mem_id'),
-			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
-		);
-		$this->Document_model->insert($insertdata);
+//		$insertdata = array(
+//			'doc_key' => 'cmall',
+//			'doc_title' => '이용안내',
+//			'doc_content' => '이용안내 내용을 입력해주세요',
+//			'doc_content_html_type' => 1,
+//			'doc_layout' => $skin_cmall,
+//			'mem_id' => $this->session->userdata('mem_id'),
+//			'doc_datetime' => cdate('Y-m-d H:i:s'),
+//			'doc_updated_mem_id' => $this->session->userdata('mem_id'),
+//			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
+//		);
+//		$this->Document_model->insert($insertdata);
 	}
 
 
