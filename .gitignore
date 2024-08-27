@@ -9,3 +9,5 @@ volume/mysql/
 docker-compose.yml
 
 values_custom.yaml
+certificate.yml
+cluster-issuer.yml
