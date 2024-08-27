@@ -1,8 +1,8 @@
-쿠버네티스에서 cert-manager를 사용하여 무료 Let’s Encrypt 인증서를 발급받는 방법은 다음과 같습니다. 이 과정은 쿠버네티스 클러스터에 cert-manager를 설치하고, ClusterIssuer를 설정한 후, 도메인에 대해 인증서를 발급받는 과정을 포함합니다.
+쿠버네티스에서 cert-manager를 사용하여 무료 Let’s Encrypt 인증서를 발급받는 방법은 다음과 같습니다. 이 과정은 쿠버네티스 클러스터에 cert-manager를 설치하고, ClusterIssuer를 설정한 후, 도메인에 대해 인증서를 발급받는 과정을 포함한다.
 
 ### 1. Cert-Manager 설치
 
-cert-manager는 쿠버네티스 클러스터 내에서 인증서를 자동으로 관리해주는 툴입니다. Helm을 사용하여 설치할 수 있습니다.
+cert-manager는 쿠버네티스 클러스터 내에서 인증서를 자동으로 관리해주는 툴입니다. Helm을 사용하여 설치할 수 있다.
 
 ##### 	1.	Helm 리포지토리 추가 및 업데이트
 ```bash
@@ -11,7 +11,7 @@ helm repo update
 ```
 
 ##### 	2.	cert-manager 설치
-아래 명령을 실행하여 cert-manager를 설치합니다.
+아래 명령을 실행하여 cert-manager를 설치한다.
 
 ```bash
 kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.13.1/cert-manager.crds.yaml
@@ -19,7 +19,7 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --creat
 ```
 
 ##### 	3.	설치 확인
-cert-manager가 제대로 설치되었는지 확인합니다.
+cert-manager가 제대로 설치되었는지 확인한다.
 ```bash
 kubectl get pods --namespace cert-manager
 ```
@@ -27,11 +27,11 @@ kubectl get pods --namespace cert-manager
 
 ### 2. ClusterIssuer 설정
 
-Let’s Encrypt 인증서를 발급받기 위해 ClusterIssuer 또는 Issuer 리소스를 설정해야 합니다. ClusterIssuer는 클러스터 전체에서 사용될 수 있습니다.
+Let’s Encrypt 인증서를 발급받기 위해 ClusterIssuer 또는 Issuer 리소스를 설정해야 한다. ClusterIssuer는 클러스터 전체에서 사용될 수 있다.
 
 ##### 	1.	ClusterIssuer 생성
-Let’s Encrypt의 staging 또는 production 환경을 선택할 수 있습니다. staging 환경은 테스트용이며 발급 제한이 없습니다. 실제 운영 환경에서는 production을 사용하세요.
-아래는 ClusterIssuer 예시입니다:
+Let’s Encrypt의 staging 또는 production 환경을 선택할 수 있다. staging 환경은 테스트용이며 발급 제한이 없다. 실제 운영 환경에서는 production을 사용한다.
+아래는 ClusterIssuer 예시이다:
 
 ```yaml
 apiVersion: cert-manager.io/v1
@@ -50,7 +50,7 @@ spec:
           class: nginx  # 사용 중인 Ingress 클래스
 ```
 
-이 파일을 cluster-issuer.yaml로 저장한 후 적용합니다.
+이 파일을 cluster-issuer.yaml로 저장한 후 적용한다.
 
 ```bash
 kubectl apply -f cluster-issuer.yaml
@@ -58,10 +58,10 @@ kubectl apply -f cluster-issuer.yaml
 
 ### 3. 인증서 요청 설정
 
-이제 특정 도메인에 대해 인증서를 요청해야 합니다. 이를 위해 Certificate 리소스를 생성합니다.
+이제 특정 도메인에 대해 인증서를 요청해야 합니다. 이를 위해 Certificate 리소스를 생성한다.
 
 ##### 	1.	Certificate 리소스 생성
-아래는 Certificate 리소스 예시입니다:
+아래는 Certificate 리소스 예시이다:
 
 ```yaml
 apiVersion: cert-manager.io/v1
@@ -80,27 +80,27 @@ spec:
   - www.yourdomain.com
 ```
 
-이 파일을 certificate.yaml로 저장한 후 적용합니다.
+이 파일을 certificate.yaml로 저장한 후 적용한다.
 
 ```bash
 kubectl apply -f certificate.yaml
 ```
 
 ##### 	2.	인증서 발급 상태 확인
-인증서 발급 과정을 확인하려면 다음 명령을 사용하세요:
+인증서 발급 과정을 확인하려면 다음 명령을 사용한다:
 
 ```bash
 kubectl describe certificate my-certificate -n default
 ```
 
-인증서 발급이 성공적으로 이루어지면 my-certificate-tls라는 Secret이 생성됩니다. 이 Secret을 Ingress 리소스에서 참조하여 TLS 설정을 할 수 있습니다.
+인증서 발급이 성공적으로 이루어지면 my-certificate-tls라는 Secret이 생성된다. 이 Secret을 Ingress 리소스에서 참조하여 TLS 설정을 할 수 있다.
 
 ### 4. Ingress에 TLS 설정 추가
 
-cert-manager가 발급한 인증서를 Ingress에서 사용하려면, Ingress 리소스에 TLS 설정을 추가해야 합니다.
+cert-manager가 발급한 인증서를 Ingress에서 사용하려면, Ingress 리소스에 TLS 설정을 추가해야 한다.
 
 ##### 1.	Ingress 리소스 설정
-아래는 TLS가 적용된 Ingress 리소스 예시입니다:
+아래는 TLS가 적용된 Ingress 리소스 예시이다:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -129,7 +129,7 @@ spec:
               number: 80
 ```
 
-이 파일을 ingress.yaml로 저장한 후 적용합니다.
+이 파일을 ingress.yaml로 저장한 후 적용한다.
 
 ```bash
 kubectl apply -f ingress.yaml
@@ -137,7 +137,7 @@ kubectl apply -f ingress.yaml
 
 ### 5. 결과 확인
 
-	•	Secret 생성 확인: kubectl get secret my-certificate-tls -n default 명령어로 인증서가 포함된 Secret이 생성되었는지 확인합니다.
-	•	Ingress TLS 확인: 브라우저를 통해 도메인에 접근하거나 curl 명령어를 사용해 HTTPS 연결이 성공적으로 설정되었는지 확인합니다.
+- Secret 생성 확인: `kubectl get secret my-certificate-tls -n default` 명령어로 인증서가 포함된 Secret이 생성되었는지 확인한다.
+- Ingress TLS 확인: 브라우저를 통해 도메인에 접근하거나 `curl` 명령어를 사용해 HTTPS 연결이 성공적으로 설정되었는지 확인한다.
 
-이 과정을 통해 쿠버네티스 클러스터에서 cert-manager와 Let’s Encrypt를 사용하여 무료 인증서를 발급하고, Ingress를 통해 HTTPS를 적용할 수 있습니다.
+이 과정을 통해 쿠버네티스 클러스터에서 cert-manager와 Let’s Encrypt를 사용하여 무료 인증서를 발급하고, Ingress를 통해 HTTPS를 적용할 수 있다.
