@@ -11,13 +11,6 @@ global:
   dbUser: "" # DATABASE_USER (default: ReleaseName)
   dbPassword: "" # DATABASE_PASS (default: secret)
 
-nameOverride: ""
-fullnameOverride: ""
-
-mariadb:
-  volumes:
-    nfsServerHost: ""
-
 nginx:
   service:
     type: LoadBalancer
