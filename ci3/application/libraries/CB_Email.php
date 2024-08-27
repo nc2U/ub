@@ -64,7 +64,7 @@ class CB_Email extends CI_Email
 		parent::__construct();
 		$this->CI =& get_instance();
 
-		$this->protocol = $this->CI->config->item('email_protocal') ? $this->CI->config->item('email_protocal') : 'mail'; // mail/sendmail/smtp
+		$this->protocol = $this->CI->config->item('email_protocol') ? $this->CI->config->item('email_protocol') : 'mail'; // mail/sendmail/smtp
 		$this->smtp_host = $this->CI->config->item('email_smtp_host'); // SMTP Server. Example: mail.earthlink.net
 		$this->smtp_user = $this->CI->config->item('email_smtp_user'); // SMTP Username
 		$this->smtp_pass = $this->CI->config->item('email_smtp_pass'); // SMTP Password

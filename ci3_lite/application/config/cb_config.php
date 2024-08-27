@@ -66,7 +66,7 @@ $config['user_agent_parser'] = 'phpuseragent';  // phpuseragent , browscap 둘 �
 /**
  * CiBoard 주 : smpt email 을 사용하시는 경우 세팅해주세요
  */
-$config['email_protocal'] = 'mail'; // mail/sendmail/smtp
+$config['email_protocol'] = 'mail'; // mail/sendmail/smtp
 $config['email_smtp_host'] = '';
 $config['email_smtp_user'] = '';
 $config['email_smtp_pass'] = '';
