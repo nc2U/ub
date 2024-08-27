@@ -1000,7 +1000,7 @@ class Cbconfigs extends CB_Controller
 			),
 			array(
 				'field' => 'company_name',
-				'label' => '회사명',
+				'label' => '조합명',
 				'rules' => 'trim',
 			),
 			array(

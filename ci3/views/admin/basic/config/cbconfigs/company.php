@@ -49,18 +49,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">통신판매업신고번호</label>
-				<div class="col-sm-10 form-inline">
-					<input type="text" class="form-control" name="company_retail_sale_no" value="<?php echo set_value('company_retail_sale_no', element('company_retail_sale_no', element('data', $view))); ?>" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">부가통신 사업자번호</label>
-				<div class="col-sm-10 form-inline">
-					<input type="text" class="form-control" name="company_added_sale_no" value="<?php echo set_value('company_added_sale_no', element('company_added_sale_no', element('data', $view))); ?>" />
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-2 control-label">사업장 우편번호</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control" name="company_zipcode" value="<?php echo set_value('company_zipcode', element('company_zipcode', element('data', $view))); ?>" />
@@ -72,6 +60,18 @@
 					<input type="text" class="form-control" name="company_address" value="<?php echo set_value('company_address', element('company_address', element('data', $view))); ?>" />
 				</div>
 			</div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">업무대행사명</label>
+                <div class="col-sm-10 form-inline">
+                    <input type="text" class="form-control" name="company_biz_agency" value="<?php echo set_value('company_biz_agency', element('company_biz_agency', element('data', $view))); ?>" />
+                </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">업무대행사 대표번호</label>
+                <div class="col-sm-10 form-inline">
+                    <input type="text" class="form-control" name="company_agency_phone" value="<?php echo set_value('company_agency_phone', element('company_agency_phone', element('data', $view))); ?>" />
+                </div>
+            </div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">정보관리책임자명</label>
 				<div class="col-sm-10 form-inline">

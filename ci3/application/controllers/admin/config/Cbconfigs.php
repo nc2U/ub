@@ -1000,7 +1000,7 @@ class Cbconfigs extends CB_Controller
 			),
 			array(
 				'field' => 'company_name',
-				'label' => '회사명',
+				'label' => '조합명',
 				'rules' => 'trim',
 			),
 			array(
@@ -1024,16 +1024,6 @@ class Cbconfigs extends CB_Controller
 				'rules' => 'trim',
 			),
 			array(
-				'field' => 'company_retail_sale_no',
-				'label' => '통신판매업신고번호',
-				'rules' => 'trim',
-			),
-			array(
-				'field' => 'company_added_sale_no',
-				'label' => '부가통신 사업자번호',
-				'rules' => 'trim',
-			),
-			array(
 				'field' => 'company_zipcode',
 				'label' => '사업장 우편번호',
 				'rules' => 'trim',
@@ -1041,6 +1031,16 @@ class Cbconfigs extends CB_Controller
 			array(
 				'field' => 'company_address',
 				'label' => '사업장 주소',
+				'rules' => 'trim',
+			),
+			array(
+				'field' => 'company_biz_agency',
+				'label' => '업무대행사명',
+				'rules' => 'trim',
+			),
+			array(
+				'field' => 'company_agency_phone',
+				'label' => '업무대행사 대표번호',
 				'rules' => 'trim',
 			),
 			array(
@@ -1076,9 +1076,8 @@ class Cbconfigs extends CB_Controller
 
 			$array = array(
 				'company_name', 'company_reg_no', 'company_owner', 'company_phone',
-				'company_fax', 'company_retail_sale_no', 'company_added_sale_no',
-				'company_zipcode', 'company_address',
-				'company_admin_name', 'company_admin_email');
+				'company_fax', 'company_zipcode', 'company_address', 'company_biz_agency',
+				'company_agency_phone',	'company_admin_name', 'company_admin_email');
 			foreach ($array as $value) {
 				$savedata[$value] = $this->input->post($value, null, '');
 			}
