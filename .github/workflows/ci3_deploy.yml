@@ -23,8 +23,8 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v4
       
-      # Source Django to server copy transfer
-      - name: Copy ciboard, source data to CAFE24 server
+      # Source Ci3 to server copy transfer
+      - name: Copy ci3, source data to CAFE24 server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.CAFE24_HOST }}
@@ -32,14 +32,15 @@ jobs:
           password: ${{ secrets.CAFE24_PASS }}
           source: 'ci3'
           target: ${{ secrets.CAFE24_PATH }}/
-      - name: Copy ciboard, source data to NFS server
+          
+      - name: Copy ci3, source data to NFS server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.NFS_HOST }}
           username: ${{ secrets.NFS_USER }}
           password: ${{ secrets.NFS_PASS }}
           source: 'ci3'
-          target: ${{ secrets.NFS_PATH }}/ub/ci3/
+          target: ${{ secrets.NFS_PATH }}/ub/
       
       # slack --> notification
       - name: Send slack when failed
