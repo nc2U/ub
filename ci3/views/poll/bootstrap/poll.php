@@ -1,4 +1,5 @@
 <h4>설문조사</h4>
+<hr>
 <table class="table table-hover">
 	<thead>
 		<tr>
