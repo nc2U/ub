@@ -14,6 +14,9 @@ RUN apt-get update && \
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
 
+# Composer 설치
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9000
