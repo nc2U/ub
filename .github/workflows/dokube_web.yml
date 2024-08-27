@@ -1,4 +1,4 @@
-name: Image [web:ci3/php] Update
+name: Image Build [web:ci3/php]
 
 on:
   push:
