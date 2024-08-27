@@ -7,7 +7,7 @@
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/general'); ?>" onclick="return check_form_changed();">일반기능 / 에디터</a></li>
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/note'); ?>" onclick="return check_form_changed();">쪽지기능</a></li>
 			<li role="presentation"><a href="<?php echo admin_url($this->pagedir . '/notification'); ?>" onclick="return check_form_changed();">알림기능</a></li>
-			<li role="presentation" class="active"><a href="<?php echo admin_url($this->pagedir . '/company'); ?>" onclick="return check_form_changed();">회사정보</a></li>
+			<li role="presentation" class="active"><a href="<?php echo admin_url($this->pagedir . '/company'); ?>" onclick="return check_form_changed();">조합정보</a></li>
 		</ul>
 	</div>
 	<div class="box-table">
@@ -19,7 +19,7 @@
 		?>
 			<input type="hidden" name="is_submit" value="1" />
 			<div class="form-group">
-				<label class="col-sm-2 control-label">회사명</label>
+				<label class="col-sm-2 control-label">조합명</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control" name="company_name" value="<?php echo set_value('company_name', element('company_name', element('data', $view))); ?>" />
 				</div>
