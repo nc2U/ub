@@ -3,7 +3,7 @@ name: Ci3 source Update [master]
 on:
   push:
     paths:
-      - "cb3/**"
+      - "ci3/**"
       - ".github/workflows/ci3_deploy.yml"
     branches: [ "master" ]
   
