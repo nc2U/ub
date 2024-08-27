@@ -5590,7 +5590,7 @@ flvr.pandora.tv',
 			'list_count' => '20',
 			'site_blacklist_title' => '사이트가 공사중에 있습니다',
 			'site_blacklist_content' => '<p>안녕하세요</p><p>블편을 드려 죄송합니다. 지금 이 사이트는 접근이 금지되어있습니다</p><p>감사합니다</p>',
-			'use_point' => '1',
+			'use_point' => '',
 			'point_register' => '50',
 			'point_login' => '5',
 			'point_recommended' => '5',
@@ -6761,7 +6761,7 @@ flvr.pandora.tv',
 		$skin_mobile = $this->input->post('skin') === 'basic' ? 'mobile' : 'bootstrap';
 
 		$configdata = array(
-			'use_pointranking' => '1',
+			'use_pointranking' => '',
 			'use_poll_list' => '1',
 			'site_meta_title_tag' => '{태그명} - {홈페이지제목}',
 			'site_meta_title_levelup' => '레벨업 - {홈페이지제목}',
