@@ -34,8 +34,8 @@
 					사이드바 -
 					<select class="form-control" name="sidebar_poll" id="sidebar_poll">
 						<option value="">기본설정따름</option>
-						<option value="1" <?php echo set_select('sidebar_poll', '1', (element('sidebar_poll', element('data', $view)) === '1' ? true : false)); ?> >사용</option>
-						<option value="2" <?php echo set_select('sidebar_poll', '2', (element('sidebar_poll', element('data', $view)) === '2' ? true : false)); ?> >사용하지않음</option>
+						<option value="1" <?php echo set_select('sidebar_poll', '1', element('sidebar_poll', element('data', $view)) === '1'); ?> >사용</option>
+						<option value="2" <?php echo set_select('sidebar_poll', '2', element('sidebar_poll', element('data', $view)) === '2'); ?> >사용하지않음</option>
 					</select>
 					스킨 -
 					<select name="skin_poll" id="skin_poll" class="form-control" >
@@ -53,8 +53,8 @@
 					사이드바 -
 					<select class="form-control" name="mobile_sidebar_poll" id="mobile_sidebar_poll">
 						<option value="">기본설정따름</option>
-						<option value="1" <?php echo set_select('mobile_sidebar_poll', '1', (element('mobile_sidebar_poll', element('data', $view)) === '1' ? true : false)); ?> >사용</option>
-						<option value="2" <?php echo set_select('mobile_sidebar_poll', '2', (element('mobile_sidebar_poll', element('data', $view)) === '2' ? true : false)); ?> >사용하지않음</option>
+						<option value="1" <?php echo set_select('mobile_sidebar_poll', '1', element('mobile_sidebar_poll', element('data', $view)) === '1'); ?> >사용</option>
+						<option value="2" <?php echo set_select('mobile_sidebar_poll', '2', element('mobile_sidebar_poll', element('data', $view)) === '2'); ?> >사용하지않음</option>
 					</select>
 					스킨 -
 					<select name="mobile_skin_poll" id="mobile_skin_poll" class="form-control" >
