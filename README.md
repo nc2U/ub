@@ -18,7 +18,7 @@
 
 ```
 cd docker
-cp docker-compose.yml.tmpl docker-compose.yml
+cp .docker-compose.yml docker-compose.yml
 ```
 
 ## Modify docker-compose.yml file
