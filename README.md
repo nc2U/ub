@@ -112,4 +112,4 @@ helm install ub . -f values_custom.yaml
 
 or
 
-> http://xxx.xxx.xxx:8888 (Port 8888 of the public IP of that node)
+> http://xxx.xxx.xxx:8888/ (Port 8888 of the public IP of that node)
