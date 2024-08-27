@@ -130,9 +130,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 	$poll = element('poll', $view);
 	$poll_item = element('poll_item', $view);
 	?>
-		<div class="poll mb30 mt20">
+		<div class="poll mb100 mt100">
 			<div class="headline">
-				<h5>[설문조사] <?php echo html_escape(element('ppo_title', $poll)); ?></h5>
+				<h3>[설문조사] <?php echo html_escape(element('ppo_title', $poll)); ?></h3>
 			</div>
 			<?php
 			if (element('attended', $poll) OR element('ended_poll', $poll)) {
@@ -140,8 +140,8 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 					$i = 1;
 					foreach ($poll_item as $pkey => $pval) {
 			?>
-				<div class="poll-result"><?php echo $i;?>. <?php echo html_escape(element('ppi_item', $pval)); ?> <div class="pull-right"><?php echo number_format(element('ppi_count', $pval)); ?>표, <?php echo element('s_rate', $pval); ?>%</div></div>
-				<div class="progress" style="height:5px;">
+				<div class="poll-result mb30"><?php echo $i;?>. <?php echo html_escape(element('ppi_item', $pval)); ?> <div class="pull-right"><?php echo number_format(element('ppi_count', $pval)); ?>표, <?php echo element('s_rate', $pval); ?>%</div></div>
+				<div class="progress mb30" style="height:5px;">
 					<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo element('s_rate', $pval); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo element('bar', $pval); ?>%;">
 						<span class="sr-only"><?php echo element('s_rate', $pval); ?>% Complete</span>
 					</div>
@@ -159,8 +159,8 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 					if ($poll_item) {
 						foreach ($poll_item as $pkey => $pval) {
 				?>
-					<div class="checkbox">
-						<label for="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>">
+					<div class="checkbox mt50 mb30 pl30">
+						<label for="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>" style="font-size: 1.1em;">
 							<input type="checkbox" name="ppi_item[]" class="poll_item_chk" id="ppi_item_<?php echo html_escape(element('ppi_id', $pval)); ?>" value="<?php echo html_escape(element('ppi_id', $pval)); ?>" />
 							<?php echo html_escape(element('ppi_item', $pval)); ?>
 						</label>
@@ -169,10 +169,10 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 					}
 				}
 				?>
-					<div class="form-group mt10">
-						<button type="button" class="btn btn-default btn-xs" onClick="post_poll('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">투표하기</button>
-						<button type="button" class="btn btn-default btn-xs" onClick="post_poll_result('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">결과보기</button>
-						<span class="help-block">
+					<div class="form-group mt50 text-center">
+						<button type="button" class="btn btn-primary btn-sm" onClick="post_poll('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">투표하기</button>
+						<button type="button" class="btn btn-default btn-sm" onClick="post_poll_result('<?php echo element('post_id', element('post', $view)); ?>', '<?php echo element('ppo_id', element('poll', $view)); ?>');">결과보기</button>
+						<span class="help-block mt30">
 							답변 <?php echo element('ppo_choose_count', $poll); ?> 개 선택 가능, 현재 <?php echo element('ppo_count', $poll); ?>명이 참여함, 설문기간 : <?php echo html_escape(element('poll_period', $poll)); ?>
 							<?php if (element('ppo_point', $poll)) { echo '참여시' . number_format(element('ppo_point', $poll)) . '포인트 지급'; } ?>
 						</span>
