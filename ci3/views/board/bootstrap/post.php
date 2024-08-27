@@ -140,7 +140,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 					$i = 1;
 					foreach ($poll_item as $pkey => $pval) {
 			?>
-				<div class="poll-result mb30"><?php echo $i;?>. <?php echo html_escape(element('ppi_item', $pval)); ?> <div class="pull-right"><?php echo number_format(element('ppi_count', $pval)); ?>표, <?php echo element('s_rate', $pval); ?>%</div></div>
+				<div class="poll-result mb30" style="font-size: 1.1em"><?php echo $i;?>. <?php echo html_escape(element('ppi_item', $pval)); ?> <div class="pull-right"><?php echo number_format(element('ppi_count', $pval)); ?>표, <?php echo element('s_rate', $pval); ?>%</div></div>
 				<div class="progress mb30" style="height:5px;">
 					<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo element('s_rate', $pval); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo element('bar', $pval); ?>%;">
 						<span class="sr-only"><?php echo element('s_rate', $pval); ?>% Complete</span>
