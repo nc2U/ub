@@ -23,15 +23,15 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v4
       
-      # Source Ci3 to server copy transfer
-      - name: Copy ci3, source data to CAFE24 server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.CAFE24_HOST }}
-          username: ${{ secrets.CAFE24_USER }}
-          password: ${{ secrets.CAFE24_PASS }}
-          source: 'ci3'
-          target: ${{ secrets.CAFE24_PATH }}/
+#      # Source Ci3 to server copy transfer
+#      - name: Copy ci3, source data to CAFE24 server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.CAFE24_HOST }}
+#          username: ${{ secrets.CAFE24_USER }}
+#          password: ${{ secrets.CAFE24_PASS }}
+#          source: 'ci3'
+#          target: ${{ secrets.CAFE24_PATH }}/
           
       - name: Copy ci3, source data to NFS server
         uses: appleboy/scp-action@master
