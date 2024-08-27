@@ -40,3 +40,9 @@
 	</tbody>
 </table>
 <nav><?php echo element('paging', $view); ?></nav>
+
+<?php if (element('is_admin', $view)) { ?>
+    <div class="pull-right">
+        <a href="/write/poll" class="btn btn-success btn-sm">글쓰기</a>
+    </div>
+<?php } ?>

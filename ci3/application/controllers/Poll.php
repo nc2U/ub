@@ -95,6 +95,8 @@ class Poll extends CB_Controller
 
 			}
 		}
+		
+		$view['view']['is_admin'] = $this->member->is_admin(array('board_id' => 20));
 		$view['view']['data'] = $result;
 
 		/**
