@@ -6028,8 +6028,8 @@ flvr.pandora.tv',
 		
 		$insertdata = array(
 			'doc_key' => 'info',
-			'doc_title' => '사업개요 및 조감도',
-			'doc_content' => '사업개요 및 조감도 내용을 입력해주세요',
+			'doc_title' => '상품 안내',
+			'doc_content' => '사업개요 및 조감도 등 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
 			'doc_datetime' => cdate('Y-m-d H:i:s'),
@@ -6040,7 +6040,7 @@ flvr.pandora.tv',
 		
 		$insertdata = array(
 			'doc_key' => 'brand',
-			'doc_title' => '브랜드 및 특장점',
+			'doc_title' => '브랜드 소개',
 			'doc_content' => '브랜드 및 특장점 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
@@ -6052,7 +6052,7 @@ flvr.pandora.tv',
 		
 		$insertdata = array(
 			'doc_key' => 'map',
-			'doc_title' => '찾아오시는 길',
+			'doc_title' => '오시는길',
 			'doc_content' => '찾아오시는 길 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
@@ -6486,7 +6486,7 @@ flvr.pandora.tv',
 			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '찾아오시는 길',
+				'men_name' => '오시는길',
 				'men_link' => document_url('map'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
