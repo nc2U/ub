@@ -3,7 +3,7 @@
 <div class="access col-md-6 col-md-offset-3 mt100 mb100">
 	<div class="panel panel-default">
 		<div class="panel-heading">로그인</div>
-		<div class="panel-body pt20 pb10">
+		<div class="panel-body pt40 pb20">
 			<?php
 			echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
 			echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>');
