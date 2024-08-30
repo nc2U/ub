@@ -5540,11 +5540,9 @@ class Install extends CI_Controller
 		$this->load->library(array('user_agent', 'session'));
 		$this->load->model(array(
 			'Member_model', 'Member_group_model', 'Member_userid_model', 'Member_meta_model',
-			'Member_nickname_model', 'Member_register_model', 'Document_model',
-			'Faq_model', 'Faq_group_model', 'Board_model', 'Config_model',
-			'Board_meta_model', 'Board_group_model', 'Board_group_meta_model',
-			'Menu_model',
-			
+			'Member_nickname_model', 'Member_register_model', 'Document_model', 'Faq_model',
+			'Faq_group_model', 'Board_model', 'Config_model', 'Board_meta_model',
+			'Board_group_model', 'Board_group_meta_model', 'Menu_model',
 		));
 
 		if ( ! function_exists('password_hash')) {
