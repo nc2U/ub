@@ -610,7 +610,7 @@ class Board extends CI_Controller
 				$brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
 				$view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
 				$view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
-				$view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
+				$view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), 'sns');
 				$view['view']['latest'][$key]['category'] = '';
 				if (element('post_category', $value)) {
 						$view['view']['latest'][$key]['category'] = $this->CI->Board_category_model->get_category_info(element('brd_id', $value), element('post_category', $value));

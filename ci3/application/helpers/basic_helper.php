@@ -1116,47 +1116,43 @@ if ( ! function_exists('display_datetime')) {
 			return false;
 		}
 
-		if ($type === 'sns') {
+		if ($type === 'sns') { // SNS 스타일
 
 			$diff = ctimestamp() - strtotime($datetime);
 
 			$s = 60; //1분 = 60초
 			$h = $s * 60; //1시간 = 60분
 			$d = $h * 24; //1일 = 24시간
-			$y = $d * 10; //1년 = 1일 * 10일
+			$w = $d * 7; // 1주일 = 7일
+			$m = $d * 30.4375; // 1달 = 30.4375일
+			$y = $m * 12; //1년 = 1달 * 12
 
-			if ($diff < $s) {
+			if ($diff < $s/2) {
+				$result = '방금전';
+			} elseif ($diff < $s) {
 				$result = $diff . '초전';
-			} elseif ($h > $diff && $diff >= $s) {
+			} elseif ($h > $diff) {
 				$result = round($diff/$s) . '분전';
-			} elseif ($d > $diff && $diff >= $h) {
+			} elseif ($d > $diff) {
 				$result = round($diff/$h) . '시간전';
-			} elseif ($y > $diff && $diff >= $d) {
-				$result = round($diff/$d) . '일전';
+			} elseif ($w > $diff) {
+				$result = round($diff / $d) . '일전';
+			} elseif ($m > $diff) {
+				$result = round($diff / $w) . '주일전';
+			} elseif ($y > $diff) {
+				$result = round($diff/$m) . '달전';
 			} else {
-				if (substr($datetime,0, 10) === cdate('Y-m-d')) {
-					$result = str_replace('-', '.', substr($datetime,11,5));
-				} else {
-					$result = substr($datetime, 5, 5);
-				}
+				$result = substr($datetime,0,10);
 			}
-		} elseif ($type === 'user' && $custom) {
+		} elseif ($type === 'user' && $custom) { // 사용자 정의
 			return cdate($custom, strtotime($datetime));
-		} elseif ($type === 'full') {
-			if (substr($datetime,0, 10) === cdate('Y-m-d')) {
-				$result = substr($datetime,11,5);
-			} elseif (substr($datetime,0, 4) === cdate('Y')) {
-				$result = substr($datetime,5,11);
-			} else {
-				$result = substr($datetime,0,10);
-			}
-		} else {
-			if (substr($datetime,0, 10) === cdate('Y-m-d')) {
-				$result = substr($datetime,11,5);
-			} elseif (substr($datetime,0, 4) === cdate('Y')) {
-				$result = substr($datetime,5,5);
-			} else {
-				$result = substr($datetime,0,10);
+		} else { // 기본
+			if (substr($datetime,0, 10) === cdate('Y-m-d')) { // 당일
+				$result = substr($datetime,11,8); // 	11:19:17
+			} elseif (substr($datetime,0, 4) === cdate('Y')) { // 당일 이후 올해
+				$result = substr($datetime,5,11); // 	08-29 15:39
+			} else { // 작년 이전
+				$result = substr($datetime,0,10);  // 	2024-08-29
 			}
 		}
 
