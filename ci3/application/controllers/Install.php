@@ -6198,6 +6198,8 @@ flvr.pandora.tv',
 				'comment_date_style' => 'sns',
 				'mobile_list_date_style' => 'sns',
 				'mobile_comment_date_style' => 'sns',
+				'use_poll' => '',
+				'use_mobile_poll' => '',
 			);
 			
 			$info_auth = array(
@@ -6437,6 +6439,10 @@ flvr.pandora.tv',
 			$metadata['access_write_group'] = json_encode(["3"]);
 			$metadata['access_reply_group'] = json_encode(["3"]);
 			$metadata['access_upload_group'] = json_encode(["3"]);
+			$metadata['use_poll'] = '1';
+			$metadata['use_mobile_poll'] = '1';
+			$metadata['access_poll_write'] = 2;
+			$metadata['access_poll_write_group'] = json_encode(["3"]);
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
 				'brd_key' => 'poll',
@@ -6446,6 +6452,11 @@ flvr.pandora.tv',
 			);
 			$brd_id = $this->Board_model->insert($insertdata);
 			$this->Board_meta_model->save($brd_id, $metadata);
+			
+			$metadata['use_poll'] = '';
+			$metadata['use_mobile_poll'] = '';
+			$metadata['access_poll_write'] = 1;
+			$metadata['access_poll_write_group'] = "";
 			
 			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
