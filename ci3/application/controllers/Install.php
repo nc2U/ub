@@ -6192,6 +6192,12 @@ flvr.pandora.tv',
 				'protect_comment_num' => '5',
 				'use_sideview' => '1',
 				'use_tempsave' => '1',
+				'list_date_style' => 'sns',
+				'view_date_style' => 'user',
+				'view_date_style_manual' => 'Y-m-d H:i:s',
+				'comment_date_style' => 'sns',
+				'mobile_list_date_style' => 'sns',
+				'mobile_comment_date_style' => 'sns',
 			);
 			
 			$info_auth = array(
