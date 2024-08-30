@@ -1153,8 +1153,10 @@ if ( ! function_exists('display_datetime')) {
 		} else {
 			if (substr($datetime,0, 10) === cdate('Y-m-d')) {
 				$result = substr($datetime,11,5);
-			} else {
+			} elseif (substr($datetime,0, 4) === cdate('Y')) {
 				$result = substr($datetime,5,5);
+			} else {
+				$result = substr($datetime,0,10);
 			}
 		}
 

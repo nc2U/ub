@@ -22,7 +22,7 @@
                             <td><a href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>"><?php echo html_escape(element('title', $value)); ?></a>
                                 <?php if (element('post_comment_count', $value)) { ?> <span class="latest_comment_count"> +<?php echo element('post_comment_count', $value); ?></span><?php } ?>
                             </td>
-                            <td class="px80"><?php echo element('display_datetime', $value); ?></td>
+                            <td class="px100 text-right"><?php echo element('display_datetime', $value); ?></td>
                         </tr>
                         <?php
                         $i++;
