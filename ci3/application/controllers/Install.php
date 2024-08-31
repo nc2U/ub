@@ -6038,7 +6038,7 @@ flvr.pandora.tv',
 		
 		$insertdata = array(
 			'doc_key' => 'info',
-			'doc_title' => '상품 안내',
+			'doc_title' => '사업 안내',
 			'doc_content' => '사업개요 및 조감도 등 내용을 입력해주세요',
 			'doc_content_html_type' => 1,
 			'mem_id' => $mem_id,
@@ -6496,7 +6496,7 @@ flvr.pandora.tv',
 			
 			$insertdata = array(
 				'men_parent' => $men_id,
-				'men_name' => '상품 안내',
+				'men_name' => '사업 안내',
 				'men_link' => document_url('info'),
 				'men_desktop' => 1,
 				'men_mobile' => 1,
