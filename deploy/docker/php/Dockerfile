@@ -5,6 +5,7 @@ RUN apt-get update && \
     git \
     zip \
     curl \
+    sendmail \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -15,6 +16,7 @@ RUN apt-get update && \
 
 RUN docker-php-ext-install mysqli
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN echo 'sendmail_path = /usr/sbin/sendmail -t -i' > /usr/local/etc/php/conf.d/custom.ini
 
 # 작업 디렉토리 설정
 WORKDIR /var/www/html
