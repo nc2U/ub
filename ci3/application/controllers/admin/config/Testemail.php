@@ -43,7 +43,7 @@ class Testemail extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring'));
+		$this->load->library(array('querystring', 'PHPMailer_lib'));
 	}
 
 	/**
@@ -100,21 +100,54 @@ class Testemail extends CB_Controller
 			// 이벤트가 존재하면 실행합니다
 			$view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
 
-			$this->load->library('email');
-			$this->email->from(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
-			$this->email->to($this->input->post('recv_email'));
-
-			$this->email->subject('이메일 발송 테스트입니다');
-			$emailform['emailform'] = $getdata;
-			$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
-			$this->email->message($message);
-
-			if ($this->email->send() === false) {
-				$view['view']['alert_message'] = '이메일을 발송하지 못하였습니다. 메일 설정을 확인하여주세요';
-			} else {
+//			$this->load->library('email');
+//			$this->email->from(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
+//			$this->email->to($this->input->post('recv_email'));
+//
+//			$this->email->subject('이메일 발송 테스트입니다');
+//			$emailform['emailform'] = $getdata;
+//			$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
+//			$this->email->message($message);
+//
+//			if ($this->email->send() === false) {
+//				$view['view']['alert_message'] = '이메일을 발송하지 못하였습니다. 메일 설정을 확인하여주세요';
+//			} else {
+//				$view['view']['alert_message'] = '이메일을 발송하였습니다';
+//			}
+//			//echo $this->email->print_debugger();
+			
+			$mail = $this->phpmailer_lib->load();
+			
+			try {
+				// 서버 설정
+				$mail->isSMTP();
+				$mail->SMTPAuth = true;
+				$mail->Host = getenv('EMAIL_SMTP_HOST');
+				$mail->Username = getenv('EMAIL_SMTP_USER');
+				$mail->Password =  getenv('EMAIL_SMTP_PASS');
+				$mail->Port = getenv('EMAIL_SMTP_PORT') ?: 587; // 또는 465
+				$mail->SMTPSecure = getenv('EMAIL_SMTP_CRYPTO') ?: 'tls'; // 또는 'ssl'
+				
+				// 수신자 설정
+				$mail->setFrom(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
+				$mail->addAddress($this->input->post('recv_email'));
+				
+				// 메일 내용
+				$mail->isHTML(true);
+				$mail->Subject = '이메일 발송 테스트입니다';
+				$emailform['emailform'] = $getdata;
+				$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
+				$mail->Body    = $message;
+				$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+				
+				$mail->send();
+				
 				$view['view']['alert_message'] = '이메일을 발송하였습니다';
+			} catch (Exception $e) {
+//				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+				$view['view']['alert_message'] = '이메일을 발송하지 못하였습니다. 메일 설정을 확인하여주세요';
 			}
-			//echo $this->email->print_debugger();
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 
 		}
 
