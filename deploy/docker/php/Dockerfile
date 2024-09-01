@@ -5,24 +5,17 @@ RUN apt-get update && \
     git \
     zip \
     curl \
-    sendmail \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+    && docker-php-ext-install -j$(nproc) gd
 
 RUN docker-php-ext-install mysqli
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN echo 'sendmail_path = /usr/sbin/sendmail -t -i' > /usr/local/etc/php/conf.d/custom.ini
 
 # 작업 디렉토리 설정
 WORKDIR /var/www/html
-
-# Composer를 통해 PHPMailer 설치
-RUN composer require phpmailer/phpmailer
 
 EXPOSE 9000
 
