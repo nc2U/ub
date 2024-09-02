@@ -40,7 +40,7 @@ class Social extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'email'));
+		$this->load->library(array('querystring', 'Mailer'));
 
 		if ( ! $this->cbconfig->item('use_sociallogin')) {
 			alert_close('이 웹사이트는 소셜 로그인 기능을 지원하고 있지 않습니다.');
@@ -1015,13 +1015,17 @@ class Social extends CB_Controller
 						$replaceconfig_escape,
 						$this->cbconfig->item('send_email_register_admin_content')
 					);
+					$mail = $this->mailer->load();
 					foreach ($emailsendlistadmin as $akey => $aval) {
-						$this->email->clear(true);
-						$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-						$this->email->to(element('mem_email', $aval));
-						$this->email->subject($title);
-						$this->email->message($content);
-						$this->email->send();
+						$mail->clear(true);
+						$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+						$mail->addAddress(element('mem_email', $aval));
+						$mail->Subject = $title;
+						$mail->Body = $content;
+						
+						try {
+							$mail->send();
+						} catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 					}
 				}
 				if ($notesendlistadmin) {
