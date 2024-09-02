@@ -43,7 +43,7 @@ class Testemail extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'PHPMailer_lib'));
+		$this->load->library(array('querystring'));
 	}
 
 	/**
@@ -116,24 +116,15 @@ class Testemail extends CB_Controller
 //			}
 //			//echo $this->email->print_debugger();
 			
-			$mail = $this->phpmailer_lib->load();
+			$this->load->library('Mailer');
+			$mail = $this->mailer->load();
 			
 			try {
-				// 서버 설정
-				$mail->isSMTP();
-				$mail->SMTPAuth = true;
-				$mail->Host = getenv('EMAIL_HOST');
-				$mail->Username = getenv('EMAIL_USER');
-				$mail->Password =  getenv('EMAIL_PASS');
-				$mail->Port = getenv('EMAIL_PORT') ?: 587; // 또는 465
-				$mail->SMTPSecure = getenv('EMAIL_CRYPTO') ?: 'tls'; // 또는 'ssl'
-				
 				// 수신자 설정
 				$mail->setFrom(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
 				$mail->addAddress($this->input->post('recv_email'));
 				
 				// 메일 내용
-				$mail->isHTML(true);
 				$mail->Subject = '이메일 발송 테스트입니다';
 				$emailform['emailform'] = $getdata;
 				$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
