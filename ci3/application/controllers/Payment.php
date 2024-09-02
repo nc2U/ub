@@ -35,7 +35,7 @@ class Payment extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'email'));
+		$this->load->library(array('querystring', 'Mailer'));
 	}
 
 
@@ -47,7 +47,7 @@ class Payment extends CB_Controller
 
 		// 이벤트가 존재하면 실행합니다
 		Events::trigger('before', $eventname);
-
+		
 		if ( ! $this->cbconfig->item('use_pg_test')) {
 			switch ($this->input->ip_address()) {
 				case '203.238.36.58' :
@@ -65,20 +65,25 @@ class Payment extends CB_Controller
 						. 'POST[' . serialize($_POST) . ']'
 						. 'COOKIE[' . serialize($_COOKIE) . ']'
 						. 'SESSION[' . serialize($_SESSION) . ']';
-
+					
+					$mail = $this->mailer->load();
+					$mail->isHTML(false);  // HTML 모드 비활성화
 					foreach ($superadminlist as $akey => $aval) {
-						$this->email->clear(true);
-						$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-						$this->email->to(element('mem_email', $aval));
-
+						$mail->clear(true);
+						$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+						$mail->addAddress(element('mem_email', $aval));
+						
 						$emailsubject = '올바르지 않은 접속이 발견되었습니다';
-						$this->email->subject($emailsubject);
-
+						$mail->Subject = $emailsubject;
+						
 						$message = $this->input->server('PHP_SELF') . ' 에 ' . $this->input->ip_address() . ' 이 ' . cdate('Y-m-d H:i:s') . " 에 접속을 시도하였습니다.\n\n" . $egpcs_str;
-						$this->email->message($message);
-						$this->email->set_mailtype('text');
-
-						$this->email->send();
+						$mail->AltBody = $message;
+						
+						try {
+							$mail->send();
+						} catch (Exception $e) {
+							echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+						}
 					}
 					exit;
 			}
@@ -475,18 +480,24 @@ class Payment extends CB_Controller
 						. 'COOKIE[' . serialize($_COOKIE) . ']'
 						. 'SESSION[' . serialize($_SESSION) . ']';
 
+					$mail = $this->mailer->load();
+					$mail->isHTML(false);  // HTML 모드 비활성화
 					foreach ($superadminlist as $akey => $aval) {
-						$this->email->clear(true);
-						$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-						$this->email->to(element('mem_email', $aval));
-
+						$mail->clear(true);
+						$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+						$mail->addAddress(element('mem_email', $aval));
+						
 						$emailsubject = '올바르지 않은 접속이 발견되었습니다';
-						$this->email->subject($emailsubject);
-
+						$mail->Subject = $emailsubject;
+						
 						$message = $this->input->server('PHP_SELF') . ' 에 ' . $this->input->ip_address() . ' 이 ' . cdate('Y-m-d H:i:s') . " 에 접속을 시도하였습니다.\n\n" . $egpcs_str;
-						$this->email->message($message);
-						$this->email->set_mailtype('text');
-						$this->email->send();
+						$mail->AltBody = $message;
+						
+						try {
+							$mail->send();
+						} catch (Exception $e) {
+							echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+						}
 					}
 					exit;
 			}
@@ -825,18 +836,24 @@ class Payment extends CB_Controller
 							. 'COOKIE[' . serialize($_COOKIE) . ']'
 							. 'SESSION[' . serialize($_SESSION) . ']';
 
+					$mail = $this->mailer->load();
+					$mail->isHTML(false);  // HTML 모드 비활성화
 					foreach ($superadminlist as $akey => $aval) {
-						$this->email->clear(true);
-						$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-						$this->email->to(element('mem_email', $aval));
-
+						$mail->clear(true);
+						$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+						$mail->addAddress(element('mem_email', $aval));
+						
 						$emailsubject = '올바르지 않은 접속이 발견되었습니다';
-						$this->email->subject($emailsubject);
-
+						$mail->Subject = $emailsubject;
+						
 						$message = $this->input->server('PHP_SELF') . ' 에 ' . $this->input->ip_address() . ' 이 ' . cdate('Y-m-d H:i:s') . " 에 접속을 시도하였습니다.\n\n" . $egpcs_str;
-						$this->email->message($message);
-
-						$this->email->send();
+						$mail->AltBody = $message;
+						
+						try {
+							$mail->send();
+						} catch (Exception $e) {
+							echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+						}
 					}
 					exit;
 			}
