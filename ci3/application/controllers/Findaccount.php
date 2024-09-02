@@ -32,7 +32,7 @@ class Findaccount extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'email'));
+		$this->load->library(array('querystring', 'Mailer'));
 	}
 
 
@@ -54,6 +54,8 @@ class Findaccount extends CB_Controller
 
 		$view = array();
 		$view['view'] = array();
+		
+		$mail = $this->mailer->load();
 
 		// 이벤트가 존재하면 실행합니다
 		$view['view']['event']['before'] = Events::trigger('before', $eventname);
@@ -205,13 +207,17 @@ class Findaccount extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_findaccount_user_content')
 				);
-
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('idpw_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('idpw_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try {
+					$mail->send();
+				} catch (Exception $e) {
+					echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+				}
 
 				$view['view']['message'] = $this->input->post('idpw_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 회원님의 정보 확인이 가능합니다';
 
@@ -309,13 +315,17 @@ class Findaccount extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_resendverify_user_content')
 				);
-
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('verify_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('verify_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try {
+					$mail->send();
+				} catch (Exception $e) {
+					echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+				}
 
 				$view['view']['message'] = $this->input->post('verify_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 사이트 이용이 가능합니다';
 
@@ -412,13 +422,17 @@ class Findaccount extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_findaccount_user_content')
 				);
-
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('change_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('change_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try {
+					$mail->send();
+				} catch (Exception $e) {
+					echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+				}
 
 				$view['view']['message'] = $this->input->post('change_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 사이트 이용이 가능합니다';
 
