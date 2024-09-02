@@ -15,11 +15,11 @@ services:
       DATABASE_USER: my-db-user # mariadb env 와 일치
       DATABASE_PASSWORD: my-db-password # mariadb env 와 일치
       EMAIL_PROTOCOL: mail # mail/sendmail/smtp
-      EMAIL_SMTP_HOST: ''
-      EMAIL_SMTP_USER: ''
-      EMAIL_SMTP_PASS: ''
-      EMAIL_SMTP_PORT: 25
-      EMAIL_SMTP_CRYPTO: ssl # SMTP Encryption. Can be null, tls or ssl
+      EMAIL_HOST: ''
+      EMAIL_USER: ''
+      EMAIL_PASS: ''
+      EMAIL_PORT: 25
+      EMAIL_CRYPTO: ssl # SMTP Encryption. Can be null, tls or ssl
     volumes:
       - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf

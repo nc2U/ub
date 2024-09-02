@@ -122,11 +122,11 @@ class Testemail extends CB_Controller
 				// 서버 설정
 				$mail->isSMTP();
 				$mail->SMTPAuth = true;
-				$mail->Host = getenv('EMAIL_SMTP_HOST');
-				$mail->Username = getenv('EMAIL_SMTP_USER');
-				$mail->Password =  getenv('EMAIL_SMTP_PASS');
-				$mail->Port = getenv('EMAIL_SMTP_PORT') ?: 587; // 또는 465
-				$mail->SMTPSecure = getenv('EMAIL_SMTP_CRYPTO') ?: 'tls'; // 또는 'ssl'
+				$mail->Host = getenv('EMAIL_HOST');
+				$mail->Username = getenv('EMAIL_USER');
+				$mail->Password =  getenv('EMAIL_PASS');
+				$mail->Port = getenv('EMAIL_PORT') ?: 587; // 또는 465
+				$mail->SMTPSecure = getenv('EMAIL_CRYPTO') ?: 'tls'; // 또는 'ssl'
 				
 				// 수신자 설정
 				$mail->setFrom(element('webmaster_email', $getdata), element('webmaster_name', $getdata));

@@ -67,11 +67,11 @@ $config['user_agent_parser'] = 'phpuseragent';  // phpuseragent , browscap 둘 �
  * CiBoard 주 : smpt email 을 사용하시는 경우 세팅해주세요
  */
 $config['email_protocol'] = getenv('EMAIL_PROTOCOL') ?: 'mail'; // mail/sendmail/smtp
-$config['email_smtp_host'] = getenv('EMAIL_SMTP_HOST') ?: '';
-$config['email_smtp_user'] = getenv('EMAIL_SMTP_USER') ?: '';
-$config['email_smtp_pass'] = getenv('EMAIL_SMTP_PASS') ?: '';
-$config['email_smtp_port'] = getenv('EMAIL_SMTP_PORT') ?: '25';
-$config['email_smtp_crypto'] = getenv('EMAIL_SMTP_CRYPTO') ?: 'ssl'; // SMTP Encryption. Can be null, tls or ssl.
+$config['email_smtp_host'] = getenv('EMAIL_HOST') ?: '';
+$config['email_smtp_user'] = getenv('EMAIL_USER') ?: '';
+$config['email_smtp_pass'] = getenv('EMAIL_PASS') ?: '';
+$config['email_smtp_port'] = getenv('EMAIL_PORT') ?: '25';
+$config['email_smtp_crypto'] = getenv('EMAIL_CRYPTO') ?: 'ssl'; // SMTP Encryption. Can be null, tls or ssl.
 
 
 /**
