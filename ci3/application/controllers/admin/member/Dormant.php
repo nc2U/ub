@@ -351,7 +351,9 @@ class Dormant extends CB_Controller
 			/**
 			 * Email 라이브러리를 가져옵니다
 			 */
-			$this->load->library('email');
+//			$this->load->library('email');
+			$this->load->library('Mailer');
+			$mail = $this->mailer->load();
 
 			$where = array();
 			$dormant_days = $this->cbconfig->item('member_dormant_days') ? $this->cbconfig->item('member_dormant_days') : 365;
@@ -432,13 +434,25 @@ class Dormant extends CB_Controller
 						$this->cbconfig->item('send_email_dormant_notify_user_content')
 					);
 
-					$this->email->clear(true);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to(element('mem_email', $value));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
-
+//					$this->email->clear(true);
+//					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+//					$this->email->to(element('mem_email', $value));
+//					$this->email->subject($title);
+//					$this->email->message($content);
+//					$this->email->send();
+					
+					// $this->email->clear(true);
+					$this->mailer->clear();
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress(element('mem_email', $value));
+					$mail->Subject = $title;
+					$mail->Body    = $content;
+					try {
+						$mail->send();
+					} catch (Exception $e) {
+						echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+					}
+					
 					$insertdata = array(
 						'mem_id' => element('mem_id', $value),
 						'mem_userid' => element('mem_userid', $value),
