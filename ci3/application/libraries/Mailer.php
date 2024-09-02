@@ -14,12 +14,12 @@
 			$mail = new PHPMailer(true);
 			// 서버 설정
 			$mail->isSMTP();
-			$mail->SMTPAuth = true;
 			$mail->Host = getenv('EMAIL_HOST');
+			$mail->SMTPAuth = true;
 			$mail->Username = getenv('EMAIL_USER');
 			$mail->Password =  getenv('EMAIL_PASS');
-			$mail->Port = getenv('EMAIL_PORT') ?: 587; // 또는 465
 			$mail->SMTPSecure = getenv('EMAIL_CRYPTO') ?: 'tls'; // 또는 'ssl'
+			$mail->Port = getenv('EMAIL_PORT') ?: 587; // 또는 465
 			$mail->isHTML(true);
 			return $mail;
 		}

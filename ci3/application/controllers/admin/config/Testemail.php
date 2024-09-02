@@ -119,27 +119,24 @@ class Testemail extends CB_Controller
 			$this->load->library('Mailer');
 			$mail = $this->mailer->load();
 			
+			// 수신자 설정
+			$mail->setFrom(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
+			$mail->addAddress($this->input->post('recv_email'));
+			
+			// 메일 내용
+			$mail->Subject = '이메일 발송 테스트입니다';
+			$emailform['emailform'] = $getdata;
+			$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
+			$mail->Body    = $message;
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
 			try {
-				// 수신자 설정
-				$mail->setFrom(element('webmaster_email', $getdata), element('webmaster_name', $getdata));
-				$mail->addAddress($this->input->post('recv_email'));
-				
-				// 메일 내용
-				$mail->Subject = '이메일 발송 테스트입니다';
-				$emailform['emailform'] = $getdata;
-				$message = $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/email_form', $emailform, true);
-				$mail->Body    = $message;
-				$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-				
 				$mail->send();
-				
 				$view['view']['alert_message'] = '이메일을 발송하였습니다';
 			} catch (Exception $e) {
-//				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 				$view['view']['alert_message'] = '이메일을 발송하지 못하였습니다. 메일 설정을 확인하여주세요';
+				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}-----{$e}";
 			}
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-
 		}
 
 		$view['view']['data'] = $getdata;
