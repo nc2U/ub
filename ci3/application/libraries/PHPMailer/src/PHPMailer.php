@@ -5245,4 +5245,22 @@ class PHPMailer
     {
         $this->oauth = $oauth;
     }
+
+    /**
+     * Initialize the Email Data
+     *
+     * @param	bool
+     * @return	PHPMailer
+     */
+    public function clear($clear_attachments = FALSE)
+    {
+        $this->clearAddresses();
+
+        if ($clear_attachments !== FALSE)
+        {
+            $this->clearAttachments();
+        }
+
+        return $this;
+    }
 }

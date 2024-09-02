@@ -23,9 +23,4 @@
 			$mail->isHTML(true);
 			return $mail;
 		}
-		
-		public function clear()
-		{
-			return NULL;
-		}
 	}
