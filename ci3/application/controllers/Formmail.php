@@ -164,20 +164,34 @@ class Formmail extends CB_Controller
 			$view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
 
 			// 메일 발송
-			$this->load->library('email');
-			$this->email->from($this->member->item('mem_email'), $this->member->item('mem_nickname'));
-			$this->email->to(element('mem_email', $member));
-
-			$this->email->subject($this->input->post('title'));
+//			$this->load->library('email');
+//			$this->email->from($this->member->item('mem_email'), $this->member->item('mem_nickname'));
+//			$this->email->to(element('mem_email', $member));
+//
+//			$this->email->subject($this->input->post('title'));
 			$content_type = $this->cbconfig->item('use_formmail_dhtml') ? 1 : 0;
-			$this->email->message(display_html_content(
-				$this->input->post('content'),
-				$content_type,
-				800
-			));
-			$this->email->send();
-
-			alert_close(element('mem_nickname', $member) . ' 님에게 메일을 발송하였습니다. ');
+//			$this->email->message(display_html_content(
+//				$this->input->post('content'),
+//				$content_type,
+//				800
+//			));
+//			$this->email->send();
+			
+			$this->load->library('Mailer');
+			$mail = $this->mailer->load();
+			$mail->setFrom($this->member->item('mem_email'), $this->member->item('mem_nickname'));
+			$mail->addAddress(element('mem_email', $member));
+			
+			// 메일 내용
+			$mail->Subject = $this->input->post('title');
+			$mail->Body    = display_html_content($this->input->post('content'), $content_type, 800);
+			
+			try {
+				$mail->send();
+				alert_close(element('mem_nickname', $member) . ' 님에게 메일을 발송하였습니다. ');
+			} catch (Exception $e) {
+				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n{$e}";
+			}
 		}
 	}
 }
