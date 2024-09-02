@@ -18,8 +18,8 @@ services:
       EMAIL_HOST: ''
       EMAIL_USER: ''
       EMAIL_PASS: ''
-      EMAIL_PORT: 25
-      EMAIL_CRYPTO: ssl # SMTP Encryption. Can be null, tls or ssl
+      EMAIL_PORT: 587
+      EMAIL_CRYPTO: tls # SMTP Encryption. Can be null, tls or ssl
     volumes:
       - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
