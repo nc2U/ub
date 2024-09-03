@@ -32,7 +32,7 @@ class Board_write extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'accesslevel', 'email', 'notelib', 'point', 'imagelib'));
+		$this->load->library(array('querystring', 'accesslevel', 'mailer', 'notelib', 'point', 'imagelib'));
 	}
 
 
@@ -213,6 +213,7 @@ class Board_write extends CB_Controller
 		$this->load->event($eventname);
 
 		$param =& $this->querystring;
+		$mail = $this->mailer->load();
 
 		$view = array();
 		$view['view'] = array();
@@ -1217,12 +1218,12 @@ class Board_write extends CB_Controller
 					$this->cbconfig->item('send_email_post_admin_content')
 				);
 				foreach ($emailsendlistadmin as $akey => $aval) {
-					$this->email->clear(true);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to(element('mem_email', $aval));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
+					$mail->clear(true);
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress(element('mem_email', $aval));
+					$mail->Subject = $title;
+					$mail->Body = $content;
+					try { $mail->send(); } catch (Exception $e) { echo 'Mail Error: '. $mail->ErrorInfo; }
 				}
 			}
 			if ($emailsendlistpostwriter) {
@@ -1236,12 +1237,12 @@ class Board_write extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_post_writer_content')
 				);
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to(element('mem_email', $emailsendlistpostwriter));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress(element('mem_email', $emailsendlistpostwriter));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mail Error: '. $mail->ErrorInfo; }
 			}
 			if ($notesendlistadmin) {
 				$title = str_replace(
