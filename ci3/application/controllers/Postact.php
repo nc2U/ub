@@ -32,7 +32,7 @@ class Postact extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'accesslevel', 'email', 'notelib', 'point'));
+		$this->load->library(array('querystring', 'accesslevel', 'mailer', 'notelib', 'point'));
 	}
 
 
@@ -980,6 +980,8 @@ class Postact extends CB_Controller
 
 		// 이벤트가 존재하면 실행합니다
 		Events::trigger('before', $eventname);
+		
+		$mail = $this->mailer->load();
 
 		$result = array();
 		$target_type = 1; // 원글
@@ -1206,12 +1208,12 @@ class Postact extends CB_Controller
 				$this->cbconfig->item('send_email_blame_admin_content')
 			);
 			foreach ($emailsendlistadmin as $akey => $aval) {
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to(element('mem_email', $aval));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress(element('mem_email', $aval));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 			}
 		}
 		if ($emailsendlistpostwriter) {
@@ -1225,12 +1227,12 @@ class Postact extends CB_Controller
 				$replaceconfig_escape,
 				$this->cbconfig->item('send_email_blame_post_writer_content')
 			);
-			$this->email->clear(true);
-			$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-			$this->email->to(element('mem_email', $emailsendlistpostwriter));
-			$this->email->subject($title);
-			$this->email->message($content);
-			$this->email->send();
+			$mail->clear(true);
+			$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+			$mail->addAddress(element('mem_email', $emailsendlistpostwriter));
+			$mail->Subject = $title;
+			$mail->Body = $content;
+			try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 		}
 		if ($notesendlistadmin) {
 			$title = str_replace(
@@ -1336,6 +1338,8 @@ class Postact extends CB_Controller
 		// 이벤트가 존재하면 실행합니다
 		Events::trigger('before', $eventname);
 
+		$mail = $this->mailer->load();
+		
 		$result = array();
 		$target_type = 2; // 댓글
 		$this->output->set_content_type('application/json');
@@ -1601,12 +1605,12 @@ class Postact extends CB_Controller
 				$this->cbconfig->item('send_email_comment_blame_admin_content')
 			);
 			foreach ($emailsendlistadmin as $akey => $aval) {
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to(element('mem_email', $aval));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress(element('mem_email', $aval));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 			}
 		}
 		if ($emailsendlistpostwriter) {
@@ -1620,12 +1624,12 @@ class Postact extends CB_Controller
 				$replaceconfig_escape,
 				$this->cbconfig->item('send_email_comment_blame_post_writer_content')
 			);
-			$this->email->clear(true);
-			$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-			$this->email->to(element('mem_email', $emailsendlistpostwriter));
-			$this->email->subject($title);
-			$this->email->message($content);
-			$this->email->send();
+			$mail->clear(true);
+			$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+			$mail->addAddress(element('mem_email', $emailsendlistpostwriter));
+			$mail->Subject = $title;
+			$mail->Body = $content;
+			try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 		}
 		if ($emailsendlistcmtwriter) {
 			$title = str_replace(
@@ -1638,12 +1642,12 @@ class Postact extends CB_Controller
 				$replaceconfig_escape,
 				$this->cbconfig->item('send_email_comment_blame_comment_writer_content')
 			);
-			$this->email->clear(true);
-			$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-			$this->email->to(element('mem_email', $emailsendlistcmtwriter));
-			$this->email->subject($title);
-			$this->email->message($content);
-			$this->email->send();
+			$mail->clear(true);
+			$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+			$mail->addAddress(element('mem_email', $emailsendlistcmtwriter));
+			$mail->Subject = $title;
+			$mail->Body = $content;
+			try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 		}
 		if ($notesendlistadmin) {
 			$title = str_replace(
