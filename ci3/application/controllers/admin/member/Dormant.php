@@ -351,7 +351,7 @@ class Dormant extends CB_Controller
 			/**
 			 * Email 라이브러리를 가져옵니다
 			 */
-			$this->load->library('Mailer');
+			$this->load->library('mailer');
 			$mail = $this->mailer->load();
 
 			$where = array();

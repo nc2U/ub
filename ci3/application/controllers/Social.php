@@ -40,7 +40,7 @@ class Social extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'Mailer'));
+		$this->load->library(array('querystring', 'mailer'));
 
 		if ( ! $this->cbconfig->item('use_sociallogin')) {
 			alert_close('이 웹사이트는 소셜 로그인 기능을 지원하고 있지 않습니다.');

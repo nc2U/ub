@@ -164,7 +164,7 @@ class Formmail extends CB_Controller
 			$view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
 
 			// 메일 발송
-			$this->load->library('Mailer');
+			$this->load->library('mailer');
 			$mail = $this->mailer->load();
 			$mail->setFrom($this->member->item('mem_email'), $this->member->item('mem_nickname'));
 			$mail->addAddress(element('mem_email', $member));

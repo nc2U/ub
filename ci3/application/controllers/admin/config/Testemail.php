@@ -116,7 +116,7 @@ class Testemail extends CB_Controller
 //			}
 //			//echo $this->email->print_debugger();
 			
-			$this->load->library('Mailer');
+			$this->load->library('mailer');
 			$mail = $this->mailer->load();
 			
 			// 수신자 설정
