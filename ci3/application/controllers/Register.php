@@ -32,7 +32,7 @@ class Register extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'form_validation', 'email', 'notelib', 'point'));
+		$this->load->library(array('querystring', 'form_validation', 'mailer', 'notelib', 'point'));
 
 		if ( ! function_exists('password_hash')) {
 			$this->load->helper('password');
@@ -197,6 +197,8 @@ class Register extends CB_Controller
 
 		// 이벤트가 존재하면 실행합니다
 		$view['view']['event']['before'] = Events::trigger('before', $eventname);
+		
+		$mail = $this->mailer->load();
 
 		if ($this->cbconfig->item('use_register_block')) {
 
@@ -1031,11 +1033,14 @@ class Register extends CB_Controller
 						$replaceconfig_escape,
 						$this->cbconfig->item('send_email_register_user_content')
 					);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to($this->input->post('mem_email'));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
+	
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress($this->input->post('mem_email'));
+					$mail->Subject = $title;
+					$mail->Body = $content;
+					try {
+						$mail->send();
+					} catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 				}
 			} else {
 				$vericode = array('$', '/', '.');
@@ -1073,12 +1078,14 @@ class Register extends CB_Controller
 
 				$title = str_replace('{메일인증주소}', $verify_url, $title);
 				$content = str_replace('{메일인증주소}', $verify_url, $content);
-
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('mem_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('mem_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try {
+					$mail->send();
+				} catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 
 				$email_auth_message = $this->input->post('mem_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 사이트 이용이 가능합니다';
 				$this->session->set_flashdata(
@@ -1140,12 +1147,14 @@ class Register extends CB_Controller
 					$this->cbconfig->item('send_email_register_admin_content')
 				);
 				foreach ($emailsendlistadmin as $akey => $aval) {
-					$this->email->clear(true);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to(element('mem_email', $aval));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
+					$mail->clear(true);
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress(element('mem_email', $aval));
+					$mail->Subject = $title;
+					$mail->Body = $content;
+					try {
+						$mail->send();
+					} catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 				}
 			}
 			if ($notesendlistadmin) {
