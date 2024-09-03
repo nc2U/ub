@@ -8,3 +8,5 @@ data:
   DATABASE_HOST: "{{ .Values.global.dbHost }}"
   DATABASE_NAME: "{{ .Release.Name }}"
   DATABASE_USER: "{{ .Release.Name }}"
+  EMAIL_HOST: "{{ .Values.global.emailHost }}"
+  EMAIL_USER: "{{ .Values.global.emailUser }}"
