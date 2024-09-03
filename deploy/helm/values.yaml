@@ -10,6 +10,9 @@ global:
   dbName: ""  # DATABASE_NAME (default: ReleaseName)
   dbUser: "" # DATABASE_USER (default: ReleaseName)
   dbPassword: "" # DATABASE_PASS (default: secret)
+  emailHost: "smtp-server.com" # your-smtp-server.com
+  emailUser: "email@example.com" # 'your-email@example.com
+  emailPassword: "{{ randAlphaNum 5 }}" # your-email-password
 
 nginx:
   service:
