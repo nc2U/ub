@@ -6213,27 +6213,27 @@ flvr.pandora.tv',
 			);
 			
 			$info_auth = array(
-				'access_blame' => 2,
+				'access_blame' => 2, // 게시물신고가능
 				'access_blame_group' => json_encode(["2", "3"]),
-				'access_comment' => 2,
+				'access_comment' => 2, // 댓글 작성
 				'access_comment_group' => json_encode(["2", "3"]),
-				'access_dhtml' => 2,
+				'access_dhtml' => 2, // DHTML 에디터사용
 				'access_dhtml_group' => json_encode(["2", "3"]),
-				'access_download' => 2,
+				'access_download' => 2, // 파일다운로드
 				'access_download_group' => json_encode(["2", "3"]),
-				'access_list' => 2,
+				'access_list' => 2, // 목록
 				'access_list_group' => json_encode(["2", "3"]),
-				'access_reply' => 2,
+				'access_reply' => 2, // 답변 작성
 				'access_reply_group'=> json_encode(["3"]),
-				'access_subject_style' => 2,
+				'access_subject_style' => 2, // 제목스타일사용가능
 				'access_subject_style_group'=> json_encode(["3"]),
-				'access_tag_write'=> 2,
+				'access_tag_write'=> 2, // 태그입력가능
 				'access_tag_write_group' => json_encode(["3"]),
-				'access_upload'=> 2,
+				'access_upload'=> 2, // 파일업로드
 				'access_upload_group'  => json_encode(["3"]),
-				'access_view'=> 2,
+				'access_view'=> 2, // 글열람
 				'access_view_group' => json_encode(["2", "3"]),
-				'access_write' => 2,
+				'access_write' => 2,  // 글 작성
 				'access_write_group'=> json_encode(["3"]),
 			);
 			
@@ -6468,10 +6468,13 @@ flvr.pandora.tv',
 			$metadata['access_poll_write'] = 1;
 			$metadata['access_poll_write_group'] = "";
 			
+			$metadata['access_view_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_write_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_reply_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_comment_group'] = json_encode(["1", "2", "3"]);
 			$metadata['access_upload_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_download_group'] = json_encode(["1", "2", "3"]);
+			$metadata['access_dhtml_group'] = json_encode(["1", "2", "3"]);
 			$metadata['use_post_secret_selected'] = 1;
 			$insertdata = array(
 				'bgr_id' => $bgr_id_2,
@@ -6944,20 +6947,6 @@ flvr.pandora.tv',
 		);
 		$this->Config_model->save($depositdata);
 		$this->Config_model->save($cmalldata);
-
-
-//		$insertdata = array(
-//			'doc_key' => 'cmall',
-//			'doc_title' => '이용안내',
-//			'doc_content' => '이용안내 내용을 입력해주세요',
-//			'doc_content_html_type' => 1,
-//			'doc_layout' => $skin_cmall,
-//			'mem_id' => $this->session->userdata('mem_id'),
-//			'doc_datetime' => cdate('Y-m-d H:i:s'),
-//			'doc_updated_mem_id' => $this->session->userdata('mem_id'),
-//			'doc_updated_datetime' => cdate('Y-m-d H:i:s'),
-//		);
-//		$this->Document_model->insert($insertdata);
 	}
 
 
