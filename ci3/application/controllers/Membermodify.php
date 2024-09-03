@@ -32,7 +32,7 @@ class Membermodify extends CB_Controller
 		/**
 		 * 라이브러리를 로딩합니다
 		 */
-		$this->load->library(array('querystring', 'form_validation', 'email', 'notelib'));
+		$this->load->library(array('querystring', 'form_validation', 'mailer', 'notelib'));
 	}
 
 
@@ -160,6 +160,8 @@ class Membermodify extends CB_Controller
 		if ( ! $this->session->userdata('membermodify')) {
 			redirect('membermodify');
 		}
+		
+		$mail = $this->mailer->load();
 
 		/**
 		 * 로그인이 필요한 페이지입니다
@@ -939,13 +941,13 @@ class Membermodify extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_changeemail_user_content')
 				);
-
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('mem_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('mem_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 
 				$view['view']['result_message'] = $this->input->post('mem_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 사이트 이용이 가능합니다';
 
@@ -997,6 +999,8 @@ class Membermodify extends CB_Controller
 		// 이벤트 라이브러리를 로딩합니다
 		$eventname = 'event_membermodify_defaultinfo';
 		$this->load->event($eventname);
+		
+		$mail = $this->mailer->load();
 
 		/**
 		 * 로그인이 필요한 페이지입니다
@@ -1222,13 +1226,13 @@ class Membermodify extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_changeemail_user_content')
 				);
-
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to($this->input->post('mem_email'));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+		
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress($this->input->post('mem_email'));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 
 				$view['view']['result_message'] = $this->input->post('mem_email') . '로 인증메일이 발송되었습니다. <br />발송된 인증메일을 확인하신 후에 사이트 이용이 가능합니다';
 
@@ -1278,6 +1282,8 @@ class Membermodify extends CB_Controller
 		// 이벤트 라이브러리를 로딩합니다
 		$eventname = 'event_membermodify_password_modify';
 		$this->load->event($eventname);
+		
+		$mail = $this->mailer->load();
 
 		/**
 		 * 로그인이 필요한 페이지입니다
@@ -1512,12 +1518,12 @@ class Membermodify extends CB_Controller
 					$this->cbconfig->item('send_email_changepw_admin_content')
 				);
 				foreach ($emailsendlistadmin as $akey => $aval) {
-					$this->email->clear(true);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to(element('mem_email', $aval));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
+					$mail->clear(true);
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress(element('mem_email', $aval));
+					$mail->Subject = $title;
+					$mail->Body = $content;
+					try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 				}
 			}
 			if ($emailsendlistuser) {
@@ -1531,12 +1537,12 @@ class Membermodify extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_changepw_user_content')
 				);
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to(element('mem_email', $emailsendlistuser));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress(element('mem_email', $emailsendlistuser));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 			}
 			if ($notesendlistadmin) {
 				$title = str_replace(
@@ -1664,6 +1670,8 @@ class Membermodify extends CB_Controller
 		// 이벤트 라이브러리를 로딩합니다
 		$eventname = 'event_membermodify_memberleave';
 		$this->load->event($eventname);
+		
+		$mail = $this->mailer->load();
 
 		/**
 		 * 로그인이 필요한 페이지입니다
@@ -1844,12 +1852,12 @@ class Membermodify extends CB_Controller
 					$this->cbconfig->item('send_email_memberleave_admin_content')
 				);
 				foreach ($emailsendlistadmin as $akey => $aval) {
-					$this->email->clear(true);
-					$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-					$this->email->to(element('mem_email', $aval));
-					$this->email->subject($title);
-					$this->email->message($content);
-					$this->email->send();
+					$mail->clear(true);
+					$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+					$mail->addAddress(element('mem_email', $aval));
+					$mail->Subject = $title;
+					$mail->Body = $content;
+					try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 				}
 			}
 			if ($emailsendlistuser) {
@@ -1863,12 +1871,12 @@ class Membermodify extends CB_Controller
 					$replaceconfig_escape,
 					$this->cbconfig->item('send_email_memberleave_user_content')
 				);
-				$this->email->clear(true);
-				$this->email->from($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
-				$this->email->to(element('mem_email', $emailsendlistuser));
-				$this->email->subject($title);
-				$this->email->message($content);
-				$this->email->send();
+				$mail->clear(true);
+				$mail->setFrom($this->cbconfig->item('webmaster_email'), $this->cbconfig->item('webmaster_name'));
+				$mail->addAddress(element('mem_email', $emailsendlistuser));
+				$mail->Subject = $title;
+				$mail->Body = $content;
+				try { $mail->send(); } catch (Exception $e) { echo 'Mailer Error: ' . $mail->ErrorInfo; }
 			}
 			if ($notesendlistadmin) {
 				$title = str_replace(
