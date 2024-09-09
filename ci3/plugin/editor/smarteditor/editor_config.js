@@ -15,6 +15,9 @@
                     bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
                     bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
                     //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                    SE2M_FontName: {
+                        htMainFont: {'id': '돋움', 'name': '돋움', 'size': '11', 'url': '', 'cssUrl': '' }
+                    },
                     fOnBeforeUnload : function(){
                         //alert("완료!");
                     }
