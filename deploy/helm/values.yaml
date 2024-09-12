@@ -29,13 +29,13 @@ nginx:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: "100M"
-      cert-manager.io/cluster-issuer: letsencrypt-ub
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
       - host: "host-path" # DOMAIN_NAME = Host address
         paths:
           - path: /
             pathType: ImplementationSpecific
     tls:
-      - secretName: ub-certificate-tls
+      - secretName: web-devbox-kr-cert
         hosts:
           - "host-path" # DOMAIN_NAME = Host address
