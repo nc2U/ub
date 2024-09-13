@@ -14,6 +14,11 @@ RUN apt-get update && \
 RUN docker-php-ext-install mysqli
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# php.ini의 디렉토리 경로
+# 기본적으로 PHP 설정 파일은 /usr/local/etc/php/php.ini 에 있습니다.
+# custom-php.ini 파일을 복사하여 설정을 덮어씁니다.
+COPY ./custom-php.ini /usr/local/etc/php/conf.d/
+
 # 작업 디렉토리 설정
 WORKDIR /var/www/html
 
