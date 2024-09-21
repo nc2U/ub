@@ -42,6 +42,22 @@ jobs:
           source: 'ci3'
           target: ${{ secrets.NFS_PATH }}/
       
+      # directory check!!
+      - name: SSH Remote Commands from ci/cd server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          host: ${{ secrets.NFS_HOST }}
+          username: ${{ secrets.NFS_USER }}
+          password: ${{ secrets.NFS_PASS }}
+          command: |
+            cd ${{ secrets.NFS_PATH }}/
+            if [ ! -d "./ci3/uploads" ]; then
+            mkdir -p ./ci3/uploads; chmod -R 707 ci3/uploads; fi;
+            if [ ! -d "./ci3/application/cache" ]; then
+            mkdir -p ./ci3/application/cache; chmod -R 707 ci3/application/cache; fi;
+            if [ ! -d "./ci3/application/logs" ]; then
+            mkdir -p ./ci3/application/logs; chmod -R 707 ci3/application/logs; fi;
+      
       # slack --> notification
       - name: Send slack when failed
         if: ${{ failure() }}                    # 실패했을 때 실행

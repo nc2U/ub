@@ -42,8 +42,7 @@ jobs:
           username: ${{ secrets.CICD_USER }}
           password: ${{ secrets.CICD_PASS }}
           command: |
-            cd ${{ secrets.CICD_PATH }}/ub
-            chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs
+            cd ${{ secrets.CICD_PATH }}/
             if [ ! -d "./volume/mysql/${{ secrets.DATABASE_USER }}" ]; then
             mkdir -p ./volume/mysql/${{ secrets.DATABASE_USER }}
             chown lxd:999 ./volume/mysql/${{ secrets.DATABASE_USER }}
