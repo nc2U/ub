@@ -51,11 +51,7 @@ jobs:
           password: ${{ secrets.NFS_PASS }}
           command: |
             cd ${{ secrets.NFS_PATH }}/
-            chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs \
-            if [ ! -d "./volume/backups" ]; then
-            mkdir -p ./volume/backups; chmod -R 707 volume/backups; fi;
-            if [ ! -d "./volume/sql" ]; then
-            mkdir -p ./volume/sql; chmod -R 707 volume/sql; fi
+            chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs
       
       # slack --> notification
       - name: Send slack when failed
