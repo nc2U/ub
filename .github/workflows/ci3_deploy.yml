@@ -51,13 +51,7 @@ jobs:
           password: ${{ secrets.NFS_PASS }}
           command: |
             cd ${{ secrets.NFS_PATH }}/
-            if [ ! -d "./ci3/uploads" ]; then
-            mkdir -p ./ci3/uploads; fi;
-            if [ ! -d "./ci3/application/cache" ]; then
-            mkdir -p ./ci3/application/cache; fi;
-            if [ ! -d "./ci3/application/logs" ]; then
-            mkdir -p ./ci3/application/logs; fi;
-            chmod -R 707 ci3/uploads; chmod -R 707 ci3/application/cache; chmod -R 707 ci3/application/logs;
+            chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs \
             if [ ! -d "./volume/backups" ]; then
             mkdir -p ./volume/backups; chmod -R 707 volume/backups; fi;
             if [ ! -d "./volume/sql" ]; then
