@@ -4,7 +4,9 @@
 
 global:
   nfsServerHost: "nfs-server-host"  # NFS_HOST = nfs server host (ip)
-  nfsPath: "" # NFS_PATH = nfs volume path
+  nfsPath: "nfs-path" # NFS_PATH = nfs volume path
+  cicdServerHost: "cicd-server-host"
+  cicdPath: "cicd-path"
   baseUrl: "" # BASE_URL
   dbHost: ""  # DATABASE_HOST (default: mariadb)
   dbName: ""  # DATABASE_NAME (default: ReleaseName)
