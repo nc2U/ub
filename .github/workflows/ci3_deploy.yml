@@ -52,11 +52,12 @@ jobs:
           command: |
             cd ${{ secrets.NFS_PATH }}/
             if [ ! -d "./ci3/uploads" ]; then
-            mkdir -p ./ci3/uploads; chmod -R 707 ci3/uploads; fi;
+            mkdir -p ./ci3/uploads; fi;
             if [ ! -d "./ci3/application/cache" ]; then
-            mkdir -p ./ci3/application/cache; chmod -R 707 ci3/application/cache; fi;
+            mkdir -p ./ci3/application/cache; fi;
             if [ ! -d "./ci3/application/logs" ]; then
-            mkdir -p ./ci3/application/logs; chmod -R 707 ci3/application/logs; fi;
+            mkdir -p ./ci3/application/logs; fi;
+            chmod -R 707 ci3/uploads; chmod -R 707 ci3/application/cache; chmod -R 707 ci3/application/logs; 
             if [ ! -d "./volume/backups" ]; then
             mkdir -p ./volume/backups; chmod -R 707 volume/backups; fi;
             if [ ! -d "./volume/sql" ]; then
@@ -71,7 +72,7 @@ jobs:
       
       - name: Send slack if completed
         if: ${{ success() }}                    # 성공할 때만 실행
-        uses: ./.github/actions/slack-notify
+        uses: ./.github/actions/slack-notif
         with:
           status: success   # status input은 받는 쪽에서 default 값을 정해놨기 때문에 success일 때만 전달.
           slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
