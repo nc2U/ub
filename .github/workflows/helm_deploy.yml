@@ -28,21 +28,21 @@ jobs:
       - name: Copy helm, to CI/CD server
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.NFS_HOST }}
-          username: ${{ secrets.NFS_USER }}
-          password: ${{ secrets.NFS_PASS }}
-          source: 'deploy'
-          target: ${{ secrets.NFS_PATH }}/ub/
+          host: ${{ secrets.CICD_HOST }}
+          username: ${{ secrets.CICD_USER }}
+          password: ${{ secrets.CICD_PASS }}
+          source: 'deploy/helm'
+          target: ${{ secrets.CICD_PATH }}/
       
       # helm upgrade --> install
       - name: SSH Remote Commands from ci/cd server
         uses: garygrossgarten/github-action-ssh@release
         with:
-          host: ${{ secrets.NFS_HOST }}
-          username: ${{ secrets.NFS_USER }}
-          password: ${{ secrets.NFS_PASS }}
+          host: ${{ secrets.CICD_HOST }}
+          username: ${{ secrets.CICD_USER }}
+          password: ${{ secrets.CICD_PASS }}
           command: |
-            cd ${{ secrets.NFS_PATH }}/ub
+            cd ${{ secrets.CICD_PATH }}/ub
             chmod -R 707 ci3/uploads ci3/application/cache ci3/application/logs
             if [ ! -d "./volume/mysql/${{ secrets.DATABASE_USER }}" ]; then
             mkdir -p ./volume/mysql/${{ secrets.DATABASE_USER }}
@@ -54,6 +54,8 @@ jobs:
             --set global.dbPassword=${{ secrets.DATABASE_PASS }} \
             --set global.nfsPath=${{ secrets.NFS_PATH }} \
             --set global.nfsServerHost=${{ secrets.NFS_HOST }} \
+            --set global.cicdPath=${{ secrets.CICD_PATH }} \
+            --set global.cicdServerHost=${{ secrets.CICD_HOST }} \
             --set global.baseUrl=${{ secrets.BASE_URL }} \
             --set global.emailHost=${{ secrets.EMAIL_HOST }} \
             --set global.emailUser=${{ secrets.EMAIL_USER }} \

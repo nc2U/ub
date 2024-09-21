@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.NFS_USER }}
           password: ${{ secrets.NFS_PASS }}
           source: 'ci3'
-          target: ${{ secrets.NFS_PATH }}/ub/
+          target: ${{ secrets.NFS_PATH }}/
       
       # slack --> notification
       - name: Send slack when failed
