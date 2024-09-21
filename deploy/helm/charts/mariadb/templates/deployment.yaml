@@ -52,8 +52,8 @@ spec:
           readinessProbe:
             exec:
               command:
-                - ls
-                - /var/lib/mysql/{{ .Release.Name }}
+                - mariadb
+                - -V
             initialDelaySeconds: 30
             periodSeconds: 60
             failureThreshold: 5
