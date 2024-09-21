@@ -14,7 +14,7 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: {{ default "/mnt/nfs" .Values.global.nfsPath }}/ub/ci3
+    path: {{ default "/mnt/nfs/uboard" .Values.global.nfsPath }}/ub/ci3
     server: {{ .Values.global.nfsServerHost }}
 
 {{/*---*/}}
