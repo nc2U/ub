@@ -1,5 +1,23 @@
 services:
 
+  # MariaDB Service
+  mariadb:
+    container_name: ci3-mariadb
+    image: mariadb:latest
+    restart: always
+    command: [ "--character-set-server=utf8", "--collation-server=utf8_unicode_ci" ]
+    environment:
+      MYSQL_DATABASE: my-db-name # 실제 데이터로 수정
+      MYSQL_USER: my-db-user # 실제 데이터로 수정
+      MYSQL_PASSWORD: my-db-password # 실제 데이터로 수정
+      MARIADB_ROOT_PASSWORD: my-db-password # 실제 데이터로 수정
+      TZ: Asia/Seoul
+    volumes:
+      - ../volume/mysql:/var/lib/mysql
+      - ../volume/backups:/var/backups
+      - ../volume/sql:/docker-entrypoint-initdb.d
+
+
   # PHP FPM Service
   web:
     container_name: ci3-web
@@ -39,20 +57,3 @@ services:
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - web
-
-  # MariaDB Service
-  mariadb:
-    container_name: ci3-mariadb
-    image: mariadb:latest
-    restart: always
-    command: [ "--character-set-server=utf8", "--collation-server=utf8_unicode_ci" ]
-    environment:
-      MYSQL_DATABASE: my-db-name # 실제 데이터로 수정
-      MYSQL_USER: my-db-user # 실제 데이터로 수정
-      MYSQL_PASSWORD: my-db-password # 실제 데이터로 수정
-      MARIADB_ROOT_PASSWORD: my-db-password # 실제 데이터로 수정
-      TZ: Asia/Seoul
-    volumes:
-      - ../volume/mysql:/var/lib/mysql
-      - ../volume/backups:/var/backups
-      - ../volume/sql:/docker-entrypoint-initdb.d
