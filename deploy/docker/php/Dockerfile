@@ -5,6 +5,7 @@ RUN apt-get update && \
     git \
     zip \
     curl \
+    ca-certificates \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -12,6 +13,8 @@ RUN apt-get update && \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN docker-php-ext-install mysqli
+# CA 인증서 업데이트 (중요)
+RUN update-ca-certificates  
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # php.ini의 디렉토리 경로
