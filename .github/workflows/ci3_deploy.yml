@@ -1,4 +1,4 @@
-name: Ci3 source Update [master]
+name: CI3 Source [master]
 
 on:
   push:
