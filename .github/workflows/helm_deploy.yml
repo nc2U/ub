@@ -1,4 +1,4 @@
-name: Helm Deploy [master]
+name: Helm [master]
 
 on:
   push:
