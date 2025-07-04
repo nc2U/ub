@@ -1,5 +1,5 @@
-[//]: # ([![Build]&#40;https://github.com/nc2U/ub/actions/workflows/ci3_deploy.yml/badge.svg&#41;]&#40;https://github.com/nc2U/ub/actions&#41;)
-[//]: # ([![Build]&#40;https://github.com/nc2U/ub/actions/workflows/helm_deploy.yml/badge.svg&#41;]&#40;https://github.com/nc2U/ub/actions&#41;)
+[![Build](https://github.com/nc2U/ub/actions/workflows/ci3_deploy.yml/badge.svg)](https://github.com/nc2U/ub/actions)
+[![Build](https://github.com/nc2U/ub/actions/workflows/helm_deploy.yml/badge.svg)](https://github.com/nc2U/ub/actions)
 ![License](https://img.shields.io/github/license/nc2U/ub)
 ![Last Commit](https://img.shields.io/github/last-commit/nc2U/ub)
 ![Issues](https://img.shields.io/github/issues/nc2U/ub)
