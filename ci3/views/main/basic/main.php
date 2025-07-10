@@ -5,20 +5,20 @@ $active = element('bl', $view) === '2';
 
 if ($active) {
     echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
-  <li class="nav-item">
+  <li class="nav-item active">
     <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
   </li>
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="?bl=1">조합 공개 자료</a>
   </li>
 
 </ul>';
 } else {
     echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="?bl=2">조합원 커뮤니티</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item active">
     <a class="nav-link" href="?bl=1">조합 공개 자료</a>
   </li>
 </ul>';
