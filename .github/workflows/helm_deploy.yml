@@ -1,4 +1,4 @@
-name: Helm Update [master]
+name: Helm [master]
 
 on:
   push:

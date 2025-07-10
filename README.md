@@ -1,3 +1,11 @@
+[![Build](https://github.com/nc2U/ub/actions/workflows/ci3_deploy.yml/badge.svg)](https://github.com/nc2U/ub/actions)
+[![Build](https://github.com/nc2U/ub/actions/workflows/helm_deploy.yml/badge.svg)](https://github.com/nc2U/ub/actions)
+![License](https://img.shields.io/github/license/nc2U/ub)
+![Last Commit](https://img.shields.io/github/last-commit/nc2U/ub)
+![Issues](https://img.shields.io/github/issues/nc2U/ub)
+![Stars](https://img.shields.io/github/stars/nc2U/ub)
+![Forks](https://img.shields.io/github/forks/nc2U/ub)
+
 # CIBOARD with Docker(PHP, MariaDB and Nginx)
 
 * This example provides containers for:
