@@ -1,25 +1,25 @@
 <?php
 echo '<div class="col-xs-12 mb20" style="padding: 0;"><img src="uploads/img/main.jpg" width="100%" style="border: 1px solid #ddd;" /></div>';
 
-$active = element('b', $view) === '1';
+$active = element('bl', $view) === '1';
 
 if ($active) {
     echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item active">
-    <a class="nav-link" href="?b=1">조합원 커뮤니티</a>
+    <a class="nav-link" href="?bl=1">조합원 커뮤니티</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="?b=2">조합 공개 자료</a>
+    <a class="nav-link" href="?bl=2">조합 공개 자료</a>
   </li>
 
 </ul>';
 } else {
     echo '<ul class="nav nav-tabs" style="margin-bottom: 10px;">
   <li class="nav-item active">
-    <a class="nav-link" href="?b=1">조합원 커뮤니티</a>
+    <a class="nav-link" href="?bl=1">조합원 커뮤니티</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="?b=2">조합 공개 자료</a>
+    <a class="nav-link" href="?bl=2">조합 공개 자료</a>
   </li>
 </ul>';
 }
