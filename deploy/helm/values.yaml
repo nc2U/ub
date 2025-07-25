@@ -30,6 +30,7 @@ nginx:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/rewrite-target: /
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      acme.cert-manager.io/http01-ingress-path-type: ImplementationSpecific
 
     hosts:
       - host: "host-path" # DOMAIN_NAME = Host address
