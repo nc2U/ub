@@ -34,9 +34,7 @@ services:
   # PHP FPM Service
   web:
     container_name: ub-php
-    build:
-      dockerfile: Dockerfile
-      context: ./docker/php
+    build: docker/php
     image: nc2u/ci3
     environment:
       BASE_URL: http://localhost:8080/
