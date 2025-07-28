@@ -24,7 +24,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./docker/php
-    image: dokube/ci3
+    image: nc2u/ci3
     environment:
       BASE_URL: http://localhost:8080/
       ENCRYPTION_KEY: random-key

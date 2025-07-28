@@ -28,13 +28,15 @@ nginx:
     annotations:
       kubernetes.io/tls-acme: "true"
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/rewrite-target: /
-      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      acme.cert-manager.io/http01-edit-in-place: "true" # Add this line
+#      nginx.ingress.kubernetes.io/ssl-redirect: "true"
 
     hosts:
       - host: "host-path" # DOMAIN_NAME = Host address
         paths:
           - path: /
+            pathType: ImplementationSpecific
+          - path: /.well-known/acme-challenge/
             pathType: ImplementationSpecific
     tls:
       - secretName: web-devbox-kr-cert
