@@ -2,7 +2,7 @@ services:
 
   # MariaDB Service
   mariadb:
-    container_name: ci3-mariadb
+    container_name: ub-mariadb
     image: mariadb:latest
     restart: always
     command: [ "--character-set-server=utf8", "--collation-server=utf8_unicode_ci" ]
@@ -19,21 +19,21 @@ services:
 
   # Nginx Service
   nginx:
-    container_name: ci3-nginx
+    container_name: ub-nginx
     image: nginx:latest
     ports:
       - 8080:80
     links:
-      - web
+      - php-fpm
     volumes:
       - ../ci3:/var/www/html
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
-      - web
+      - php-fpm
 
   # PHP FPM Service
-  web:
-    container_name: ci3-web
+  php-fpm:
+    container_name: ub-web
     build:
       dockerfile: Dockerfile
       context: ./docker/php
