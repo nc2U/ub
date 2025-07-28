@@ -24,16 +24,16 @@ services:
     ports:
       - 8080:80
     links:
-      - php-fpm
+      - web
     volumes:
       - ../ci3:/var/www/html
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
-      - php-fpm
+      - web
 
   # PHP FPM Service
-  php-fpm:
-    container_name: ub-web
+  web:
+    container_name: ub-php
     build:
       dockerfile: Dockerfile
       context: ./docker/php
