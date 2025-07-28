@@ -17,6 +17,19 @@ services:
       - ../volume/backups:/var/backups
       - ../volume/sql:/docker-entrypoint-initdb.d
 
+  # Nginx Service
+  nginx:
+    container_name: ci3-nginx
+    image: nginx:latest
+    ports:
+      - 8080:80
+    links:
+      - web
+    volumes:
+      - ../ci3:/var/www/html
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
 
   # PHP FPM Service
   web:
@@ -43,17 +56,3 @@ services:
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
     depends_on:
       - mariadb
-
-  # Nginx Service
-  nginx:
-    container_name: ci3-nginx
-    image: nginx:latest
-    ports:
-      - 8080:80
-    links:
-      - web
-    volumes:
-      - ../ci3:/var/www/html
-      - ./docker/nginx:/etc/nginx/conf.d
-    depends_on:
-      - web
