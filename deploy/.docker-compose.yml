@@ -46,7 +46,7 @@ services:
     container_name: ub-nginx
     image: nginx:latest
     ports:
-      - '8888:80'
+      - '8880:80'
     links:
       - web
     volumes:
@@ -61,7 +61,7 @@ services:
     image: phpmyadmin:latest
     restart: always
     ports:
-      - '8081:80'
+      - '8881:80'
     environment:
       PMA_HOST: mariadb
       PMA_USER: rhymix
