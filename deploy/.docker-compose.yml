@@ -17,20 +17,6 @@ services:
       - ../volume/backups:/var/backups
       - ../volume/sql:/docker-entrypoint-initdb.d
 
-  # Nginx Service
-  nginx:
-    container_name: ub-nginx
-    image: nginx:latest
-    ports:
-      - '8888:80'
-    links:
-      - web
-    volumes:
-      - ../ci3:/var/www/html
-      - ./docker/nginx:/etc/nginx/conf.d
-    depends_on:
-      - web
-
   # PHP FPM Service
   web:
     container_name: ub-php
@@ -52,5 +38,34 @@ services:
     volumes:
       - ../ci3:/var/www/html
       - ./docker/php/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+    depends_on:
+      - mariadb
+    
+  # Nginx Service
+  nginx:
+    container_name: ub-nginx
+    image: nginx:latest
+    ports:
+      - '8888:80'
+    links:
+      - web
+    volumes:
+      - ../ci3:/var/www/html
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
+  
+  # phpMyAdmin Service
+  phpmyadmin:
+    container_name: rhymix-phpmyadmin
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: rhymix
+      PMA_PASSWORD: secret
+      PMA_ARBITRARY: 1
     depends_on:
       - mariadb
