@@ -63,9 +63,9 @@ services:
     ports:
       - '8881:80'
     environment:
-      PMA_HOST: mariadb
-      PMA_USER: ub
-      PMA_PASSWORD: secret
+      PMA_HOST: my-db-name # mariadb env 와 일치
+      PMA_USER: my-db-user # mariadb env 와 일치
+      PMA_PASSWORD: my-db-password # mariadb env 와 일치
       PMA_ARBITRARY: 1
     depends_on:
       - mariadb
