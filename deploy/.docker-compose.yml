@@ -57,14 +57,14 @@ services:
   
   # phpMyAdmin Service
   phpmyadmin:
-    container_name: rhymix-phpmyadmin
+    container_name: ub-phpmyadmin
     image: phpmyadmin:latest
     restart: always
     ports:
       - '8881:80'
     environment:
       PMA_HOST: mariadb
-      PMA_USER: rhymix
+      PMA_USER: ub
       PMA_PASSWORD: secret
       PMA_ARBITRARY: 1
     depends_on:
